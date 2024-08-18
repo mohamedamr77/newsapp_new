@@ -40,6 +40,7 @@ dependencies:
   flutter_svg: ^2.0.10+1
   device_preview: ^1.2.0
   font_awesome_flutter: ^10.7.0
+  flutter_bloc: ^8.1.6
 
 dev_dependencies:
   flutter_test:
