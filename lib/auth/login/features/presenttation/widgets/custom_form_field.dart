@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:newsappcode/core/utils/style_app.dart';
 
 class CustomFormField extends StatelessWidget {
   const CustomFormField({
@@ -10,9 +11,13 @@ class CustomFormField extends StatelessWidget {
     this.initialValue,
     @required this.onSaved,
     this.suffixIcon,
+    this.hintText,
+    this.fillColor,
   });
+  final Color? fillColor;
   final int minLine;
   final int maxLine;
+  final String? hintText;
   final void Function(String)? onChanged;
   final String? Function(String?)? validator;
   final void Function(String?)? onSaved;
@@ -33,6 +38,10 @@ class CustomFormField extends StatelessWidget {
           FocusManager.instance.primaryFocus?.unfocus();
         },
         decoration: InputDecoration(
+          filled: true,
+          fillColor: fillColor,
+          hintText: hintText,
+          hintStyle: StyleApp.textStyle6,
           suffixIcon: suffixIcon,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(6),

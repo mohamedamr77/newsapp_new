@@ -22,4 +22,9 @@ class StyleApp {
     fontSize: 16,
     color: const Color(0xff0F8ACF),
   );
+  static final textStyle6 = GoogleFonts.poppins(
+    fontWeight: FontWeight.w400,
+    fontSize: 14,
+    color: const Color(0xff050505),
+  );
 }

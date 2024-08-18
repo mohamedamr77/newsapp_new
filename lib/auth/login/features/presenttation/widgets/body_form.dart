@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:newsappcode/auth/login/features/controller/login/login_cubit.dart';
+import 'package:newsappcode/auth/login/features/controller/login/login_state.dart';
 import 'package:newsappcode/core/utils/style_app.dart';
 import 'custom_button.dart';
 import 'custom_form_field.dart';
@@ -6,16 +9,19 @@ import 'custom_rich_text.dart';
 import 'facebook_or_google.dart';
 
 class BodyForm extends StatelessWidget {
-   const BodyForm({super.key});
+  const BodyForm({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var formKey=GlobalKey<FormState>();
+    var formKey = GlobalKey<FormState>();
     return Form(
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      key:formKey,
+      key: formKey,
       child: Container(
-        padding:  EdgeInsets.only(top: MediaQuery.of(context).size.height*0.032397, bottom: MediaQuery.of(context).size.height*0.032397,),
+        padding: EdgeInsets.only(
+          top: MediaQuery.of(context).size.height * 0.032397,
+          bottom: MediaQuery.of(context).size.height * 0.032397,
+        ),
         decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
@@ -24,50 +30,88 @@ class BodyForm extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+
             Padding(
-              padding:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.0584),
+              padding: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width * 0.0584),
               child: Align(
                 alignment: Alignment.topCenter,
                 child: Image(
                   image: const AssetImage(
                     "assets/images/login text.png",
                   ),
-                  width: MediaQuery.of(context).size.width *
-                      0.1682,
-                  height: MediaQuery.of(context).size.height *
-                      0.02591,
+                  width: MediaQuery.of(context).size.width * 0.1682,
+                  height: MediaQuery.of(context).size.height * 0.02591,
                 ),
               ),
             ),
+
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.03,
             ),
+
             const CustomRichText(text: "username"),
-            CustomFormField(
-              onSaved: (s) {},
-              validator: (value){
-               return validateUserName(value);
+
+            BlocBuilder<LoginCubit, LoginState>(
+              builder: (context, state) {
+                return CustomFormField(
+                  fillColor:
+                      BlocProvider.of<LoginCubit>(context).isValidateUserName
+                          ? Color(0xffFFF3F8)
+                          : Colors.white,
+                  hintText:
+                      BlocProvider.of<LoginCubit>(context).isValidateUserName
+                          ? "Input text"
+                          : null,
+                  suffixIcon:
+                      BlocProvider.of<LoginCubit>(context).isValidateUserName
+                          ? Image(
+                              image: AssetImage(
+                                "assets/images/remove.png",
+                              ),
+                              width: 14,
+                              height: 14,
+                            )
+                          : null,
+                  onSaved: (s) {},
+                  validator: (value) {
+                    return BlocProvider.of<LoginCubit>(context)
+                        .validateUserName(value);
+                  },
+                );
               },
             ),
-             SizedBox(
+
+            SizedBox(
               height: MediaQuery.of(context).size.height * 0.017,
             ),
+
             const CustomRichText(text: "Password"),
-            CustomFormField(
-              onSaved: (s) {},
-              validator:(v){
-                return validatePassword(v);
+
+            BlocBuilder<LoginCubit, LoginState>(
+              builder: (context, state) {
+                return CustomFormField(
+
+                  onSaved: (s) {},
+                  validator: (v) {
+                    return BlocProvider.of<LoginCubit>(context)
+                        .validatePassword(v);
+                  },
+                  suffixIcon: const Icon(
+                    Icons.remove_red_eye,
+                    color: Colors.blue,
+                  ),
+                );
               },
-              suffixIcon: const Icon(
-                Icons.remove_red_eye,
-                color: Colors.blue,
-              ),
             ),
+
             const SizedBox(
               height: 8,
             ),
+
             Padding(
-              padding:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.038),
+              padding: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width * 0.038),
               child: Row(
                 children: [
                   Checkbox(value: true, onChanged: (value) {}),
@@ -86,21 +130,25 @@ class BodyForm extends StatelessWidget {
                 ],
               ),
             ),
-             SizedBox(
-              height: MediaQuery.of(context).size.height*0.0129,
-            ),
-            CustomButton(
-                backGroundColor: const Color(0xff0F8ACF),
-                nameButton: "Login",
-                onTap:  () {
-                  if(formKey.currentState!.validate()) {
-                    formKey.currentState!.save();
-                  }
 
-                },),
-             SizedBox(
-              height: MediaQuery.of(context).size.height*0.0129,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.0129,
             ),
+
+            CustomButton(
+              backGroundColor: const Color(0xff0F8ACF),
+              nameButton: "Login",
+              onTap: () {
+                if (formKey.currentState!.validate()) {
+                  formKey.currentState!.save();
+                }
+              },
+            ),
+
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.0129,
+            ),
+
             Align(
               alignment: Alignment.center,
               child: Text(
@@ -109,9 +157,11 @@ class BodyForm extends StatelessWidget {
                 style: StyleApp.textStyle1,
               ),
             ),
-             SizedBox(
-               height: MediaQuery.of(context).size.height*0.0129,
+
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.0129,
             ),
+
             Row(
               children: [
                 FacebookOrGoogle(
@@ -131,9 +181,11 @@ class BodyForm extends StatelessWidget {
                 ),
               ],
             ),
-             SizedBox(
-               height: MediaQuery.of(context).size.height*0.0129,
+
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.0129,
             ),
+
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -141,6 +193,7 @@ class BodyForm extends StatelessWidget {
                   "don’t have an account ?",
                   style: StyleApp.textStyle1,
                 ),
+
                 TextButton(
                     onPressed: () {},
                     child: Text(
@@ -156,17 +209,17 @@ class BodyForm extends StatelessWidget {
     );
   }
 }
-
-String? validateUserName(String? value) {
-  if (value == null || value.isEmpty) {
-    return "❗ Invalid Username";
-  }
-  return null;
-}
-
-String? validatePassword(String? value) {
-  if (value == null || value.isEmpty) {
-    return "❗ Password error";
-  }
-  return null;
-}
+//
+// String? validateUserName(String? value) {
+//   if (value == null || value.isEmpty) {
+//     return "❗ Invalid Username";
+//   }
+//   return null;
+// }
+//
+// String? validatePassword(String? value) {
+//   if (value == null || value.isEmpty) {
+//     return "❗ Password error";
+//   }
+//   return null;
+// }
