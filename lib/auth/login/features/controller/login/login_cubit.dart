@@ -7,6 +7,7 @@ class LoginCubit extends Cubit<LoginState>{
   LoginCubit() : super(LoginInitialState());
   bool isValidateUserName=false;
   bool isValidatePassword=false;
+  bool isCheckBox=false;
 
   String? validateUserName(String? value) {
     if (value == null || value.isEmpty) {
@@ -26,7 +27,7 @@ class LoginCubit extends Cubit<LoginState>{
     if (value == null || value.isEmpty) {
       isValidatePassword = true;
       emit(ValidationPasswordTrueState());
-      return "❗ Invalid Password";
+      return "❗ Password Error";
     } else {
       isValidatePassword = false;
     emit(ValidationPasswordFalseState());

@@ -65,13 +65,7 @@ class BodyForm extends StatelessWidget {
                           : null,
                   suffixIcon:
                       BlocProvider.of<LoginCubit>(context).isValidateUserName
-                          ? Image(
-                              image: AssetImage(
-                                "assets/images/remove.png",
-                              ),
-                              width: 14,
-                              height: 14,
-                            )
+                          ? Icon(Icons.close,color: Colors.red,)
                           : null,
                   onSaved: (s) {},
                   validator: (value) {
@@ -91,14 +85,23 @@ class BodyForm extends StatelessWidget {
             BlocBuilder<LoginCubit, LoginState>(
               builder: (context, state) {
                 return CustomFormField(
+                  fillColor:
+                  BlocProvider.of<LoginCubit>(context).isValidatePassword
+                      ? Color(0xffFFF3F8) : Colors.white,
+
+                  hintText:  BlocProvider.of<LoginCubit>(context).isValidatePassword
+                      ? "Input Password":null ,
 
                   onSaved: (s) {},
+
                   validator: (v) {
                     return BlocProvider.of<LoginCubit>(context)
                         .validatePassword(v);
                   },
-                  suffixIcon: const Icon(
-                    Icons.remove_red_eye,
+
+                  suffixIcon: BlocProvider.of<LoginCubit>(context).isValidatePassword
+                      ? const Icon(Icons.close,color: Colors.red,):
+                   const Icon(Icons.remove_red_eye,
                     color: Colors.blue,
                   ),
                 );
