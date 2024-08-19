@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newsappcode/features/auth/login/presentation/view/widgets/login_body.dart';
 
-
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 

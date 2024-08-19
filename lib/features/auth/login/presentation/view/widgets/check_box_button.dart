@@ -12,8 +12,7 @@ class CheckBoxButton extends StatelessWidget {
     return BlocBuilder<LoginCubit, LoginState>(
       builder: (context, state) {
         return Checkbox(
-            value:
-            BlocProvider.of<LoginCubit>(context).remember,
+            value: BlocProvider.of<LoginCubit>(context).remember,
             onChanged: (value) {
               BlocProvider.of<LoginCubit>(context)
                   .toggleRememberMeValue(remember: value!);

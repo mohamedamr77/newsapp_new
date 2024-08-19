@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/utils/style_app.dart';
+import '../../../core/utils/style_app.dart';
 
 class CustomTextForStyle1 extends StatelessWidget {
   const CustomTextForStyle1({super.key, required this.text, this.textAlign});
@@ -10,7 +10,7 @@ class CustomTextForStyle1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       textAlign: textAlign,
-     text,
+      text,
       style: StyleApp.textStyle1,
     );
   }
