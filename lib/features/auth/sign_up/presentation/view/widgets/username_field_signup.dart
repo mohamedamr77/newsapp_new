@@ -10,28 +10,24 @@ class UsernameFieldSignup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  BlocBuilder<SignUpCubit, SignUpState>(
+    return BlocBuilder<SignUpCubit, SignUpState>(
       builder: (context, state) {
         return CustomFormField(
-          hintText:
-          BlocProvider.of<SignUpCubit>(context).isValidateUserName
+          hintText: BlocProvider.of<SignUpCubit>(context).isValidateUserName
               ? "Input UserName"
               : null,
-          suffixIcon:
-          BlocProvider.of<SignUpCubit>(context).isValidateUserName
+          suffixIcon: BlocProvider.of<SignUpCubit>(context).isValidateUserName
               ? const Icon(
-            Icons.close,
-            color: Colors.red,
-          )
+                  Icons.close,
+                  color: Colors.red,
+                )
               : null,
           onSaved: (s) {},
-          fillColor:
-          BlocProvider.of<SignUpCubit>(context).isValidateUserName
+          fillColor: BlocProvider.of<SignUpCubit>(context).isValidateUserName
               ? const Color(0xffFFF3F8)
               : Colors.white,
           validator: (v) {
-            return BlocProvider.of<SignUpCubit>(context)
-                .validateUserName(v);
+            return BlocProvider.of<SignUpCubit>(context).validateUserName(v);
           },
         );
       },

@@ -2,21 +2,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsappcode/features/auth/sign_up/presentation/controller/sign_up_state.dart';
 
-class SignUpCubit extends Cubit<SignUpState>{
+class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit() : super(SignUpInitialState());
   bool isValidateUserName = false;
   bool isValidatePassword = false;
   bool isValidateConfirmPassword = false;
+  bool visibilityPassword = false;
+  bool visibilityConfirmPassword = false;
 
   String? validateUserName(String? value) {
     if (value == null || value.isEmpty) {
-       isValidateUserName = true;
-       emit(ValidateUserNameTrueSigUp());
+      isValidateUserName = true;
+      emit(ValidateUserNameTrueSigUpState());
       debugPrint("$isValidateUserName");
       return "❗ Invalid Username";
     } else {
       isValidateUserName = false;
-      emit(ValidateUserNameFalseSigUp());
+      emit(ValidateUserNameFalseSigUpState());
       debugPrint("$isValidateUserName");
       return null;
     }
@@ -25,25 +27,34 @@ class SignUpCubit extends Cubit<SignUpState>{
   String? validatePassword(String? value) {
     if (value == null || value.isEmpty) {
       isValidatePassword = true;
-      emit(ValidatePasswordTrueSigUp());
+      emit(ValidatePasswordTrueSigUpState());
       return "❗ Password Error";
     } else {
       isValidatePassword = false;
-      emit(ValidatePasswordFalseSigUp());
+      emit(ValidatePasswordFalseSigUpState());
       return null;
     }
   }
 
   String? validateConfirmPassword(String? value) {
     if (value == null || value.isEmpty) {
-      isValidatePassword = true;
-      emit(ValidateConfirmPasswordTrueSigUp());
+      isValidateConfirmPassword = true;
+      emit(ValidateConfirmPasswordTrueSigUpState());
       return "❗ Password Error";
     } else {
-      isValidatePassword = false;
-      emit(ValidateConfirmPasswordFalseSigUp());
+      isValidateConfirmPassword = false;
+      emit(ValidateConfirmPasswordFalseSigUpState());
       return null;
     }
   }
 
+  togglePasswordVisibility({required bool visibility}) {
+    visibilityPassword = !visibility;
+    emit(TogglePasswordVisibilitySignUpState());
+  }
+
+  toggleConfirmPasswordVisibility({required bool visibility}) {
+    visibilityConfirmPassword = !visibility;
+    emit(ToggleConfirmPasswordVisibilitySignUpState());
+  }
 }

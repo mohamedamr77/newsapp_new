@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsappcode/core/shared_widget/custom_button.dart';
-import 'package:newsappcode/core/shared_widget/custom_form_field.dart';
 import 'package:newsappcode/features/auth/shared_widget_auth/custom_text_for_style_1.dart';
 import 'package:newsappcode/features/auth/shared_widget_auth/image_top_container_form.dart';
 import 'package:newsappcode/features/auth/sign_up/presentation/controller/sign_up_cubit.dart';
-import 'package:newsappcode/features/auth/sign_up/presentation/controller/sign_up_state.dart';
+import 'package:newsappcode/features/auth/sign_up/presentation/view/widgets/password_field_sign_up.dart';
 import 'package:newsappcode/features/auth/sign_up/presentation/view/widgets/username_field_signup.dart';
 import '../../../../../../core/utils/style_app.dart';
 import '../../../../login/presentation/view/widgets/custom_rich_text.dart';
 import '../../../../login/presentation/view/widgets/facebook_or_google.dart';
+import 'confirm_password_field.dart';
 
 class BodyFormSignUp extends StatelessWidget {
   const BodyFormSignUp({super.key});
@@ -49,34 +49,12 @@ class BodyFormSignUp extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * 0.017,
               ),
               const CustomRichText(text: "Password"),
-              BlocBuilder<SignUpCubit, SignUpState>(
-                builder: (context, state) {
-                  return CustomFormField(
-                    onSaved: (s) {},
-                    fillColor: Colors.white,
-                    validator: (v) {
-                      return BlocProvider.of<SignUpCubit>(context)
-                          .validatePassword(v);
-                    },
-                  );
-                },
-              ),
+              const PasswordFieldSignUp(),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.017,
               ),
               const CustomRichText(text: "Confirm Password"),
-              BlocBuilder<SignUpCubit, SignUpState>(
-                builder: (context, state) {
-                  return CustomFormField(
-                    validator: (v) {
-                      return BlocProvider.of<SignUpCubit>(context)
-                          .validateConfirmPassword(v);
-                    },
-                    onSaved: (s) {},
-                    fillColor: Colors.white,
-                  );
-                },
-              ),
+              const ConfirmPasswordField(),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.03,
               ),
