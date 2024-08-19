@@ -61,22 +61,28 @@ class SignUpCubit extends Cubit<SignUpState> {
   }
 
   fireBaseSignUp()async{
+    emit(SignUpLoadingState());
+
     try {
       final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailAddress!,
-        password: password!,
+        email: emailAddress!.trim(),
+        password: password!.trim(),
       );
+      emit(SignUpSuccessState());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
+        emit(SignUpFaliureState(error: "Error Firebase ${e.code}"));
         if (kDebugMode) {
           print('The password provided is too weak.');
         }
       } else if (e.code == 'email-already-in-use') {
+        emit(SignUpFaliureState(error: "Error Firebase ${e.code}"));
         if (kDebugMode) {
           print('The account already exists for that email.');
         }
       }
     } catch (e) {
+      emit(SignUpFaliureState(error: "Error Firebase $e"));
       if (kDebugMode) {
         print(e);
       }

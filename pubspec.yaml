@@ -42,6 +42,7 @@ dependencies:
   font_awesome_flutter: ^10.7.0
   flutter_bloc: ^8.1.6
   firebase_auth: ^4.16.0
+  modal_progress_hud_nsn: ^0.5.1
 
 
 dev_dependencies:

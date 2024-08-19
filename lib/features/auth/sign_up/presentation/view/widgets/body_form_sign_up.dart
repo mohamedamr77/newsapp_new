@@ -66,18 +66,22 @@ class BodyFormSignUp extends StatelessWidget {
                 }
               },
             ),
+
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.017,
             ),
+
             const Align(
                 alignment: Alignment.center,
                 child: CustomTextForStyle1(
                   text: "or continue with",
                   textAlign: TextAlign.center,
                 )),
+
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.017,
             ),
+
             Row(
               children: [
                 FacebookOrGoogle(
@@ -97,9 +101,11 @@ class BodyFormSignUp extends StatelessWidget {
                 ),
               ],
             ),
+
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.011,
             ),
+
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
