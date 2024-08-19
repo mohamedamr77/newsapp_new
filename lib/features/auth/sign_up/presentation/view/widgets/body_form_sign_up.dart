@@ -19,6 +19,7 @@ class BodyFormSignUp extends StatelessWidget {
     return BlocProvider(
       create: (context) => SignUpCubit(),
       child: Form(
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         key: formKey,
         child: Container(
           padding: EdgeInsets.only(
@@ -45,8 +46,18 @@ class BodyFormSignUp extends StatelessWidget {
               BlocBuilder<SignUpCubit, SignUpState>(
                 builder: (context, state) {
                   return CustomFormField(
+                    hintText: BlocProvider.of<SignUpCubit>(context).isValidateUserName?
+                          "Input UserName" :null,
+                    suffixIcon: BlocProvider.of<SignUpCubit>(context).isValidateUserName?
+                     const Icon(
+                    Icons.close,
+                    color: Colors.red,
+                  )
+                      : null,
                     onSaved: (s) {},
-                    fillColor: Colors.white,
+                    fillColor:BlocProvider.of<SignUpCubit>(context).isValidateUserName?
+                       const Color(0xffFFF3F8)
+                      : Colors.white,
                     validator: (v) {
                       return BlocProvider.of<SignUpCubit>(context)
                           .validateUserName(v);
@@ -61,6 +72,7 @@ class BodyFormSignUp extends StatelessWidget {
               BlocBuilder<SignUpCubit, SignUpState>(
                 builder: (context, state) {
                   return CustomFormField(
+
                     onSaved: (s) {},
                     fillColor: Colors.white,
                     validator: (v) {
