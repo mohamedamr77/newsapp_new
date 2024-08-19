@@ -82,16 +82,15 @@ class BodyForm extends StatelessWidget {
 
             const CustomRichText(text: "Password"),
 
-            BlocBuilder<LoginCubit, LoginState>(
-              builder: (context, state) {
+            BlocBuilder<LoginCubit, LoginState>(builder: (context, state) {
                 return CustomFormField(
-                  fillColor:
-                  BlocProvider.of<LoginCubit>(context).isValidatePassword
+
+                  fillColor: BlocProvider.of<LoginCubit>(context).isValidatePassword
                       ? Color(0xffFFF3F8) : Colors.white,
 
                   hintText:  BlocProvider.of<LoginCubit>(context).isValidatePassword
                       ? "Input Password":null ,
-
+      
                   onSaved: (s) {},
 
                   validator: (v) {
@@ -100,12 +99,24 @@ class BodyForm extends StatelessWidget {
                   },
 
                   suffixIcon: BlocProvider.of<LoginCubit>(context).isValidatePassword
-                      ? const Icon(Icons.close,color: Colors.red,):
-                   const Icon(Icons.remove_red_eye,
-                    color: Colors.blue,
-                  ),
+                      ?  Icon(Icons.close,color: Colors.red,):
+
+                  IconButton(
+                    icon: BlocProvider.of<LoginCubit>(context).isCheckBox? 
+                        Icon(Icons.visibility_off,color: Color(0xff0F8ACF),):Icon(Icons.remove_red_eye, color: Color(0xff0F8ACF),),
+                    
+                    onPressed: () {
+                    BlocProvider.of<LoginCubit>(context).isCheckBox=!BlocProvider.of<LoginCubit>(context).isCheckBox;
+                    debugPrint("${  BlocProvider.of<LoginCubit>(context).isCheckBox}");
+                    BlocProvider.of<LoginCubit>(context).togglePasswordVisibility(checkValue:  BlocProvider.of<LoginCubit>(context).isCheckBox);
+
+                },),
+ 
+                  obscureText: BlocProvider.of<LoginCubit>(context).isCheckBox ?  true : false,
+
                 );
               },
+
             ),
 
             const SizedBox(

@@ -34,4 +34,11 @@ class LoginCubit extends Cubit<LoginState>{
     return null;
     }
   }
+
+  togglePasswordVisibility({required bool  checkValue}){
+    isCheckBox= checkValue;
+    emit(TogglePasswordVisibilityState());
+  }
+
+
 }

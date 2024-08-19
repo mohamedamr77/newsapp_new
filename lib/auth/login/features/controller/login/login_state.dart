@@ -9,3 +9,5 @@ class ValidationNameFalseState extends LoginState{}
 
 class ValidationPasswordTrueState extends LoginState{}
 class ValidationPasswordFalseState extends LoginState{}
+
+class TogglePasswordVisibilityState extends LoginState{}
