@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:newsappcode/core/shared_widget/custom_button.dart';
 import 'package:newsappcode/features/auth/shared_widget_auth/custom_text_for_style_1.dart';
 import 'package:newsappcode/features/auth/shared_widget_auth/image_top_container_form.dart';
 import 'package:newsappcode/features/auth/sign_up/presentation/controller/sign_up_cubit.dart';
+import 'package:newsappcode/features/auth/sign_up/presentation/controller/sign_up_state.dart';
 import 'package:newsappcode/features/auth/sign_up/presentation/view/widgets/password_field_sign_up.dart';
 import 'package:newsappcode/features/auth/sign_up/presentation/view/widgets/username_field_signup.dart';
 import '../../../../../../core/utils/style_app.dart';
@@ -56,15 +58,38 @@ class BodyFormSignUp extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.03,
             ),
-            CustomButton(
-              backGroundColor: const Color(0xff0F8ACF),
-              nameButton: "Signup",
-              onTap: () async{
-                if (formKey.currentState!.validate()) {
-                  formKey.currentState!.save();
-                  BlocProvider.of<SignUpCubit>(context).fireBaseSignUp();
-                }
-              },
+
+            BlocConsumer<SignUpCubit,SignUpState>(
+                listener: (context, state) {
+                  if(state is SignUpLoadingState){
+                    debugPrint("Loading state");
+                  }
+                  if(state is SignUpSuccessState){
+                    Navigator.pop(context);
+                  }
+                   if(state is SignUpFaliureState){
+                     debugPrint("SignUpFaliureState triggered with error: ${state.error}");
+                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                         content: Text(state.error)
+                     )
+                     );
+                  }
+                },
+                builder: (context, state) {
+                 return state is SignUpLoadingState?
+                 const CircularProgressIndicator()
+                  :
+                 CustomButton(
+                   backGroundColor: const Color(0xff0F8ACF),
+                   nameButton: "Sign Up",
+                   onTap: () async{
+                     if (formKey.currentState!.validate()) {
+                       formKey.currentState!.save();
+                       BlocProvider.of<SignUpCubit>(context).fireBaseSignUp();
+                     }
+                   },
+                 );
+                },
             ),
 
             SizedBox(

@@ -10,9 +10,11 @@ class SignUpCubit extends Cubit<SignUpState> {
   bool isValidateConfirmPassword = false;
   bool visibilityPassword = false;
   bool visibilityConfirmPassword = false;
+
    String? emailAddress;
    String? password;
-  String? validateUserName(String? value) {
+
+   String? validateUserName(String? value) {
     if (value == null || value.isEmpty) {
       isValidateUserName = true;
       emit(ValidateUserNameTrueSigUpState());
@@ -60,7 +62,7 @@ class SignUpCubit extends Cubit<SignUpState> {
     emit(ToggleConfirmPasswordVisibilitySignUpState());
   }
 
-  fireBaseSignUp()async{
+  fireBaseSignUp() async {
     emit(SignUpLoadingState());
 
     try {
@@ -71,21 +73,17 @@ class SignUpCubit extends Cubit<SignUpState> {
       emit(SignUpSuccessState());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        emit(SignUpFaliureState(error: "Error Firebase ${e.code}"));
-        if (kDebugMode) {
-          print('The password provided is too weak.');
-        }
+        emit(SignUpFaliureState(error: "Weak password, please use a stronger password."));
       } else if (e.code == 'email-already-in-use') {
-        emit(SignUpFaliureState(error: "Error Firebase ${e.code}"));
-        if (kDebugMode) {
-          print('The account already exists for that email.');
-        }
+        emit(SignUpFaliureState(error: "Email already in use, please try another one."));
+      } else {
+        // Handle other FirebaseAuthException codes
+        emit(SignUpFaliureState(error: "Authentication failed: ${e.message}"));
       }
     } catch (e) {
-      emit(SignUpFaliureState(error: "Error Firebase $e"));
-      if (kDebugMode) {
-        print(e);
-      }
+      // Catch any other exceptions
+      emit(SignUpFaliureState(error: "An unexpected error occurred: $e"));
     }
   }
+
 }
