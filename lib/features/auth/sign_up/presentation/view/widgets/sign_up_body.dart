@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsappcode/features/auth/shared_widget_auth/custom_top_view.dart';
 import 'package:newsappcode/features/auth/sign_up/presentation/view/widgets/body_form_sign_up.dart';
+
+import '../../controller/sign_up_cubit.dart';
 
 class SignUpBody extends StatelessWidget {
   const SignUpBody({super.key});
@@ -22,9 +25,12 @@ class SignUpBody extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.04643628,
           ),
         ),
-        const SliverToBoxAdapter(
+         BlocProvider(
+           create: (context) => SignUpCubit(),
+  child: SliverToBoxAdapter(
           child: BodyFormSignUp(),
-        )
+        ),
+)
       ],
     );
   }

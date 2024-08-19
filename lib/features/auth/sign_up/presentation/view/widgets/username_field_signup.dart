@@ -22,7 +22,9 @@ class UsernameFieldSignup extends StatelessWidget {
                   color: Colors.red,
                 )
               : null,
-          onSaved: (s) {},
+          onSaved: (s) {
+            BlocProvider.of<SignUpCubit>(context).emailAddress=s;
+          },
           fillColor: BlocProvider.of<SignUpCubit>(context).isValidateUserName
               ? const Color(0xffFFF3F8)
               : Colors.white,

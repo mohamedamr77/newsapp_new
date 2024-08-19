@@ -39,7 +39,9 @@ class PasswordFieldSignUp extends StatelessWidget {
           obscureText: BlocProvider.of<SignUpCubit>(context).visibilityPassword
               ? true
               : false,
-          onSaved: (s) {},
+          onSaved: (s) {
+            BlocProvider.of<SignUpCubit>(context).password=s;
+          },
           validator: (v) {
             return BlocProvider.of<SignUpCubit>(context).validatePassword(v);
           },

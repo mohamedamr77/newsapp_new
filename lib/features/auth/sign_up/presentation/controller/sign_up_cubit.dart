@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsappcode/features/auth/sign_up/presentation/controller/sign_up_state.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit() : super(SignUpInitialState());
   bool isValidateUserName = false;
@@ -9,7 +10,8 @@ class SignUpCubit extends Cubit<SignUpState> {
   bool isValidateConfirmPassword = false;
   bool visibilityPassword = false;
   bool visibilityConfirmPassword = false;
-
+   String? emailAddress;
+   String? password;
   String? validateUserName(String? value) {
     if (value == null || value.isEmpty) {
       isValidateUserName = true;
@@ -56,5 +58,28 @@ class SignUpCubit extends Cubit<SignUpState> {
   toggleConfirmPasswordVisibility({required bool visibility}) {
     visibilityConfirmPassword = !visibility;
     emit(ToggleConfirmPasswordVisibilitySignUpState());
+  }
+
+  fireBaseSignUp()async{
+    try {
+      final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailAddress!,
+        password: password!,
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        if (kDebugMode) {
+          print('The password provided is too weak.');
+        }
+      } else if (e.code == 'email-already-in-use') {
+        if (kDebugMode) {
+          print('The account already exists for that email.');
+        }
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+    }
   }
 }
