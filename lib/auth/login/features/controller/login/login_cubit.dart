@@ -6,7 +6,7 @@ class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(LoginInitialState());
   bool isValidateUserName = false;
   bool isValidatePassword = false;
-  bool isCheckBox = false;
+  bool visibility = false;
 
   String? validateUserName(String? value) {
     if (value == null || value.isEmpty) {
@@ -34,8 +34,8 @@ class LoginCubit extends Cubit<LoginState> {
     }
   }
 
-  togglePasswordVisibility({required bool checkValue}) {
-    isCheckBox = checkValue;
+  togglePasswordVisibility({required bool visibility}) {
+    this.visibility = visibility;
     emit(TogglePasswordVisibilityState());
   }
 }

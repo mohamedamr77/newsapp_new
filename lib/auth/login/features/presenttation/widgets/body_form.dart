@@ -44,10 +44,13 @@ class BodyForm extends StatelessWidget {
                 ),
               ),
             ),
+
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.03,
             ),
+
             const CustomRichText(text: "username"),
+
             BlocBuilder<LoginCubit, LoginState>(
               builder: (context, state) {
                 return CustomFormField(
@@ -74,10 +77,13 @@ class BodyForm extends StatelessWidget {
                 );
               },
             ),
+
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.017,
             ),
+
             const CustomRichText(text: "Password"),
+
             BlocBuilder<LoginCubit, LoginState>(
               builder: (context, state) {
                 return CustomFormField(
@@ -101,7 +107,7 @@ class BodyForm extends StatelessWidget {
                           color: Colors.red,
                         )
                       : IconButton(
-                          icon: BlocProvider.of<LoginCubit>(context).isCheckBox
+                          icon: BlocProvider.of<LoginCubit>(context).visibility
                               ? const Icon(
                                   Icons.visibility_off,
                                   color: Color(0xff0F8ACF),
@@ -111,33 +117,38 @@ class BodyForm extends StatelessWidget {
                                   color: Color(0xff0F8ACF),
                                 ),
                           onPressed: () {
-                            BlocProvider.of<LoginCubit>(context).isCheckBox =
+                            BlocProvider.of<LoginCubit>(context).visibility =
                                 !BlocProvider.of<LoginCubit>(context)
-                                    .isCheckBox;
+                                    .visibility;
                             debugPrint(
-                                "${BlocProvider.of<LoginCubit>(context).isCheckBox}");
+                                "${BlocProvider.of<LoginCubit>(context).visibility}");
                             BlocProvider.of<LoginCubit>(context)
                                 .togglePasswordVisibility(
-                                    checkValue:
+                                visibility:
                                         BlocProvider.of<LoginCubit>(context)
-                                            .isCheckBox);
+                                            .visibility);
                           },
                         ),
-                  obscureText: BlocProvider.of<LoginCubit>(context).isCheckBox
+                  obscureText: BlocProvider.of<LoginCubit>(context).visibility
                       ? true
                       : false,
                 );
               },
             ),
+
             const SizedBox(
               height: 8,
             ),
+
             Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: MediaQuery.of(context).size.width * 0.038),
               child: Row(
                 children: [
-                  Checkbox(value: true, onChanged: (value) {}),
+                  Checkbox(
+                      value: true, onChanged: (value) {
+
+                  }),
                   Expanded(
                     child: Text(
                       "Remember me",
@@ -153,9 +164,11 @@ class BodyForm extends StatelessWidget {
                 ],
               ),
             ),
+
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.0129,
             ),
+
             CustomButton(
               backGroundColor: const Color(0xff0F8ACF),
               nameButton: "Login",
