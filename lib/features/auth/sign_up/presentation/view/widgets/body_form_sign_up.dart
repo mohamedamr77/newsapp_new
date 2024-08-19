@@ -6,6 +6,7 @@ import 'package:newsappcode/features/auth/shared_widget_auth/custom_text_for_sty
 import 'package:newsappcode/features/auth/shared_widget_auth/image_top_container_form.dart';
 import 'package:newsappcode/features/auth/sign_up/presentation/controller/sign_up_cubit.dart';
 import 'package:newsappcode/features/auth/sign_up/presentation/controller/sign_up_state.dart';
+import 'package:newsappcode/features/auth/sign_up/presentation/view/widgets/username_field_signup.dart';
 import '../../../../../../core/utils/style_app.dart';
 import '../../../../login/presentation/view/widgets/custom_rich_text.dart';
 import '../../../../login/presentation/view/widgets/facebook_or_google.dart';
@@ -43,28 +44,7 @@ class BodyFormSignUp extends StatelessWidget {
               const SizedBox(
                 height: 6,
               ),
-              BlocBuilder<SignUpCubit, SignUpState>(
-                builder: (context, state) {
-                  return CustomFormField(
-                    hintText: BlocProvider.of<SignUpCubit>(context).isValidateUserName?
-                          "Input UserName" :null,
-                    suffixIcon: BlocProvider.of<SignUpCubit>(context).isValidateUserName?
-                     const Icon(
-                    Icons.close,
-                    color: Colors.red,
-                  )
-                      : null,
-                    onSaved: (s) {},
-                    fillColor:BlocProvider.of<SignUpCubit>(context).isValidateUserName?
-                       const Color(0xffFFF3F8)
-                      : Colors.white,
-                    validator: (v) {
-                      return BlocProvider.of<SignUpCubit>(context)
-                          .validateUserName(v);
-                    },
-                  );
-                },
-              ),
+              const UsernameFieldSignup(),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.017,
               ),
@@ -72,7 +52,6 @@ class BodyFormSignUp extends StatelessWidget {
               BlocBuilder<SignUpCubit, SignUpState>(
                 builder: (context, state) {
                   return CustomFormField(
-
                     onSaved: (s) {},
                     fillColor: Colors.white,
                     validator: (v) {
