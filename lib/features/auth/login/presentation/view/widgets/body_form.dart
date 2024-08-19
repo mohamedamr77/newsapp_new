@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsappcode/core/utils/style_app.dart';
+import 'package:newsappcode/features/auth/login/presentation/view/widgets/custom_text_for_style_1.dart';
+import 'package:newsappcode/features/auth/login/presentation/view/widgets/password_field.dart';
+import 'package:newsappcode/features/auth/login/presentation/view/widgets/username_field.dart';
 import '../../controller/login_cubit.dart';
 import '../../controller/login_state.dart';
-import 'custom_button.dart';
-import 'custom_form_field.dart';
+import '../../../../../../core/shared_widget/custom_button.dart';
+import '../../../../../../core/shared_widget/custom_form_field.dart';
+import 'check_box_button.dart';
 import 'custom_rich_text.dart';
 import 'facebook_or_google.dart';
 
@@ -24,14 +28,17 @@ class BodyForm extends StatelessWidget {
             top: MediaQuery.of(context).size.height * 0.032397,
             bottom: MediaQuery.of(context).size.height * 0.032397,
           ),
+
           decoration: const BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(80),
               )),
+
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+
               Padding(
                 padding: EdgeInsets.symmetric(
                     horizontal: MediaQuery.of(context).size.width * 0.0584),
@@ -46,117 +53,30 @@ class BodyForm extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.03,
-              ),
+
+              SizedBox(height: MediaQuery.of(context).size.height * 0.03,),
+
               const CustomRichText(text: "username"),
-              BlocBuilder<LoginCubit, LoginState>(
-                builder: (context, state) {
-                  return CustomFormField(
-                    fillColor:
-                        BlocProvider.of<LoginCubit>(context).isValidateUserName
-                            ? const Color(0xffFFF3F8)
-                            : Colors.white,
-                    hintText:
-                        BlocProvider.of<LoginCubit>(context).isValidateUserName
-                            ? "Input text"
-                            : null,
-                    suffixIcon:
-                        BlocProvider.of<LoginCubit>(context).isValidateUserName
-                            ? const Icon(
-                                Icons.close,
-                                color: Colors.red,
-                              )
-                            : null,
-                    onSaved: (s) {},
-                    validator: (value) {
-                      return BlocProvider.of<LoginCubit>(context)
-                          .validateUserName(value);
-                    },
-                  );
-                },
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.017,
-              ),
+
+              const UsernameField(),
+
+              SizedBox(height: MediaQuery.of(context).size.height * 0.017,),
+
               const CustomRichText(text: "Password"),
-              BlocBuilder<LoginCubit, LoginState>(
-                builder: (context, state) {
-                  return CustomFormField(
-                    fillColor:
-                        BlocProvider.of<LoginCubit>(context).isValidatePassword
-                            ? const Color(0xffFFF3F8)
-                            : Colors.white,
-                    hintText:
-                        BlocProvider.of<LoginCubit>(context).isValidatePassword
-                            ? "Input Password"
-                            : null,
-                    onSaved: (s) {},
-                    validator: (v) {
-                      return BlocProvider.of<LoginCubit>(context)
-                          .validatePassword(v);
-                    },
-                    suffixIcon: BlocProvider.of<LoginCubit>(context)
-                            .isValidatePassword
-                        ? const Icon(
-                            Icons.close,
-                            color: Colors.red,
-                          )
-                        : IconButton(
-                            icon:
-                                BlocProvider.of<LoginCubit>(context).visibility
-                                    ? const Icon(
-                                        Icons.visibility_off,
-                                        color: Color(0xff0F8ACF),
-                                      )
-                                    : const Icon(
-                                        Icons.remove_red_eye,
-                                        color: Color(0xff0F8ACF),
-                                      ),
-                            onPressed: () {
-                              BlocProvider.of<LoginCubit>(context).visibility =
-                                  !BlocProvider.of<LoginCubit>(context)
-                                      .visibility;
-                              debugPrint(
-                                  "${BlocProvider.of<LoginCubit>(context).visibility}");
-                              BlocProvider.of<LoginCubit>(context)
-                                  .togglePasswordVisibility(
-                                      visibility:
-                                          BlocProvider.of<LoginCubit>(context)
-                                              .visibility);
-                            },
-                          ),
-                    obscureText: BlocProvider.of<LoginCubit>(context).visibility
-                        ? true
-                        : false,
-                  );
-                },
-              ),
-              const SizedBox(
-                height: 8,
-              ),
+
+              const PasswordField(),
+
+              const SizedBox(height: 8,),
+
               Padding(
                 padding: EdgeInsets.symmetric(
                     horizontal: MediaQuery.of(context).size.width * 0.038),
                 child: Row(
                   children: [
-                    BlocBuilder<LoginCubit, LoginState>(
-                      builder: (context, state) {
-                        return Checkbox(
-                            value:
-                                BlocProvider.of<LoginCubit>(context).remember,
-                            onChanged: (value) {
-                              BlocProvider.of<LoginCubit>(context)
-                                  .toggleRememberMeValue(remember: value!);
-                            });
-                      },
-                    ),
-                    Expanded(
-                      child: Text(
-                        "Remember me",
-                        style: StyleApp.textStyle1,
-                      ),
-                    ),
+                    const CheckBoxButton(),
+                    CustomTextForStyle1(text:  "Remember me",),
+                    Spacer(),
+                    //Forgot the password?
                     TextButton(
                         onPressed: () {},
                         child: Text(
@@ -166,9 +86,9 @@ class BodyForm extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.0129,
-              ),
+
+              SizedBox(height: MediaQuery.of(context).size.height * 0.0129,),
+
               CustomButton(
                 backGroundColor: const Color(0xff0F8ACF),
                 nameButton: "Login",
@@ -178,20 +98,20 @@ class BodyForm extends StatelessWidget {
                   }
                 },
               ),
+
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.0129,
               ),
+
               Align(
                 alignment: Alignment.center,
-                child: Text(
-                  "or continue with",
-                  textAlign: TextAlign.center,
-                  style: StyleApp.textStyle1,
-                ),
+                child: CustomTextForStyle1(text: "or Continue With ",textAlign: TextAlign.center,)
               ),
+
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.0129,
               ),
+
               Row(
                 children: [
                   FacebookOrGoogle(
@@ -200,9 +120,7 @@ class BodyForm extends StatelessWidget {
                     onTap: () {},
                     marginLeft: 24,
                   ),
-                  const SizedBox(
-                    width: 16,
-                  ),
+                  const SizedBox(width: 16,),
                   FacebookOrGoogle(
                     name: "Google",
                     image: "assets/images/google.png",
@@ -211,9 +129,9 @@ class BodyForm extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.0129,
-              ),
+
+              SizedBox(height: MediaQuery.of(context).size.height * 0.0129,),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -231,6 +149,7 @@ class BodyForm extends StatelessWidget {
                   // FaIcon(FontAwesomeIcons.circleExclamation,)
                 ],
               ),
+
             ],
           ),
         ),
