@@ -17,3 +17,5 @@ class ValidationPasswordTrueState extends LoginState {}
 class ValidationPasswordFalseState extends LoginState {}
 
 class TogglePasswordVisibilityState extends LoginState {}
+
+class ToggleRememberMeState extends LoginState {}

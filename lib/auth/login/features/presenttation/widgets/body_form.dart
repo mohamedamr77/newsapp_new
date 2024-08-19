@@ -145,16 +145,21 @@ class BodyForm extends StatelessWidget {
                   horizontal: MediaQuery.of(context).size.width * 0.038),
               child: Row(
                 children: [
-                  Checkbox(
-                      value: true, onChanged: (value) {
 
-                  }),
+                  BlocBuilder<LoginCubit,LoginState>(builder: (context, state) {
+                    return Checkbox(
+                        value: BlocProvider.of<LoginCubit>(context).remember, onChanged: (value) {
+                      BlocProvider.of<LoginCubit>(context).toggleRememberMeValue(remember: value!);
+                    });
+                  },),
+
                   Expanded(
                     child: Text(
                       "Remember me",
                       style: StyleApp.textStyle1,
                     ),
                   ),
+
                   TextButton(
                       onPressed: () {},
                       child: Text(

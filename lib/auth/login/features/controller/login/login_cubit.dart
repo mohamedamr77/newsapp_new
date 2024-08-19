@@ -7,6 +7,7 @@ class LoginCubit extends Cubit<LoginState> {
   bool isValidateUserName = false;
   bool isValidatePassword = false;
   bool visibility = false;
+  bool remember = false;
 
   String? validateUserName(String? value) {
     if (value == null || value.isEmpty) {
@@ -37,5 +38,10 @@ class LoginCubit extends Cubit<LoginState> {
   togglePasswordVisibility({required bool visibility}) {
     this.visibility = visibility;
     emit(TogglePasswordVisibilityState());
+  }
+
+  toggleRememberMeValue({required bool remember}) {
+    this.remember = remember;
+    emit(ToggleRememberMeState());
   }
 }
