@@ -4,7 +4,6 @@ import 'package:newsappcode/auth/login/features/presenttation/widgets/login_body
 
 import 'controller/login/login_cubit.dart';
 
-
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
@@ -12,7 +11,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => LoginCubit(),
-      child: Scaffold(
+      child: const Scaffold(
         backgroundColor: Color(0xff0F8ACF),
         body: LoginBody(),
       ),

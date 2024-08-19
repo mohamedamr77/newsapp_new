@@ -13,7 +13,7 @@ class CustomFormField extends StatelessWidget {
     this.suffixIcon,
     this.hintText,
     this.fillColor,
-    this.obscureText=false,
+    this.obscureText = false,
   });
   final Color? fillColor;
   final int minLine;
@@ -24,7 +24,7 @@ class CustomFormField extends StatelessWidget {
   final void Function(String?)? onSaved;
   final String? initialValue;
   final Widget? suffixIcon;
-  final bool obscureText ;
+  final bool obscureText;
   @override
   Widget build(BuildContext context) {
     return Padding(

@@ -1,13 +1,12 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsappcode/auth/login/features/controller/login/login_state.dart';
 
-class LoginCubit extends Cubit<LoginState>{
+class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(LoginInitialState());
-  bool isValidateUserName=false;
-  bool isValidatePassword=false;
-  bool isCheckBox=false;
+  bool isValidateUserName = false;
+  bool isValidatePassword = false;
+  bool isCheckBox = false;
 
   String? validateUserName(String? value) {
     if (value == null || value.isEmpty) {
@@ -17,9 +16,9 @@ class LoginCubit extends Cubit<LoginState>{
       return "❗ Invalid Username";
     } else {
       isValidateUserName = false;
-     emit(ValidationNameFalseState());
+      emit(ValidationNameFalseState());
       debugPrint("$isValidateUserName");
-    return null;
+      return null;
     }
   }
 
@@ -30,15 +29,13 @@ class LoginCubit extends Cubit<LoginState>{
       return "❗ Password Error";
     } else {
       isValidatePassword = false;
-    emit(ValidationPasswordFalseState());
-    return null;
+      emit(ValidationPasswordFalseState());
+      return null;
     }
   }
 
-  togglePasswordVisibility({required bool  checkValue}){
-    isCheckBox= checkValue;
+  togglePasswordVisibility({required bool checkValue}) {
+    isCheckBox = checkValue;
     emit(TogglePasswordVisibilityState());
   }
-
-
 }

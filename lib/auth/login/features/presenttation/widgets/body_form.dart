@@ -30,7 +30,6 @@ class BodyForm extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: MediaQuery.of(context).size.width * 0.0584),
@@ -45,19 +44,16 @@ class BodyForm extends StatelessWidget {
                 ),
               ),
             ),
-
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.03,
             ),
-
             const CustomRichText(text: "username"),
-
             BlocBuilder<LoginCubit, LoginState>(
               builder: (context, state) {
                 return CustomFormField(
                   fillColor:
                       BlocProvider.of<LoginCubit>(context).isValidateUserName
-                          ? Color(0xffFFF3F8)
+                          ? const Color(0xffFFF3F8)
                           : Colors.white,
                   hintText:
                       BlocProvider.of<LoginCubit>(context).isValidateUserName
@@ -65,7 +61,10 @@ class BodyForm extends StatelessWidget {
                           : null,
                   suffixIcon:
                       BlocProvider.of<LoginCubit>(context).isValidateUserName
-                          ? Icon(Icons.close,color: Colors.red,)
+                          ? const Icon(
+                              Icons.close,
+                              color: Colors.red,
+                            )
                           : null,
                   onSaved: (s) {},
                   validator: (value) {
@@ -75,54 +74,64 @@ class BodyForm extends StatelessWidget {
                 );
               },
             ),
-
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.017,
             ),
-
             const CustomRichText(text: "Password"),
-
-            BlocBuilder<LoginCubit, LoginState>(builder: (context, state) {
+            BlocBuilder<LoginCubit, LoginState>(
+              builder: (context, state) {
                 return CustomFormField(
-
-                  fillColor: BlocProvider.of<LoginCubit>(context).isValidatePassword
-                      ? Color(0xffFFF3F8) : Colors.white,
-
-                  hintText:  BlocProvider.of<LoginCubit>(context).isValidatePassword
-                      ? "Input Password":null ,
-      
+                  fillColor:
+                      BlocProvider.of<LoginCubit>(context).isValidatePassword
+                          ? const Color(0xffFFF3F8)
+                          : Colors.white,
+                  hintText:
+                      BlocProvider.of<LoginCubit>(context).isValidatePassword
+                          ? "Input Password"
+                          : null,
                   onSaved: (s) {},
-
                   validator: (v) {
                     return BlocProvider.of<LoginCubit>(context)
                         .validatePassword(v);
                   },
-
-                  suffixIcon: BlocProvider.of<LoginCubit>(context).isValidatePassword
-                      ?  Icon(Icons.close,color: Colors.red,):
-
-                  IconButton(
-                    icon: BlocProvider.of<LoginCubit>(context).isCheckBox? 
-                        Icon(Icons.visibility_off,color: Color(0xff0F8ACF),):Icon(Icons.remove_red_eye, color: Color(0xff0F8ACF),),
-                    
-                    onPressed: () {
-                    BlocProvider.of<LoginCubit>(context).isCheckBox=!BlocProvider.of<LoginCubit>(context).isCheckBox;
-                    debugPrint("${  BlocProvider.of<LoginCubit>(context).isCheckBox}");
-                    BlocProvider.of<LoginCubit>(context).togglePasswordVisibility(checkValue:  BlocProvider.of<LoginCubit>(context).isCheckBox);
-
-                },),
- 
-                  obscureText: BlocProvider.of<LoginCubit>(context).isCheckBox ?  true : false,
-
+                  suffixIcon: BlocProvider.of<LoginCubit>(context)
+                          .isValidatePassword
+                      ? const Icon(
+                          Icons.close,
+                          color: Colors.red,
+                        )
+                      : IconButton(
+                          icon: BlocProvider.of<LoginCubit>(context).isCheckBox
+                              ? const Icon(
+                                  Icons.visibility_off,
+                                  color: Color(0xff0F8ACF),
+                                )
+                              : const Icon(
+                                  Icons.remove_red_eye,
+                                  color: Color(0xff0F8ACF),
+                                ),
+                          onPressed: () {
+                            BlocProvider.of<LoginCubit>(context).isCheckBox =
+                                !BlocProvider.of<LoginCubit>(context)
+                                    .isCheckBox;
+                            debugPrint(
+                                "${BlocProvider.of<LoginCubit>(context).isCheckBox}");
+                            BlocProvider.of<LoginCubit>(context)
+                                .togglePasswordVisibility(
+                                    checkValue:
+                                        BlocProvider.of<LoginCubit>(context)
+                                            .isCheckBox);
+                          },
+                        ),
+                  obscureText: BlocProvider.of<LoginCubit>(context).isCheckBox
+                      ? true
+                      : false,
                 );
               },
-
             ),
-
             const SizedBox(
               height: 8,
             ),
-
             Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: MediaQuery.of(context).size.width * 0.038),
@@ -144,11 +153,9 @@ class BodyForm extends StatelessWidget {
                 ],
               ),
             ),
-
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.0129,
             ),
-
             CustomButton(
               backGroundColor: const Color(0xff0F8ACF),
               nameButton: "Login",
@@ -158,11 +165,9 @@ class BodyForm extends StatelessWidget {
                 }
               },
             ),
-
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.0129,
             ),
-
             Align(
               alignment: Alignment.center,
               child: Text(
@@ -171,11 +176,9 @@ class BodyForm extends StatelessWidget {
                 style: StyleApp.textStyle1,
               ),
             ),
-
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.0129,
             ),
-
             Row(
               children: [
                 FacebookOrGoogle(
@@ -195,11 +198,9 @@ class BodyForm extends StatelessWidget {
                 ),
               ],
             ),
-
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.0129,
             ),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -223,17 +224,3 @@ class BodyForm extends StatelessWidget {
     );
   }
 }
-//
-// String? validateUserName(String? value) {
-//   if (value == null || value.isEmpty) {
-//     return "❗ Invalid Username";
-//   }
-//   return null;
-// }
-//
-// String? validatePassword(String? value) {
-//   if (value == null || value.isEmpty) {
-//     return "❗ Password error";
-//   }
-//   return null;
-// }
