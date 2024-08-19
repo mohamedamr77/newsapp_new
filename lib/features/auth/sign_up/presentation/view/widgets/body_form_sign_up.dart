@@ -3,7 +3,6 @@ import 'package:newsappcode/core/shared_widget/custom_button.dart';
 import 'package:newsappcode/core/shared_widget/custom_form_field.dart';
 import 'package:newsappcode/features/auth/shared_widget_auth/custom_text_for_style_1.dart';
 import 'package:newsappcode/features/auth/shared_widget_auth/image_top_container_form.dart';
-
 import '../../../../../../core/utils/style_app.dart';
 import '../../../../login/presentation/view/widgets/custom_rich_text.dart';
 import '../../../../login/presentation/view/widgets/facebook_or_google.dart';
@@ -26,30 +25,21 @@ class BodyFormSignUp extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const ImageTopContainerForm(
-              imagePath: "assets/images/sign up form.png"),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.02,
-          ),
+          const ImageTopContainerForm(imagePath: "assets/images/sign up form.png"),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.02,),
           const CustomRichText(text: "username"),
-          const SizedBox(
-            height: 6,
-          ),
+          const SizedBox(height: 6,),
           CustomFormField(
             onSaved: (s) {},
             fillColor: Colors.white,
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.017,
-          ),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.017,),
           const CustomRichText(text: "Password"),
           CustomFormField(
             onSaved: (s) {},
             fillColor: Colors.white,
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.017,
-          ),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.017,),
           const CustomRichText(text: "Confirm Password"),
           CustomFormField(
             onSaved: (s) {},
