@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../../../core/utils/style_app.dart';
+import 'package:newsappcode/core/utils/style_app.dart';
 
 class FacebookOrGoogle extends StatelessWidget {
   const FacebookOrGoogle(

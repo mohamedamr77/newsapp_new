@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:newsappcode/auth/login/features/login_view.dart';
+import 'package:newsappcode/features/auth/login/presentation/view/login_view.dart';
 
 void main() {
   runApp(const MyApp());
-
 }
 
 class MyApp extends StatelessWidget {
@@ -11,8 +10,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  const MaterialApp(
-
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: LoginScreen(),
     );
