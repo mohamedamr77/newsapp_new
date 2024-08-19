@@ -1,5 +1,7 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:newsappcode/core/shared_widget/custom_button.dart';
 import 'package:newsappcode/features/auth/shared_widget_auth/custom_text_for_style_1.dart';
@@ -65,13 +67,29 @@ class BodyFormSignUp extends StatelessWidget {
                     debugPrint("Loading state");
                   }
                   if(state is SignUpSuccessState){
+                    Fluttertoast.showToast(
+                      msg: "Sign up successfully",
+                      fontSize: 16,
+                      backgroundColor: Colors.green,
+                      textColor: Colors.white,
+                      timeInSecForIosWeb: 2,
+                      toastLength: Toast.LENGTH_LONG,
+                      gravity: ToastGravity.SNACKBAR,
+                      webShowClose: true,
+                    );
                     Navigator.pop(context);
                   }
                    if(state is SignUpFaliureState){
                      debugPrint("SignUpFaliureState triggered with error: ${state.error}");
-                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                         content: Text(state.error)
-                     )
+                     Fluttertoast.showToast(
+                       msg: state.error,
+                       fontSize: 16,
+                       backgroundColor: Colors.red,
+                       textColor: Colors.white,
+                       timeInSecForIosWeb: 2,
+                       toastLength: Toast.LENGTH_LONG,
+                       gravity: ToastGravity.BOTTOM,
+                       webShowClose: true,
                      );
                   }
                 },
