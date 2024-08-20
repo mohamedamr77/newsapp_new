@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsappcode/features/auth/sign_up/presentation/controller/validation_cubit/validation_sign_up_state.dart';
 import '../../../../../../core/shared_widget/custom_form_field.dart';
 import '../../controller/sign_up_cubit.dart';
-import '../../controller/sign_up_state.dart';
 import '../../controller/validation_cubit/validation_sign_up_cubit.dart';
 
 class ConfirmPasswordField extends StatelessWidget {

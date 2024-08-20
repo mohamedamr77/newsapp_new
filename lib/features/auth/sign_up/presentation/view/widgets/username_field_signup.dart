@@ -4,7 +4,6 @@ import 'package:newsappcode/features/auth/sign_up/presentation/controller/valida
 
 import '../../../../../../core/shared_widget/custom_form_field.dart';
 import '../../controller/sign_up_cubit.dart';
-import '../../controller/sign_up_state.dart';
 import '../../controller/validation_cubit/validation_sign_up_cubit.dart';
 
 class UsernameFieldSignup extends StatelessWidget {
