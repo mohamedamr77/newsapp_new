@@ -26,7 +26,6 @@ class PasswordFieldSignUp extends StatelessWidget {
                 )
               : IconButton(
                   onPressed: () {
-                    // BlocProvider.of<SignUpCubit>(context).visibilityPassword=!BlocProvider.of<SignUpCubit>(context).visibilityPassword;
                     BlocProvider.of<SignUpCubit>(context)
                         .togglePasswordVisibility(
                             visibility: BlocProvider.of<SignUpCubit>(context)

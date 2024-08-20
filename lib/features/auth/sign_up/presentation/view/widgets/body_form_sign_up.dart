@@ -67,6 +67,7 @@ class BodyFormSignUp extends StatelessWidget {
                     debugPrint("Loading state");
                   }
                   if(state is SignUpSuccessState){
+                    Navigator.pop(context);
                     Fluttertoast.showToast(
                       msg: "Sign up successfully",
                       fontSize: 16,
@@ -77,7 +78,6 @@ class BodyFormSignUp extends StatelessWidget {
                       gravity: ToastGravity.SNACKBAR,
                       webShowClose: true,
                     );
-                    Navigator.pop(context);
                   }
                    if(state is SignUpFaliureState){
                      debugPrint("SignUpFaliureState triggered with error: ${state.error}");
@@ -136,12 +136,52 @@ class BodyFormSignUp extends StatelessWidget {
                 const SizedBox(
                   width: 16,
                 ),
-                FacebookOrGoogle(
-                  name: "Google",
-                  image: "assets/images/google.png",
-                  onTap: () {},
-                  marginRight: 24,
+                BlocConsumer<SignUpCubit,SignUpState>(
+                  builder: (BuildContext context, state) {
+                    return state is SignUpLoadingState?
+                    const CircularProgressIndicator()
+                     :
+                    FacebookOrGoogle(
+                      name: "Google",
+                      image: "assets/images/google.png",
+                      onTap: () {
+                        BlocProvider.of<SignUpCubit>(context).signInWithGoogle();
+                      },
+                      marginRight: 24,
+                    );
+                  },
+                  listener: (BuildContext context, Object? state) {
+                    if (state is SignUpLoadingState) {
+                      debugPrint("Loading state");
+                    }
+                    if (state is SignUpSuccessState) {
+                      Fluttertoast.showToast(
+                        msg: "Sign up successfully",
+                        fontSize: 16,
+                        backgroundColor: Colors.green,
+                        textColor: Colors.white,
+                        timeInSecForIosWeb: 2,
+                        toastLength: Toast.LENGTH_LONG,
+                        gravity: ToastGravity.SNACKBAR,
+                        webShowClose: true,
+                      );
+                     Navigator.pop(context);
+                    }
+                    if (state is SignUpFaliureState) {
+                      Fluttertoast.showToast(
+                        msg: state.error,
+                        fontSize: 16,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                        timeInSecForIosWeb: 2,
+                        toastLength: Toast.LENGTH_LONG,
+                        gravity: ToastGravity.BOTTOM,
+                        webShowClose: true,
+                      );
+                    }
+                  },
                 ),
+
               ],
             ),
 

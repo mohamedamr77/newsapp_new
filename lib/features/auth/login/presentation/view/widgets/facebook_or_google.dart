@@ -17,7 +17,7 @@ class FacebookOrGoogle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 12),
         margin: EdgeInsets.only(left: marginLeft ?? 0, right: marginRight ?? 0),
