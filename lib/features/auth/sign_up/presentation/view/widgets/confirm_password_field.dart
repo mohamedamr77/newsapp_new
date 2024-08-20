@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:newsappcode/features/auth/sign_up/presentation/controller/validation_cubit/validation_sign_up_state.dart';
 import '../../../../../../core/shared_widget/custom_form_field.dart';
 import '../../controller/sign_up_cubit.dart';
 import '../../controller/sign_up_state.dart';
@@ -10,7 +11,7 @@ class ConfirmPasswordField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SignUpCubit, SignUpState>(
+    return BlocBuilder<ValidationSignUpCubit, ValidationSignUpState>(
       builder: (context, state) {
         return CustomFormField(
           suffixIcon: BlocProvider.of<ValidationSignUpCubit>(context)

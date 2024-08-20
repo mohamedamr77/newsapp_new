@@ -5,13 +5,14 @@ import '../../../../../../core/shared_widget/custom_form_field.dart';
 import '../../controller/sign_up_cubit.dart';
 import '../../controller/sign_up_state.dart';
 import '../../controller/validation_cubit/validation_sign_up_cubit.dart';
+import '../../controller/validation_cubit/validation_sign_up_state.dart';
 
 class PasswordFieldSignUp extends StatelessWidget {
   const PasswordFieldSignUp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SignUpCubit, SignUpState>(
+    return BlocBuilder<ValidationSignUpCubit, ValidationSignUpState>(
       builder: (context, state) {
         return CustomFormField(
           fillColor: BlocProvider.of<ValidationSignUpCubit>(context).isValidatePassword

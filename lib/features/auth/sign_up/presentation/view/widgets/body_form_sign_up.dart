@@ -40,26 +40,21 @@ class BodyFormSignUp extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const ImageTopContainerForm(
-                  imagePath: "assets/images/sign up form.png"),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.02,
-              ),
+              const ImageTopContainerForm(imagePath: "assets/images/sign up form.png"),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.02,),
               const CustomRichText(text: "username"),
-              const SizedBox(
-                height: 6,
-              ),
-               UsernameFieldSignup(),
+              const SizedBox(height: 6,),
+              const UsernameFieldSignup(),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.017,
               ),
               const CustomRichText(text: "Password"),
-               PasswordFieldSignUp(),
+              const PasswordFieldSignUp(),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.017,
               ),
               const CustomRichText(text: "Confirm Password"),
-               ConfirmPasswordField(),
+              const ConfirmPasswordField(),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.03,
               ),
