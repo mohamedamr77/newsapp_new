@@ -62,52 +62,52 @@ class BodyFormSignUp extends StatelessWidget {
             ),
 
             BlocConsumer<SignUpCubit,SignUpState>(
-                listener: (context, state) {
-                  if(state is SignUpLoadingState){
-                    debugPrint("Loading state");
-                  }
-                  if(state is SignUpSuccessState){
-                    Navigator.pop(context);
-                    Fluttertoast.showToast(
-                      msg: "Sign up successfully",
-                      fontSize: 16,
-                      backgroundColor: Colors.green,
-                      textColor: Colors.white,
-                      timeInSecForIosWeb: 2,
-                      toastLength: Toast.LENGTH_LONG,
-                      gravity: ToastGravity.SNACKBAR,
-                      webShowClose: true,
-                    );
-                  }
-                   if(state is SignUpFaliureState){
-                     debugPrint("SignUpFaliureState triggered with error: ${state.error}");
-                     Fluttertoast.showToast(
-                       msg: state.error,
-                       fontSize: 16,
-                       backgroundColor: Colors.red,
-                       textColor: Colors.white,
-                       timeInSecForIosWeb: 2,
-                       toastLength: Toast.LENGTH_LONG,
-                       gravity: ToastGravity.BOTTOM,
-                       webShowClose: true,
-                     );
-                  }
-                },
-                builder: (context, state) {
-                 return state is SignUpLoadingState?
-                 const CircularProgressIndicator()
-                  :
-                 CustomButton(
-                   backGroundColor: const Color(0xff0F8ACF),
-                   nameButton: "Sign Up",
-                   onTap: () async{
-                     if (formKey.currentState!.validate()) {
-                       formKey.currentState!.save();
-                       BlocProvider.of<SignUpCubit>(context).fireBaseSignUp();
-                     }
-                   },
-                 );
-                },
+              listener: (context, state) {
+                if(state is SignUpLoadingState){
+                  debugPrint("Loading state");
+                }
+                if(state is SignUpSuccessState){
+                  Fluttertoast.showToast(
+                    msg: "Sign up successfully",
+                    fontSize: 16,
+                    backgroundColor: Colors.green,
+                    textColor: Colors.white,
+                    timeInSecForIosWeb: 2,
+                    toastLength: Toast.LENGTH_LONG,
+                    gravity: ToastGravity.SNACKBAR,
+                    webShowClose: true,
+                  );
+                  Navigator.pop(context);
+                }
+                if(state is SignUpFaliureState){
+                  debugPrint("SignUpFaliureState triggered with error: ${state.error}");
+                  Fluttertoast.showToast(
+                    msg: state.error,
+                    fontSize: 16,
+                    backgroundColor: Colors.red,
+                    textColor: Colors.white,
+                    timeInSecForIosWeb: 2,
+                    toastLength: Toast.LENGTH_LONG,
+                    gravity: ToastGravity.BOTTOM,
+                    webShowClose: true,
+                  );
+                }
+              },
+              builder: (context, state) {
+                return state is SignUpLoadingState?
+                const CircularProgressIndicator()
+                    :
+                CustomButton(
+                  backGroundColor: const Color(0xff0F8ACF),
+                  nameButton: "Sign Up",
+                  onTap: () async{
+                    if (formKey.currentState!.validate()) {
+                      formKey.currentState!.save();
+                      BlocProvider.of<SignUpCubit>(context).fireBaseSignUp();
+                    }
+                  },
+                );
+              },
             ),
 
             SizedBox(
@@ -136,6 +136,7 @@ class BodyFormSignUp extends StatelessWidget {
                 const SizedBox(
                   width: 16,
                 ),
+
                 BlocConsumer<SignUpCubit,SignUpState>(
                   builder: (BuildContext context, state) {
                     return state is SignUpLoadingState?
@@ -154,7 +155,7 @@ class BodyFormSignUp extends StatelessWidget {
                     if (state is SignUpLoadingState) {
                       debugPrint("Loading state");
                     }
-                    if (state is SignUpSuccessState) {
+                    if (state is SignUpSuccessWithGoogleState) {
                       Fluttertoast.showToast(
                         msg: "Sign up successfully",
                         fontSize: 16,
@@ -165,9 +166,9 @@ class BodyFormSignUp extends StatelessWidget {
                         gravity: ToastGravity.SNACKBAR,
                         webShowClose: true,
                       );
-                     Navigator.pop(context);
+                      Navigator.pop(context);
                     }
-                    if (state is SignUpFaliureState) {
+                    if (state is SignUpFaliureWithGoogleState) {
                       Fluttertoast.showToast(
                         msg: state.error,
                         fontSize: 16,

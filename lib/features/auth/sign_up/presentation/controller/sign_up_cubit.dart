@@ -87,21 +87,44 @@ class SignUpCubit extends Cubit<SignUpState> {
     }
   }
 
-  Future<UserCredential> signInWithGoogle() async {
-    // Trigger the authentication flow
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-    // Obtain the auth details from the request
-    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+  Future<UserCredential?> signInWithGoogle() async {
+     emit(SignUpLoadingWithGoogleState());
 
-    // Create a new credential
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
+     try {
+      // Trigger the authentication flow
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-    // Once signed in, return the UserCredential
-    return await FirebaseAuth.instance.signInWithCredential(credential);
+      // If the user cancels the sign-in process
+      if (googleUser == null) {
+        emit(SignUpFaliureWithGoogleState(error: 'Please complete the SignUp'));
+        // print("Sign-in process was canceled by the user.");
+        return null;
+      }
+
+      // Obtain the auth details from the request
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+
+      // Create a new credential
+      final OAuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+       emit(SignUpSuccessWithGoogleState());
+      // Once signed in, return the UserCredential
+      return await FirebaseAuth.instance.signInWithCredential(credential);
+
+    } on FirebaseAuthException catch (e) {
+      emit(SignUpFaliureWithGoogleState(error: 'Error : ${e.code}'));
+
+      // Handle specific FirebaseAuth exceptions if needed
+    } catch (e) {
+      emit(SignUpFaliureWithGoogleState(error: 'Error : $e'));
+    }
+
+    // Return null in case of any error or exception
+    return null;
   }
+
 
 }
