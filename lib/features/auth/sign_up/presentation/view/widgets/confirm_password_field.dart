@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:newsappcode/features/auth/sign_up/presentation/controller/valifation_cubit/validation_sign_up_cubit.dart';
 import '../../../../../../core/shared_widget/custom_form_field.dart';
 import '../../controller/sign_up_cubit.dart';
 import '../../controller/sign_up_state.dart';
@@ -13,7 +13,7 @@ class ConfirmPasswordField extends StatelessWidget {
     return BlocBuilder<SignUpCubit, SignUpState>(
       builder: (context, state) {
         return CustomFormField(
-          suffixIcon: BlocProvider.of<SignUpCubit>(context)
+          suffixIcon: BlocProvider.of<ValidationSignUpCubit>(context)
                   .isValidateConfirmPassword
               ? const Icon(
                   Icons.close,
@@ -37,18 +37,21 @@ class ConfirmPasswordField extends StatelessWidget {
                   ? true
                   : false,
           fillColor:
-              BlocProvider.of<SignUpCubit>(context).isValidateConfirmPassword
+              BlocProvider.of<ValidationSignUpCubit>(context).isValidateConfirmPassword
                   ? const Color(0xffFFF3F8)
                   : Colors.white,
           hintText:
-              BlocProvider.of<SignUpCubit>(context).isValidateConfirmPassword
+              BlocProvider.of<ValidationSignUpCubit>(context).isValidateConfirmPassword
                   ? "Input Password"
                   : null,
           validator: (v) {
-            return BlocProvider.of<SignUpCubit>(context)
+            return BlocProvider.of<ValidationSignUpCubit>(context)
                 .validateConfirmPassword(v);
           },
-          onSaved: (s) {},
+          onSaved: (s) {
+            BlocProvider.of<SignUpCubit>(context).confirmPassword=s;
+          },
+
         );
       },
     );

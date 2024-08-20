@@ -17,14 +17,15 @@ class SignUpFaliureWithGoogleState extends SignUpState {
 }
 
 
-class ValidateUserNameTrueSigUpState extends SignUpState {}
-class ValidateUserNameFalseSigUpState extends SignUpState {}
+class SignUpSuccessWithFacebookState extends SignUpState {}
+class SignUpLoadingWithFacebookState extends SignUpState {}
+class SignUpFaliureWithFacebookState extends SignUpState {
+  final String error;
+  SignUpFaliureWithFacebookState({required this.error});
+}
 
-class ValidatePasswordTrueSigUpState extends SignUpState {}
-class ValidatePasswordFalseSigUpState extends SignUpState {}
 
-class ValidateConfirmPasswordTrueSigUpState extends SignUpState {}
-class ValidateConfirmPasswordFalseSigUpState extends SignUpState {}
+
 
 class TogglePasswordVisibilitySignUpState extends SignUpState {}
 

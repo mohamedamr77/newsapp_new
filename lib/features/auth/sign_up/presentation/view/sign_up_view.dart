@@ -6,9 +6,19 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Color(0xff0F8ACF),
-      body: SignUpBody(),
+    return Stack(
+      children: [
+        const Scaffold(
+          backgroundColor: Color(0xff0F8ACF),
+          body: SignUpBody(),
+        ),
+        // if(true)
+        //   Container(
+        //     alignment: Alignment.center,
+        //     color: Colors.black12,
+        //     child: CircularProgressIndicator(),
+        //   )
+      ],
     );
   }
 }

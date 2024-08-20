@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../../core/shared_widget/custom_form_field.dart';
 import '../../controller/sign_up_cubit.dart';
 import '../../controller/sign_up_state.dart';
+import '../../controller/valifation_cubit/validation_sign_up_cubit.dart';
 
 class PasswordFieldSignUp extends StatelessWidget {
   const PasswordFieldSignUp({super.key});
@@ -13,13 +14,13 @@ class PasswordFieldSignUp extends StatelessWidget {
     return BlocBuilder<SignUpCubit, SignUpState>(
       builder: (context, state) {
         return CustomFormField(
-          fillColor: BlocProvider.of<SignUpCubit>(context).isValidatePassword
+          fillColor: BlocProvider.of<ValidationSignUpCubit>(context).isValidatePassword
               ? const Color(0xffFFF3F8)
               : Colors.white,
-          hintText: BlocProvider.of<SignUpCubit>(context).isValidatePassword
+          hintText: BlocProvider.of<ValidationSignUpCubit>(context).isValidatePassword
               ? "Input Password"
               : null,
-          suffixIcon: BlocProvider.of<SignUpCubit>(context).isValidatePassword
+          suffixIcon: BlocProvider.of<ValidationSignUpCubit>(context).isValidatePassword
               ? const Icon(
                   Icons.close,
                   color: Colors.red,
@@ -42,7 +43,7 @@ class PasswordFieldSignUp extends StatelessWidget {
             BlocProvider.of<SignUpCubit>(context).password=s;
           },
           validator: (v) {
-            return BlocProvider.of<SignUpCubit>(context).validatePassword(v);
+            return BlocProvider.of<ValidationSignUpCubit>(context).validatePassword(v);
           },
         );
       },

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../../core/shared_widget/custom_form_field.dart';
 import '../../controller/sign_up_cubit.dart';
 import '../../controller/sign_up_state.dart';
+import '../../controller/valifation_cubit/validation_sign_up_cubit.dart';
 
 class UsernameFieldSignup extends StatelessWidget {
   const UsernameFieldSignup({super.key});
@@ -13,10 +14,10 @@ class UsernameFieldSignup extends StatelessWidget {
     return BlocBuilder<SignUpCubit, SignUpState>(
       builder: (context, state) {
         return CustomFormField(
-          hintText: BlocProvider.of<SignUpCubit>(context).isValidateUserName
+          hintText: BlocProvider.of<ValidationSignUpCubit>(context).isValidateUserName
               ? "Input UserName"
               : null,
-          suffixIcon: BlocProvider.of<SignUpCubit>(context).isValidateUserName
+          suffixIcon: BlocProvider.of<ValidationSignUpCubit>(context).isValidateUserName
               ? const Icon(
                   Icons.close,
                   color: Colors.red,
@@ -25,11 +26,11 @@ class UsernameFieldSignup extends StatelessWidget {
           onSaved: (s) {
             BlocProvider.of<SignUpCubit>(context).emailAddress=s;
           },
-          fillColor: BlocProvider.of<SignUpCubit>(context).isValidateUserName
+          fillColor: BlocProvider.of<ValidationSignUpCubit>(context).isValidateUserName
               ? const Color(0xffFFF3F8)
               : Colors.white,
           validator: (v) {
-            return BlocProvider.of<SignUpCubit>(context).validateUserName(v);
+            return BlocProvider.of<ValidationSignUpCubit>(context).validateUserName(v);
           },
         );
       },

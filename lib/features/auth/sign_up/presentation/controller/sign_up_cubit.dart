@@ -1,57 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:newsappcode/features/auth/sign_up/presentation/controller/sign_up_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit() : super(SignUpInitialState());
-  bool isValidateUserName = false;
-  bool isValidatePassword = false;
-  bool isValidateConfirmPassword = false;
   bool visibilityPassword = false;
   bool visibilityConfirmPassword = false;
 
    String? emailAddress;
    String? password;
+   String? confirmPassword;
 
-   String? validateUserName(String? value) {
-    if (value == null || value.isEmpty) {
-      isValidateUserName = true;
-      emit(ValidateUserNameTrueSigUpState());
-      debugPrint("$isValidateUserName");
-      return "❗ Invalid Username";
-    } else {
-      isValidateUserName = false;
-      emit(ValidateUserNameFalseSigUpState());
-      debugPrint("$isValidateUserName");
-      return null;
-    }
-  }
 
-  String? validatePassword(String? value) {
-    if (value == null || value.isEmpty) {
-      isValidatePassword = true;
-      emit(ValidatePasswordTrueSigUpState());
-      return "❗ Password Error";
-    } else {
-      isValidatePassword = false;
-      emit(ValidatePasswordFalseSigUpState());
-      return null;
-    }
-  }
-
-  String? validateConfirmPassword(String? value) {
-    if (value == null || value.isEmpty) {
-      isValidateConfirmPassword = true;
-      emit(ValidateConfirmPasswordTrueSigUpState());
-      return "❗ Password Error";
-    } else {
-      isValidateConfirmPassword = false;
-      emit(ValidateConfirmPasswordFalseSigUpState());
-      return null;
-    }
-  }
 
   togglePasswordVisibility({required bool visibility}) {
     visibilityPassword = !visibility;
@@ -65,9 +28,8 @@ class SignUpCubit extends Cubit<SignUpState> {
 
   fireBaseSignUp() async {
     emit(SignUpLoadingState());
-
     try {
-      final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailAddress!.trim(),
         password: password!.trim(),
       );
@@ -89,6 +51,7 @@ class SignUpCubit extends Cubit<SignUpState> {
 
 
   Future<UserCredential?> signInWithGoogle() async {
+
      emit(SignUpLoadingWithGoogleState());
 
      try {
@@ -110,21 +73,21 @@ class SignUpCubit extends Cubit<SignUpState> {
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
-       emit(SignUpSuccessWithGoogleState());
+      emit(SignUpSuccessWithGoogleState());
       // Once signed in, return the UserCredential
       return await FirebaseAuth.instance.signInWithCredential(credential);
-
     } on FirebaseAuthException catch (e) {
       emit(SignUpFaliureWithGoogleState(error: 'Error : ${e.code}'));
 
       // Handle specific FirebaseAuth exceptions if needed
     } catch (e) {
       emit(SignUpFaliureWithGoogleState(error: 'Error : $e'));
-    }
+     }
 
     // Return null in case of any error or exception
     return null;
   }
+
 
 
 }
