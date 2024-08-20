@@ -1,25 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:newsappcode/features/auth/login/presentation/controller/validation_cubit/login_validation_state.dart';
 
 import '../../../../../../core/shared_widget/custom_form_field.dart';
 import '../../controller/login_cubit.dart';
 import '../../controller/login_state.dart';
+import '../../controller/validation_cubit/login_validation_cubit.dart';
 
 class UsernameField extends StatelessWidget {
   const UsernameField({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LoginCubit, LoginState>(
+    return BlocBuilder<LoginValidationCubit, LoginValidationState>(
       builder: (context, state) {
         return CustomFormField(
-          fillColor: BlocProvider.of<LoginCubit>(context).isValidateUserName
+          fillColor: BlocProvider.of<LoginValidationCubit>(context).isValidateUserName
               ? const Color(0xffFFF3F8)
               : Colors.white,
-          hintText: BlocProvider.of<LoginCubit>(context).isValidateUserName
+          hintText: BlocProvider.of<LoginValidationCubit>(context).isValidateUserName
               ? "Input text"
               : null,
-          suffixIcon: BlocProvider.of<LoginCubit>(context).isValidateUserName
+          suffixIcon: BlocProvider.of<LoginValidationCubit>(context).isValidateUserName
               ? const Icon(
                   Icons.close,
                   color: Colors.red,
@@ -29,7 +31,7 @@ class UsernameField extends StatelessWidget {
             BlocProvider.of<LoginCubit>(context).emailAddress = s;
           },
           validator: (value) {
-            return BlocProvider.of<LoginCubit>(context).validateUserName(value);
+            return BlocProvider.of<LoginValidationCubit>(context).validateUserName(value);
           },
         );
       },
