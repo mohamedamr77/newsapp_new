@@ -43,9 +43,7 @@ class SignUpButton extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        return state is SignUpLoadingState
-            ? const Center(child: CircularProgressIndicator())
-            : CustomButton(
+        return CustomButton(
                 backGroundColor: const Color(0xff0F8ACF),
                 nameButton: "Sign Up",
                 onTap: () async {

@@ -95,7 +95,9 @@ class BodyFormSignUp extends StatelessWidget {
                   ),
 
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
                       child: Text(
                         "Login ",
                         style: StyleApp.textStyle5,

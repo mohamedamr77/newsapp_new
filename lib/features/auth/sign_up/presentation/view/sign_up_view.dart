@@ -36,7 +36,7 @@ class SignUpScreen extends StatelessWidget {
                   child: CircularProgressIndicator(),
                 );
               } else {
-               return SizedBox();
+               return const SizedBox();
              }
            },)
         ],
