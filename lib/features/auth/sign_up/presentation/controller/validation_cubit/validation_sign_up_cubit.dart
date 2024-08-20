@@ -9,6 +9,9 @@ class ValidationSignUpCubit extends Cubit<ValidationSignUpState>{
   bool isValidatePassword = false;
   bool isValidateConfirmPassword = false;
 
+  bool visibilityPassword = false;
+  bool visibilityConfirmPassword = false;
+
   String? validateUserName(String? value) {
     if (value == null || value.isEmpty) {
       isValidateUserName = true;
@@ -48,6 +51,16 @@ class ValidationSignUpCubit extends Cubit<ValidationSignUpState>{
       emit(ValidateConfirmPasswordFalseSigUpState());
       return null;
     }
+  }
+
+  togglePasswordVisibility({required bool visibility}) {
+    // visibilityPassword = !visibility;
+    emit(TogglePasswordVisibilitySignUpState());
+  }
+
+  toggleConfirmPasswordVisibility({required bool visibility}) {
+    visibilityConfirmPassword = !visibility;
+    emit(ToggleConfirmPasswordVisibilitySignUpState());
   }
 
 }

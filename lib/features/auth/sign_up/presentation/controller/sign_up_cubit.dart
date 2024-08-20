@@ -4,24 +4,9 @@ import 'package:newsappcode/features/auth/sign_up/presentation/controller/sign_u
 import 'package:firebase_auth/firebase_auth.dart';
 class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit() : super(SignUpInitialState());
-  bool visibilityPassword = false;
-  bool visibilityConfirmPassword = false;
-
    String? emailAddress;
    String? password;
    String? confirmPassword;
-
-
-
-  togglePasswordVisibility({required bool visibility}) {
-    visibilityPassword = !visibility;
-    emit(TogglePasswordVisibilitySignUpState());
-  }
-
-  toggleConfirmPasswordVisibility({required bool visibility}) {
-    visibilityConfirmPassword = !visibility;
-    emit(ToggleConfirmPasswordVisibilitySignUpState());
-  }
 
   fireBaseSignUp() async {
     emit(SignUpLoadingState());

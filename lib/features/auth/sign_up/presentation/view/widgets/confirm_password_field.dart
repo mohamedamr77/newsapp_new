@@ -1,3 +1,7 @@
+
+
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsappcode/features/auth/sign_up/presentation/controller/validation_cubit/validation_sign_up_state.dart';
@@ -21,19 +25,20 @@ class ConfirmPasswordField extends StatelessWidget {
                 )
               : IconButton(
                   onPressed: () {
-                    // BlocProvider.of<SignUpCubit>(context).visibilityConfirmPassword=!BlocProvider.of<SignUpCubit>(context).visibilityConfirmPassword;
-                    BlocProvider.of<SignUpCubit>(context)
+                     log( BlocProvider.of<ValidationSignUpCubit>(context).visibilityConfirmPassword.toString());
+                     BlocProvider.of<ValidationSignUpCubit>(context)
                         .toggleConfirmPasswordVisibility(
-                            visibility: BlocProvider.of<SignUpCubit>(context)
-                                .visibilityConfirmPassword);
+                            visibility: BlocProvider.of<ValidationSignUpCubit>(context)
+                                .visibilityConfirmPassword
+                     );
                   },
-                  icon: BlocProvider.of<SignUpCubit>(context)
+                  icon: BlocProvider.of<ValidationSignUpCubit>(context)
                           .visibilityConfirmPassword
                       ? const Icon(Icons.visibility_off, color: Colors.blue)
                       : const Icon(Icons.visibility, color: Colors.blue),
                 ),
           obscureText:
-              BlocProvider.of<SignUpCubit>(context).visibilityConfirmPassword
+              BlocProvider.of<ValidationSignUpCubit>(context).visibilityConfirmPassword
                   ? true
                   : false,
           fillColor:

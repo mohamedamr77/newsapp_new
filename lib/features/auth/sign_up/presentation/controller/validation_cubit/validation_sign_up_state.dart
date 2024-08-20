@@ -9,3 +9,6 @@ class ValidatePasswordFalseSigUpState extends ValidationSignUpState {}
 
 class ValidateConfirmPasswordTrueSigUpState extends ValidationSignUpState {}
 class ValidateConfirmPasswordFalseSigUpState extends ValidationSignUpState {}
+
+class TogglePasswordVisibilitySignUpState extends ValidationSignUpState {}
+class ToggleConfirmPasswordVisibilitySignUpState extends ValidationSignUpState {}

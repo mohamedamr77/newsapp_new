@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,12 +16,15 @@ class PasswordFieldSignUp extends StatelessWidget {
     return BlocBuilder<ValidationSignUpCubit, ValidationSignUpState>(
       builder: (context, state) {
         return CustomFormField(
+
           fillColor: BlocProvider.of<ValidationSignUpCubit>(context).isValidatePassword
               ? const Color(0xffFFF3F8)
               : Colors.white,
+
           hintText: BlocProvider.of<ValidationSignUpCubit>(context).isValidatePassword
               ? "Input Password"
               : null,
+
           suffixIcon: BlocProvider.of<ValidationSignUpCubit>(context).isValidatePassword
               ? const Icon(
                   Icons.close,
@@ -27,16 +32,19 @@ class PasswordFieldSignUp extends StatelessWidget {
                 )
               : IconButton(
                   onPressed: () {
-                    BlocProvider.of<SignUpCubit>(context)
+                    log(BlocProvider.of<ValidationSignUpCubit>(context).isValidatePassword.toString());
+                    BlocProvider.of<ValidationSignUpCubit>(context)
                         .togglePasswordVisibility(
-                            visibility: BlocProvider.of<SignUpCubit>(context)
-                                .visibilityPassword);
+                            visibility: BlocProvider.of<ValidationSignUpCubit>(context).visibilityPassword
+                    );
+
                   },
-                  icon: BlocProvider.of<SignUpCubit>(context).visibilityPassword
+                  icon:BlocProvider.of<ValidationSignUpCubit>(context)
+                      .visibilityPassword
                       ? const Icon(Icons.visibility_off, color: Colors.blue)
                       : const Icon(Icons.visibility, color: Colors.blue),
                 ),
-          obscureText: BlocProvider.of<SignUpCubit>(context).visibilityPassword
+          obscureText: BlocProvider.of<ValidationSignUpCubit>(context).visibilityPassword
               ? true
               : false,
           onSaved: (s) {

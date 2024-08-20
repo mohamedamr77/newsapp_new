@@ -27,6 +27,4 @@ class SignUpFaliureWithFacebookState extends SignUpState {
 
 
 
-class TogglePasswordVisibilitySignUpState extends SignUpState {}
 
-class ToggleConfirmPasswordVisibilitySignUpState extends SignUpState {}
