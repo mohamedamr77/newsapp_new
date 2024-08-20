@@ -80,10 +80,10 @@ class BodyForm extends StatelessWidget {
               BlocConsumer<LoginCubit, LoginState>(
                 listener: (context, state) {
                   // TODO: implement listener
-                  if(state is LoginLoadingState){
+                  if (state is LoginLoadingState) {
                     debugPrint("Loading state");
                   }
-                  if(state is LoginSuccessState){
+                  if (state is LoginSuccessState) {
                     Fluttertoast.showToast(
                       msg: "Login successfully",
                       fontSize: 16,
@@ -94,10 +94,15 @@ class BodyForm extends StatelessWidget {
                       gravity: ToastGravity.SNACKBAR,
                       webShowClose: true,
                     );
-                   Navigator.push(context, MaterialPageRoute(builder:(context) => const SignUpScreen(),));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SignUpScreen(),
+                        ));
                   }
-                  if(state is LoginFaliureState){
-                    debugPrint("SignUpFaliureState triggered with error: ${state.errorMessage}");
+                  if (state is LoginFaliureState) {
+                    debugPrint(
+                        "SignUpFaliureState triggered with error: ${state.errorMessage}");
                     Fluttertoast.showToast(
                       msg: state.errorMessage,
                       fontSize: 16,
@@ -111,18 +116,21 @@ class BodyForm extends StatelessWidget {
                   }
                 },
                 builder: (context, state) {
-                  return state is LoginLoadingState?
-                  const Center(child: CircularProgressIndicator(),):
-                  CustomButton(
-                    backGroundColor: const Color(0xff0F8ACF),
-                    nameButton: "Login",
-                    onTap: () {
-                      if (formKey.currentState!.validate()) {
-                        formKey.currentState!.save();
-                        BlocProvider.of<LoginCubit>(context).fireBaseSignIn();
-                      }
-                    },
-                  );
+                  return state is LoginLoadingState
+                      ? const Center(
+                          child: CircularProgressIndicator(),
+                        )
+                      : CustomButton(
+                          backGroundColor: const Color(0xff0F8ACF),
+                          nameButton: "Login",
+                          onTap: () {
+                            if (formKey.currentState!.validate()) {
+                              formKey.currentState!.save();
+                              BlocProvider.of<LoginCubit>(context)
+                                  .fireBaseSignIn();
+                            }
+                          },
+                        );
                 },
               ),
               SizedBox(

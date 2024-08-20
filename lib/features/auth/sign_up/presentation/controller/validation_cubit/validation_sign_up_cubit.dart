@@ -2,8 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsappcode/features/auth/sign_up/presentation/controller/validation_cubit/validation_sign_up_state.dart';
 
-
-class ValidationSignUpCubit extends Cubit<ValidationSignUpState>{
+class ValidationSignUpCubit extends Cubit<ValidationSignUpState> {
   ValidationSignUpCubit() : super(ValidationSignUpInitialState());
   bool isValidateUserName = false;
   bool isValidatePassword = false;
@@ -46,7 +45,7 @@ class ValidationSignUpCubit extends Cubit<ValidationSignUpState>{
       isValidateConfirmPassword = true;
       emit(ValidateConfirmPasswordTrueSigUpState());
       return "❗ Password Error";
-    }  else{
+    } else {
       isValidateConfirmPassword = false;
       emit(ValidateConfirmPasswordFalseSigUpState());
       return null;
@@ -54,7 +53,7 @@ class ValidationSignUpCubit extends Cubit<ValidationSignUpState>{
   }
 
   togglePasswordVisibility({required bool visibility}) {
-     visibilityPassword = !visibility;
+    visibilityPassword = !visibility;
     emit(TogglePasswordVisibilitySignUpState());
   }
 
@@ -62,5 +61,4 @@ class ValidationSignUpCubit extends Cubit<ValidationSignUpState>{
     visibilityConfirmPassword = !visibility;
     emit(ToggleConfirmPasswordVisibilitySignUpState());
   }
-
 }

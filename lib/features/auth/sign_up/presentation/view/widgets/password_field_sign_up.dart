@@ -16,42 +16,46 @@ class PasswordFieldSignUp extends StatelessWidget {
     return BlocBuilder<ValidationSignUpCubit, ValidationSignUpState>(
       builder: (context, state) {
         return CustomFormField(
-
-          fillColor: BlocProvider.of<ValidationSignUpCubit>(context).isValidatePassword
-              ? const Color(0xffFFF3F8)
-              : Colors.white,
-
-          hintText: BlocProvider.of<ValidationSignUpCubit>(context).isValidatePassword
-              ? "Input Password"
-              : null,
-
-          suffixIcon: BlocProvider.of<ValidationSignUpCubit>(context).isValidatePassword
+          fillColor:
+              BlocProvider.of<ValidationSignUpCubit>(context).isValidatePassword
+                  ? const Color(0xffFFF3F8)
+                  : Colors.white,
+          hintText:
+              BlocProvider.of<ValidationSignUpCubit>(context).isValidatePassword
+                  ? "Input Password"
+                  : null,
+          suffixIcon: BlocProvider.of<ValidationSignUpCubit>(context)
+                  .isValidatePassword
               ? const Icon(
                   Icons.close,
                   color: Colors.red,
                 )
               : IconButton(
                   onPressed: () {
-                    log(BlocProvider.of<ValidationSignUpCubit>(context).isValidatePassword.toString());
+                    log(BlocProvider.of<ValidationSignUpCubit>(context)
+                        .isValidatePassword
+                        .toString());
                     BlocProvider.of<ValidationSignUpCubit>(context)
                         .togglePasswordVisibility(
-                            visibility: BlocProvider.of<ValidationSignUpCubit>(context).visibilityPassword
-                    );
-
+                            visibility:
+                                BlocProvider.of<ValidationSignUpCubit>(context)
+                                    .visibilityPassword);
                   },
-                  icon:BlocProvider.of<ValidationSignUpCubit>(context)
-                      .visibilityPassword
+                  icon: BlocProvider.of<ValidationSignUpCubit>(context)
+                          .visibilityPassword
                       ? const Icon(Icons.visibility_off, color: Colors.blue)
                       : const Icon(Icons.visibility, color: Colors.blue),
                 ),
-          obscureText: BlocProvider.of<ValidationSignUpCubit>(context).visibilityPassword
-              ? true
-              : false,
+          obscureText:
+              BlocProvider.of<ValidationSignUpCubit>(context).visibilityPassword
+                  ? true
+                  : false,
           onSaved: (s) {
-            BlocProvider.of<SignUpCubit>(context).password=s;
+            BlocProvider.of<SignUpCubit>(context).password = s;
           },
           validator: (v) {
-            return BlocProvider.of<ValidationSignUpCubit>(context).validatePassword(v);
+            return BlocProvider.of<ValidationSignUpCubit>(context)
+                .validatePassword(v);
           },
         );
       },

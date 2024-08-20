@@ -2,25 +2,28 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:newsappcode/features/auth/sign_up/presentation/controller/sign_up_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit() : super(SignUpInitialState());
-   String? emailAddress;
-   String? password;
-   String? confirmPassword;
+  String? emailAddress;
+  String? password;
+  String? confirmPassword;
 
   fireBaseSignUp() async {
     emit(SignUpLoadingState());
     try {
-       await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailAddress!.trim(),
         password: password!.trim(),
       );
       emit(SignUpSuccessState());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        emit(SignUpFaliureState(error: "Weak password, please use a stronger password."));
+        emit(SignUpFaliureState(
+            error: "Weak password, please use a stronger password."));
       } else if (e.code == 'email-already-in-use') {
-        emit(SignUpFaliureState(error: "Email already in use, please try another one."));
+        emit(SignUpFaliureState(
+            error: "Email already in use, please try another one."));
       } else {
         // Handle other FirebaseAuthException codes
         emit(SignUpFaliureState(error: "Authentication failed: ${e.message}"));
@@ -31,12 +34,10 @@ class SignUpCubit extends Cubit<SignUpState> {
     }
   }
 
-
   Future<UserCredential?> signInWithGoogle() async {
+    emit(SignUpLoadingWithGoogleState());
 
-     emit(SignUpLoadingWithGoogleState());
-
-     try {
+    try {
       // Trigger the authentication flow
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
@@ -48,7 +49,8 @@ class SignUpCubit extends Cubit<SignUpState> {
       }
 
       // Obtain the auth details from the request
-      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
 
       // Create a new credential
       final OAuthCredential credential = GoogleAuthProvider.credential(
@@ -64,12 +66,9 @@ class SignUpCubit extends Cubit<SignUpState> {
       // Handle specific FirebaseAuth exceptions if needed
     } catch (e) {
       emit(SignUpFaliureWithGoogleState(error: 'Error : $e'));
-     }
+    }
 
     // Return null in case of any error or exception
     return null;
   }
-
-
-
 }

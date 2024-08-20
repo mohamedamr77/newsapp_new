@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:newsappcode/features/auth/shared_widget_auth/custom_text_for_style_1.dart';
 import 'package:newsappcode/features/auth/shared_widget_auth/image_top_container_form.dart';
@@ -34,10 +33,15 @@ class BodyFormSignUp extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const ImageTopContainerForm(imagePath: "assets/images/sign up form.png"),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.02,),
+              const ImageTopContainerForm(
+                  imagePath: "assets/images/sign up form.png"),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.02,
+              ),
               const CustomRichText(text: "username"),
-              const SizedBox(height: 6,),
+              const SizedBox(
+                height: 6,
+              ),
               const UsernameFieldSignup(),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.017,
@@ -63,23 +67,32 @@ class BodyFormSignUp extends StatelessWidget {
                     textAlign: TextAlign.center,
                   )),
 
-              SizedBox(height: MediaQuery.of(context).size.height * 0.017,),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.017,
+              ),
               // facebook  google button
 
               const Row(
                 children: [
                   FacebookButton(),
-                  SizedBox(width: 16,),
+                  SizedBox(
+                    width: 16,
+                  ),
                   GoogleButton(),
                 ],
               ),
 
-              SizedBox(height: MediaQuery.of(context).size.height * 0.011,),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.011,
+              ),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("don’t have an account ?", style: StyleApp.textStyle1,),
+                  Text(
+                    "don’t have an account ?",
+                    style: StyleApp.textStyle1,
+                  ),
 
                   TextButton(
                       onPressed: () {},

@@ -11,14 +11,13 @@ class GoogleButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  BlocConsumer<SignUpCubit, SignUpState>(
+    return BlocConsumer<SignUpCubit, SignUpState>(
       builder: (BuildContext context, state) {
         return FacebookOrGoogle(
           name: "Google",
           image: "assets/images/google.png",
           onTap: () {
-            BlocProvider.of<SignUpCubit>(context)
-                .signInWithGoogle();
+            BlocProvider.of<SignUpCubit>(context).signInWithGoogle();
           },
           marginRight: 24,
         );

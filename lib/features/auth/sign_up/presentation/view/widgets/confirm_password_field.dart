@@ -1,5 +1,3 @@
-
-
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -25,38 +23,39 @@ class ConfirmPasswordField extends StatelessWidget {
                 )
               : IconButton(
                   onPressed: () {
-                     log( BlocProvider.of<ValidationSignUpCubit>(context).visibilityConfirmPassword.toString());
-                     BlocProvider.of<ValidationSignUpCubit>(context)
+                    log(BlocProvider.of<ValidationSignUpCubit>(context)
+                        .visibilityConfirmPassword
+                        .toString());
+                    BlocProvider.of<ValidationSignUpCubit>(context)
                         .toggleConfirmPasswordVisibility(
-                            visibility: BlocProvider.of<ValidationSignUpCubit>(context)
-                                .visibilityConfirmPassword
-                     );
+                            visibility:
+                                BlocProvider.of<ValidationSignUpCubit>(context)
+                                    .visibilityConfirmPassword);
                   },
                   icon: BlocProvider.of<ValidationSignUpCubit>(context)
                           .visibilityConfirmPassword
                       ? const Icon(Icons.visibility_off, color: Colors.blue)
                       : const Icon(Icons.visibility, color: Colors.blue),
                 ),
-          obscureText:
-              BlocProvider.of<ValidationSignUpCubit>(context).visibilityConfirmPassword
-                  ? true
-                  : false,
-          fillColor:
-              BlocProvider.of<ValidationSignUpCubit>(context).isValidateConfirmPassword
-                  ? const Color(0xffFFF3F8)
-                  : Colors.white,
-          hintText:
-              BlocProvider.of<ValidationSignUpCubit>(context).isValidateConfirmPassword
-                  ? "Input Password"
-                  : null,
+          obscureText: BlocProvider.of<ValidationSignUpCubit>(context)
+                  .visibilityConfirmPassword
+              ? true
+              : false,
+          fillColor: BlocProvider.of<ValidationSignUpCubit>(context)
+                  .isValidateConfirmPassword
+              ? const Color(0xffFFF3F8)
+              : Colors.white,
+          hintText: BlocProvider.of<ValidationSignUpCubit>(context)
+                  .isValidateConfirmPassword
+              ? "Input Password"
+              : null,
           validator: (v) {
             return BlocProvider.of<ValidationSignUpCubit>(context)
                 .validateConfirmPassword(v);
           },
           onSaved: (s) {
-            BlocProvider.of<SignUpCubit>(context).confirmPassword=s;
+            BlocProvider.of<SignUpCubit>(context).confirmPassword = s;
           },
-
         );
       },
     );

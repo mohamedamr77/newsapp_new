@@ -26,18 +26,14 @@ class SignUpBody extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.04643628,
           ),
         ),
-         MultiBlocProvider(
-
-             providers: [
-               BlocProvider<SignUpCubit>(
-                 create: (context) => SignUpCubit(),
-               ),
-               BlocProvider<ValidationSignUpCubit>(
-                 create: (context) => ValidationSignUpCubit(),
-               ),
-
-             ],
-             child: const BodyFormSignUp())
+        MultiBlocProvider(providers: [
+          BlocProvider<SignUpCubit>(
+            create: (context) => SignUpCubit(),
+          ),
+          BlocProvider<ValidationSignUpCubit>(
+            create: (context) => ValidationSignUpCubit(),
+          ),
+        ], child: const BodyFormSignUp())
       ],
     );
   }

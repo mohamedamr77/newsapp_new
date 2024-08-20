@@ -26,7 +26,7 @@ class UsernameField extends StatelessWidget {
                 )
               : null,
           onSaved: (s) {
-            BlocProvider.of<LoginCubit>(context).emailAddress=s;
+            BlocProvider.of<LoginCubit>(context).emailAddress = s;
           },
           validator: (value) {
             return BlocProvider.of<LoginCubit>(context).validateUserName(value);

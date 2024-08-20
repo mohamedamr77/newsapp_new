@@ -11,7 +11,7 @@ class SignUpButton extends StatelessWidget {
   final GlobalKey<FormState> formKey;
   @override
   Widget build(BuildContext context) {
-    return  BlocConsumer<SignUpCubit, SignUpState>(
+    return BlocConsumer<SignUpCubit, SignUpState>(
       listener: (context, state) {
         // if(state is SignUpLoadingState){
         //   debugPrint("Loading state");
@@ -29,8 +29,7 @@ class SignUpButton extends StatelessWidget {
           );
           Navigator.pop(context);
         } else if (state is SignUpFaliureState) {
-          debugPrint(
-              "SignUpFaliureState triggered with error: ${state.error}");
+          debugPrint("SignUpFaliureState triggered with error: ${state.error}");
           Fluttertoast.showToast(
             msg: state.error,
             fontSize: 16,
@@ -47,16 +46,15 @@ class SignUpButton extends StatelessWidget {
         return state is SignUpLoadingState
             ? const Center(child: CircularProgressIndicator())
             : CustomButton(
-          backGroundColor: const Color(0xff0F8ACF),
-          nameButton: "Sign Up",
-          onTap: () async {
-            if (formKey.currentState!.validate()) {
-              formKey.currentState!.save();
-              BlocProvider.of<SignUpCubit>(context)
-                  .fireBaseSignUp();
-            }
-          },
-        );
+                backGroundColor: const Color(0xff0F8ACF),
+                nameButton: "Sign Up",
+                onTap: () async {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+                    BlocProvider.of<SignUpCubit>(context).fireBaseSignUp();
+                  }
+                },
+              );
       },
     );
   }
