@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:newsappcode/core/utils/style_app.dart';
+import 'package:newsappcode/features/auth/login/presentation/controller/login_state.dart';
 import 'package:newsappcode/features/auth/shared_widget_auth/custom_text_for_style_1.dart';
 import 'package:newsappcode/features/auth/login/presentation/view/widgets/password_field.dart';
 import 'package:newsappcode/features/auth/login/presentation/view/widgets/username_field.dart';
@@ -75,13 +77,52 @@ class BodyForm extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.0129,
               ),
-              CustomButton(
-                backGroundColor: const Color(0xff0F8ACF),
-                nameButton: "Login",
-                onTap: () {
-                  if (formKey.currentState!.validate()) {
-                    formKey.currentState!.save();
+              BlocConsumer<LoginCubit, LoginState>(
+                listener: (context, state) {
+                  // TODO: implement listener
+                  if(state is LoginLoadingState){
+                    debugPrint("Loading state");
                   }
+                  if(state is LoginSuccessState){
+                    Fluttertoast.showToast(
+                      msg: "Login successfully",
+                      fontSize: 16,
+                      backgroundColor: Colors.green,
+                      textColor: Colors.white,
+                      timeInSecForIosWeb: 2,
+                      toastLength: Toast.LENGTH_LONG,
+                      gravity: ToastGravity.SNACKBAR,
+                      webShowClose: true,
+                    );
+                   Navigator.push(context, MaterialPageRoute(builder:(context) => SignUpScreen(),));
+                  }
+                  if(state is LoginFaliureState){
+                    debugPrint("SignUpFaliureState triggered with error: ${state.errorMessage}");
+                    Fluttertoast.showToast(
+                      msg: state.errorMessage,
+                      fontSize: 16,
+                      backgroundColor: Colors.red,
+                      textColor: Colors.white,
+                      timeInSecForIosWeb: 2,
+                      toastLength: Toast.LENGTH_LONG,
+                      gravity: ToastGravity.BOTTOM,
+                      webShowClose: true,
+                    );
+                  }
+                },
+                builder: (context, state) {
+                  return state is LoginLoadingState?
+                  Center(child: CircularProgressIndicator(),):
+                  CustomButton(
+                    backGroundColor: const Color(0xff0F8ACF),
+                    nameButton: "Login",
+                    onTap: () {
+                      if (formKey.currentState!.validate()) {
+                        formKey.currentState!.save();
+                        BlocProvider.of<LoginCubit>(context).fireBaseSignIn();
+                      }
+                    },
+                  );
                 },
               ),
               SizedBox(

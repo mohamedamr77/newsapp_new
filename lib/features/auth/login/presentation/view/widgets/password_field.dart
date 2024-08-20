@@ -19,7 +19,9 @@ class PasswordField extends StatelessWidget {
           hintText: BlocProvider.of<LoginCubit>(context).isValidatePassword
               ? "Input Password"
               : null,
-          onSaved: (s) {},
+          onSaved: (s) {
+            BlocProvider.of<LoginCubit>(context).password=s;
+          },
           validator: (v) {
             return BlocProvider.of<LoginCubit>(context).validatePassword(v);
           },

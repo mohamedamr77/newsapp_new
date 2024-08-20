@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'login_state.dart';
@@ -8,6 +9,9 @@ class LoginCubit extends Cubit<LoginState> {
   bool isValidatePassword = false;
   bool visibility = false;
   bool remember = false;
+
+  String? emailAddress;
+  String? password;
 
   String? validateUserName(String? value) {
     if (value == null || value.isEmpty) {
@@ -43,5 +47,26 @@ class LoginCubit extends Cubit<LoginState> {
   toggleRememberMeValue({required bool remember}) {
     this.remember = remember;
     emit(ToggleRememberMeState());
+  }
+
+  fireBaseSignIn() async{
+    emit(LoginLoadingState());
+    try {
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailAddress!,
+          password: password!,
+      );
+      emit(LoginSuccessState());
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        emit(LoginFaliureState(errorMessage: e.code));
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        emit(LoginFaliureState(errorMessage: e.code));
+        print('Wrong password provided for that user.');
+      } else{
+        emit(LoginFaliureState(errorMessage: e.code));
+      }
+    }
   }
 }
