@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:newsappcode/core/utils/style_app.dart';
-import 'package:newsappcode/features/auth/login/presentation/controller/login_state.dart';
+import 'package:newsappcode/features/auth/login/presentation/view/widgets/login_button.dart';
 import 'package:newsappcode/features/auth/shared_widget_auth/custom_text_for_style_1.dart';
 import 'package:newsappcode/features/auth/login/presentation/view/widgets/password_field.dart';
 import 'package:newsappcode/features/auth/login/presentation/view/widgets/username_field.dart';
 import 'package:newsappcode/features/auth/sign_up/presentation/view/sign_up_view.dart';
 import '../../../../shared_widget_auth/image_top_container_form.dart';
-import '../../controller/login_cubit.dart';
-import '../../../../../../core/shared_widget/custom_button.dart';
+import '../../../../sign_up/presentation/view/widgets/facebook_Button.dart';
+import '../../../../sign_up/presentation/view/widgets/google_button.dart';
 import 'check_box_button.dart';
 import 'custom_rich_text.dart';
-import 'facebook_or_google.dart';
 
 class BodyForm extends StatelessWidget {
   const BodyForm({super.key});
@@ -75,57 +72,8 @@ class BodyForm extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.0129,
             ),
-            BlocConsumer<LoginCubit, LoginState>(
-              listener: (context, state) {
-                // TODO: implement listener
-                if (state is LoginLoadingState) {
-                  debugPrint("Loading state");
-                }
-                if (state is LoginSuccessState) {
-                  Fluttertoast.showToast(
-                    msg: "Login successfully",
-                    fontSize: 16,
-                    backgroundColor: Colors.green,
-                    textColor: Colors.white,
-                    timeInSecForIosWeb: 2,
-                    toastLength: Toast.LENGTH_LONG,
-                    gravity: ToastGravity.SNACKBAR,
-                    webShowClose: true,
-                  );
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const SignUpScreen(),
-                      ));
-                }
-                if (state is LoginFaliureState) {
-                  debugPrint(
-                      "SignUpFaliureState triggered with error: ${state.errorMessage}");
-                  Fluttertoast.showToast(
-                    msg: state.errorMessage,
-                    fontSize: 16,
-                    backgroundColor: Colors.red,
-                    textColor: Colors.white,
-                    timeInSecForIosWeb: 2,
-                    toastLength: Toast.LENGTH_LONG,
-                    gravity: ToastGravity.BOTTOM,
-                    webShowClose: true,
-                  );
-                }
-              },
-              builder: (context, state) {
-                return CustomButton(
-                        backGroundColor: const Color(0xff0F8ACF),
-                        nameButton: "Login",
-                        onTap: () {
-                          if (formKey.currentState!.validate()) {
-                            formKey.currentState!.save();
-                            BlocProvider.of<LoginCubit>(context)
-                                .fireBaseSignIn();
-                          }
-                        },
-                      );
-              },
+            LoginButton(
+              formKey: formKey,
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.0129,
@@ -139,23 +87,13 @@ class BodyForm extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.0129,
             ),
-            Row(
+            const Row(
               children: [
-                FacebookOrGoogle(
-                  name: "Facebook",
-                  image: "assets/images/face icon.png",
-                  onTap: () {},
-                  marginLeft: 24,
-                ),
-                const SizedBox(
+                FacebookButton(),
+                SizedBox(
                   width: 16,
                 ),
-                FacebookOrGoogle(
-                  name: "Google",
-                  image: "assets/images/google.png",
-                  onTap: () {},
-                  marginRight: 24,
-                ),
+                GoogleButton(),
               ],
             ),
             SizedBox(
@@ -168,7 +106,6 @@ class BodyForm extends StatelessWidget {
                   "don’t have an account ?",
                   style: StyleApp.textStyle1,
                 ),
-
                 TextButton(
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(
@@ -181,7 +118,6 @@ class BodyForm extends StatelessWidget {
                       "Sign Up",
                       style: StyleApp.textStyle5,
                     )),
-                // FaIcon(FontAwesomeIcons.circleExclamation,)
               ],
             ),
           ],

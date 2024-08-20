@@ -4,7 +4,6 @@ import 'package:newsappcode/features/auth/login/presentation/controller/validati
 
 import '../../../../../../core/shared_widget/custom_form_field.dart';
 import '../../controller/login_cubit.dart';
-import '../../controller/login_state.dart';
 import '../../controller/validation_cubit/login_validation_cubit.dart';
 
 class UsernameField extends StatelessWidget {
@@ -15,23 +14,27 @@ class UsernameField extends StatelessWidget {
     return BlocBuilder<LoginValidationCubit, LoginValidationState>(
       builder: (context, state) {
         return CustomFormField(
-          fillColor: BlocProvider.of<LoginValidationCubit>(context).isValidateUserName
-              ? const Color(0xffFFF3F8)
-              : Colors.white,
-          hintText: BlocProvider.of<LoginValidationCubit>(context).isValidateUserName
-              ? "Input text"
-              : null,
-          suffixIcon: BlocProvider.of<LoginValidationCubit>(context).isValidateUserName
-              ? const Icon(
-                  Icons.close,
-                  color: Colors.red,
-                )
-              : null,
+          fillColor:
+              BlocProvider.of<LoginValidationCubit>(context).isValidateUserName
+                  ? const Color(0xffFFF3F8)
+                  : Colors.white,
+          hintText:
+              BlocProvider.of<LoginValidationCubit>(context).isValidateUserName
+                  ? "Input text"
+                  : null,
+          suffixIcon:
+              BlocProvider.of<LoginValidationCubit>(context).isValidateUserName
+                  ? const Icon(
+                      Icons.close,
+                      color: Colors.red,
+                    )
+                  : null,
           onSaved: (s) {
             BlocProvider.of<LoginCubit>(context).emailAddress = s;
           },
           validator: (value) {
-            return BlocProvider.of<LoginValidationCubit>(context).validateUserName(value);
+            return BlocProvider.of<LoginValidationCubit>(context)
+                .validateUserName(value);
           },
         );
       },

@@ -3,22 +3,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../../../../core/shared_widget/custom_button.dart';
-import '../../controller/sign_up_cubit.dart';
-import '../../controller/sign_up_state.dart';
+import '../../../../sign_up/presentation/view/sign_up_view.dart';
+import '../../controller/login_cubit.dart';
+import '../../controller/login_state.dart';
 
-class SignUpButton extends StatelessWidget {
-  const SignUpButton({super.key, required this.formKey});
+class LoginButton extends StatelessWidget {
+  const LoginButton({super.key, required this.formKey});
   final GlobalKey<FormState> formKey;
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SignUpCubit, SignUpState>(
+    return BlocConsumer<LoginCubit, LoginState>(
       listener: (context, state) {
-        // if(state is SignUpLoadingState){
-        //   debugPrint("Loading state");
-        // }
-        if (state is SignUpSuccessState) {
+        // TODO: implement listener
+        if (state is LoginLoadingState) {
+          debugPrint("Loading state");
+        }
+        if (state is LoginSuccessState) {
           Fluttertoast.showToast(
-            msg: "Sign up successfully",
+            msg: "Login successfully",
             fontSize: 16,
             backgroundColor: Colors.green,
             textColor: Colors.white,
@@ -27,11 +29,17 @@ class SignUpButton extends StatelessWidget {
             gravity: ToastGravity.SNACKBAR,
             webShowClose: true,
           );
-          Navigator.pop(context);
-        } else if (state is SignUpFaliureState) {
-          debugPrint("SignUpFaliureState triggered with error: ${state.error}");
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const SignUpScreen(),
+              ));
+        }
+        if (state is LoginFaliureState) {
+          debugPrint(
+              "SignUpFaliureState triggered with error: ${state.errorMessage}");
           Fluttertoast.showToast(
-            msg: state.error,
+            msg: state.errorMessage,
             fontSize: 16,
             backgroundColor: Colors.red,
             textColor: Colors.white,
@@ -45,11 +53,11 @@ class SignUpButton extends StatelessWidget {
       builder: (context, state) {
         return CustomButton(
           backGroundColor: const Color(0xff0F8ACF),
-          nameButton: "Sign Up",
-          onTap: () async {
+          nameButton: "Login",
+          onTap: () {
             if (formKey.currentState!.validate()) {
               formKey.currentState!.save();
-              BlocProvider.of<SignUpCubit>(context).fireBaseSignUp();
+              BlocProvider.of<LoginCubit>(context).fireBaseSignIn();
             }
           },
         );

@@ -1,5 +1,7 @@
-class LoginValidationState{}
-class LoginValidationInitialState extends LoginValidationState{}
+class LoginValidationState {}
+
+class LoginValidationInitialState extends LoginValidationState {}
+
 class LoginValidationNameTrueState extends LoginValidationState {}
 
 class LoginValidationNameFalseState extends LoginValidationState {}
