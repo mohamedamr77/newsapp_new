@@ -33,7 +33,10 @@ class SignUpScreen extends StatelessWidget {
                 return  Container(
                   alignment: Alignment.center,
                   color: Colors.black12,
-                  child: CircularProgressIndicator(),
+                  child: CircularProgressIndicator(
+                    color:  Color(0xff0F8ACF),
+
+                  ),
                 );
               } else {
                return const SizedBox();
