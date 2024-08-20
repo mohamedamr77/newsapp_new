@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsappcode/features/auth/login/presentation/view/login_view.dart';
-import 'package:newsappcode/features/auth/sign_up/presentation/controller/sign_up_cubit.dart';
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 

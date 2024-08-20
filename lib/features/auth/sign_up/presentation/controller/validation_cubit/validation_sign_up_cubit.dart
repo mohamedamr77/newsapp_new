@@ -1,6 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:newsappcode/features/auth/sign_up/presentation/controller/valifation_cubit/validation_sign_up_state.dart';
+import 'package:newsappcode/features/auth/sign_up/presentation/controller/validation_cubit/validation_sign_up_state.dart';
+
 
 class ValidationSignUpCubit extends Cubit<ValidationSignUpState>{
   ValidationSignUpCubit() : super(ValidationSignUpInitialState());
@@ -11,6 +13,9 @@ class ValidationSignUpCubit extends Cubit<ValidationSignUpState>{
   String? validateUserName(String? value) {
     if (value == null || value.isEmpty) {
       isValidateUserName = true;
+      if (kDebugMode) {
+        print(isValidateUserName);
+      }
       emit(ValidateUserNameTrueSigUpState());
       debugPrint("$isValidateUserName");
       return "❗ Invalid Username";

@@ -94,7 +94,7 @@ class BodyForm extends StatelessWidget {
                       gravity: ToastGravity.SNACKBAR,
                       webShowClose: true,
                     );
-                   Navigator.push(context, MaterialPageRoute(builder:(context) => SignUpScreen(),));
+                   Navigator.push(context, MaterialPageRoute(builder:(context) => const SignUpScreen(),));
                   }
                   if(state is LoginFaliureState){
                     debugPrint("SignUpFaliureState triggered with error: ${state.errorMessage}");
@@ -112,7 +112,7 @@ class BodyForm extends StatelessWidget {
                 },
                 builder: (context, state) {
                   return state is LoginLoadingState?
-                  Center(child: CircularProgressIndicator(),):
+                  const Center(child: CircularProgressIndicator(),):
                   CustomButton(
                     backGroundColor: const Color(0xff0F8ACF),
                     nameButton: "Login",

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../../core/shared_widget/custom_form_field.dart';
 import '../../controller/sign_up_cubit.dart';
 import '../../controller/sign_up_state.dart';
-import '../../controller/valifation_cubit/validation_sign_up_cubit.dart';
+import '../../controller/validation_cubit/validation_sign_up_cubit.dart';
 
 class PasswordFieldSignUp extends StatelessWidget {
   const PasswordFieldSignUp({super.key});

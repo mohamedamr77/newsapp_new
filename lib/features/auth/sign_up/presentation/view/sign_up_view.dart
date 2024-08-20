@@ -6,9 +6,9 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return const Stack(
       children: [
-        const Scaffold(
+        Scaffold(
           backgroundColor: Color(0xff0F8ACF),
           body: SignUpBody(),
         ),

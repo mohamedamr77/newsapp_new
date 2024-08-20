@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsappcode/features/auth/shared_widget_auth/custom_top_view.dart';
-import 'package:newsappcode/features/auth/sign_up/presentation/controller/valifation_cubit/validation_sign_up_cubit.dart';
 import 'package:newsappcode/features/auth/sign_up/presentation/view/widgets/body_form_sign_up.dart';
 
 import '../../controller/sign_up_cubit.dart';
+import '../../controller/validation_cubit/validation_sign_up_cubit.dart';
 
 class SignUpBody extends StatelessWidget {
   const SignUpBody({super.key});
@@ -37,7 +37,7 @@ class SignUpBody extends StatelessWidget {
                ),
 
              ],
-             child: BodyFormSignUp())
+             child: const BodyFormSignUp())
       ],
     );
   }
