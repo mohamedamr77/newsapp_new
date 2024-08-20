@@ -8,27 +8,33 @@ class SignUpCubit extends Cubit<SignUpState> {
   String? emailAddress;
   String? password;
   String? confirmPassword;
-
+    bool isLoading=false;
   fireBaseSignUp() async {
     emit(SignUpLoadingState());
+     isLoading=true;
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailAddress!.trim(),
         password: password!.trim(),
       );
+      isLoading=false;
       emit(SignUpSuccessState());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
+        isLoading=false;
         emit(SignUpFaliureState(
             error: "Weak password, please use a stronger password."));
       } else if (e.code == 'email-already-in-use') {
+        isLoading=false;
         emit(SignUpFaliureState(
             error: "Email already in use, please try another one."));
       } else {
+        isLoading=false;
         // Handle other FirebaseAuthException codes
         emit(SignUpFaliureState(error: "Authentication failed: ${e.message}"));
       }
     } catch (e) {
+      isLoading=false;
       // Catch any other exceptions
       emit(SignUpFaliureState(error: "An unexpected error occurred: $e"));
     }
@@ -36,6 +42,7 @@ class SignUpCubit extends Cubit<SignUpState> {
 
   Future<UserCredential?> signInWithGoogle() async {
     emit(SignUpLoadingWithGoogleState());
+      isLoading=true;
 
     try {
       // Trigger the authentication flow
@@ -57,14 +64,17 @@ class SignUpCubit extends Cubit<SignUpState> {
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
+      isLoading=false;
       emit(SignUpSuccessWithGoogleState());
       // Once signed in, return the UserCredential
       return await FirebaseAuth.instance.signInWithCredential(credential);
     } on FirebaseAuthException catch (e) {
+      isLoading=false;
       emit(SignUpFaliureWithGoogleState(error: 'Error : ${e.code}'));
 
       // Handle specific FirebaseAuth exceptions if needed
     } catch (e) {
+      isLoading=false;
       emit(SignUpFaliureWithGoogleState(error: 'Error : $e'));
     }
 
