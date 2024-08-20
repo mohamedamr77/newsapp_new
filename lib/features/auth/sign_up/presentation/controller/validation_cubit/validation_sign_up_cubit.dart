@@ -54,7 +54,7 @@ class ValidationSignUpCubit extends Cubit<ValidationSignUpState>{
   }
 
   togglePasswordVisibility({required bool visibility}) {
-    // visibilityPassword = !visibility;
+     visibilityPassword = !visibility;
     emit(TogglePasswordVisibilitySignUpState());
   }
 
