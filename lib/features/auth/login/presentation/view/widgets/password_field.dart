@@ -20,7 +20,7 @@ class PasswordField extends StatelessWidget {
           hintText: BlocProvider.of<LoginValidationCubit>(context).isValidatePassword
               ? "Input Password"
               : null,
-          onSaved: (s) {
+          onChanged: (s) {
             BlocProvider.of<LoginCubit>(context).password = s;
           },
           validator: (v) {

@@ -9,7 +9,7 @@ class CustomFormField extends StatelessWidget {
     this.onChanged,
     this.validator,
     this.initialValue,
-    @required this.onSaved,
+
     this.suffixIcon,
     this.hintText,
     this.fillColor,
@@ -21,7 +21,6 @@ class CustomFormField extends StatelessWidget {
   final String? hintText;
   final void Function(String)? onChanged;
   final String? Function(String?)? validator;
-  final void Function(String?)? onSaved;
   final String? initialValue;
   final Widget? suffixIcon;
   final bool obscureText;
@@ -34,7 +33,6 @@ class CustomFormField extends StatelessWidget {
         obscuringCharacter: "*",
         initialValue: initialValue,
         onChanged: onChanged,
-        onSaved: onSaved,
         style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
         maxLines: maxLine,
         minLines: minLine,

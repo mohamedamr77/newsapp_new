@@ -25,7 +25,7 @@ class UsernameFieldSignup extends StatelessWidget {
                       color: Colors.red,
                     )
                   : null,
-          onSaved: (s) {
+          onChanged: (s) {
             BlocProvider.of<SignUpCubit>(context).emailAddress = s;
           },
           fillColor:
