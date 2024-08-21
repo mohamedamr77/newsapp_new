@@ -1,11 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:newsappcode/core/utils/style_app.dart';
-import 'package:newsappcode/features/auth/login/presentation/controller/login_cubit.dart';
-import 'package:newsappcode/features/auth/login/presentation/controller/login_state.dart';
 import 'package:newsappcode/features/auth/login/presentation/view/widgets/facebook_button.dart';
 import 'package:newsappcode/features/auth/login/presentation/view/widgets/google_button.dart';
 import 'package:newsappcode/features/auth/login/presentation/view/widgets/login_button.dart';
@@ -16,6 +10,7 @@ import 'package:newsappcode/features/auth/sign_up/presentation/view/sign_up_view
 import '../../../../shared_widget_auth/image_top_container_form.dart';
 import 'check_box_button.dart';
 import 'custom_rich_text.dart';
+import 'forget_the_password_button.dart';
 
 class BodyForm extends StatelessWidget {
   const BodyForm({super.key});
@@ -58,55 +53,15 @@ class BodyForm extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: MediaQuery.of(context).size.width * 0.038),
-              child: Row(
+              child: const Row(
                 children: [
-                  const CheckBoxButton(),
-                  const CustomTextForStyle1(
+                  CheckBoxButton(),
+                  CustomTextForStyle1(
                     text: "Remember me",
                   ),
-                  const Spacer(),
+                  Spacer(),
                   //Forgot the password?
-                   BlocConsumer<LoginCubit,LoginState>(
-                     builder: (context, state) {
-                     return TextButton(
-                         onPressed: (){
-                           BlocProvider.of<LoginCubit>(context).forgetThePassword(context: context);
-                         },
-                         child: Text(
-                           "Forgot the password?",
-                           style: StyleApp.textStyle2,
-                         )
-                     );
-                   },
-                     listener: (context, state) {
-                       if (state is ForgetThePasswordMessageSentSuccessfullyState) {
-                         Fluttertoast.showToast(
-                           msg: "We Sent Message to your Email Please Check Your Email",
-                           fontSize: 16,
-                           backgroundColor: Colors.blue,
-                           textColor: Colors.white,
-                           timeInSecForIosWeb: 4,
-                           toastLength: Toast.LENGTH_LONG,
-                           gravity: ToastGravity.CENTER,
-                           webShowClose: true,
-                         );
-
-                       }
-                       else if (state is ForgetThePasswordMessageNotSentState) {
-                         debugPrint("error forget password :: ${state.message}");
-                         Fluttertoast.showToast(
-                           msg: state.message,
-                           fontSize: 16,
-                           backgroundColor: Colors.red,
-                           textColor: Colors.white,
-                           timeInSecForIosWeb: 2,
-                           toastLength: Toast.LENGTH_LONG,
-                           gravity: ToastGravity.BOTTOM,
-                           webShowClose: true,
-                         );
-                       }
-                   },
-                   )
+                  ForgetThePasswordButton(),
                 ],
               ),
             ),
