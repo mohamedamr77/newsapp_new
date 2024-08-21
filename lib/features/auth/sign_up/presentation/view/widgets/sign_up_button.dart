@@ -28,7 +28,8 @@ class SignUpButton extends StatelessWidget {
             webShowClose: true,
           );
           Navigator.pop(context);
-        } else if (state is SignUpFaliureState) {
+        }
+        else if (state is SignUpFaliureState) {
           debugPrint("SignUpFaliureState triggered with error: ${state.error}");
           Fluttertoast.showToast(
             msg: state.error,

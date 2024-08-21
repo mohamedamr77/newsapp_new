@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'login_state.dart';
 
@@ -36,6 +37,41 @@ class LoginCubit extends Cubit<LoginState> {
       } else {
         emit(LoginFaliureState(errorMessage: e.code));
       }
+    }
+  }
+
+  forgetThePassword({required BuildContext context})async{
+    emit(ForgetThePasswordMessageLoadingState());
+    try {
+      final email = emailAddress;
+      if (email == null || email.isEmpty) {
+        // Emit a state indicating that the email was not provided
+        emit(ForgetThePasswordMessageNotSentState(
+            message: 'Please provide your email address.'));
+        return;
+      }
+
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+
+      // Emit a state indicating success
+      emit(ForgetThePasswordMessageSentSuccessfullyState());
+    } on FirebaseAuthException catch (e) {
+      String errorMessage;
+
+      if (e.code == 'invalid-email') {
+        errorMessage = 'The email address is not valid.';
+      } else if (e.code == 'user-not-found') {
+        errorMessage = 'No user found with this email address.';
+      } else {
+        errorMessage = 'An error occurred. Please try again.';
+      }
+
+      // Emit a state indicating failure with the error message
+      emit(ForgetThePasswordMessageNotSentState(message: errorMessage));
+    } catch (e) {
+      // Handle any other errors and emit a failure state
+      emit(ForgetThePasswordMessageNotSentState(
+          message: 'An unexpected error occurred. Please try again.'));
     }
   }
 

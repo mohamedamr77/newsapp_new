@@ -27,7 +27,7 @@ class LoginScreen extends StatelessWidget {
           ),
 
           BlocBuilder<LoginCubit,LoginState>(builder: (context, state) {
-            if (state is LoginLoadingState )
+            if (state is LoginLoadingState || state is ForgetThePasswordMessageLoadingState)
             {
               return  Container(
                 alignment: Alignment.center,
