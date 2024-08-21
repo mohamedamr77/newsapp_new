@@ -49,9 +49,9 @@ class ConfirmPasswordField extends StatelessWidget {
                   .isValidateConfirmPassword
               ? "Input Password"
               : null,
-          validator: (v) {
+          validator: (confirmPass) {
             return BlocProvider.of<ValidationSignUpCubit>(context)
-                .validateConfirmPassword(v);
+                .validateConfirmPassword(password: BlocProvider.of<SignUpCubit>(context).password , confirmPassword: confirmPass);
           },
           onChanged: (s) {
             BlocProvider.of<SignUpCubit>(context).confirmPassword = s;

@@ -53,12 +53,15 @@ class PasswordFieldSignUp extends StatelessWidget {
           onChanged: (s) {
             BlocProvider.of<SignUpCubit>(context).password = s;
           },
-          validator: (v) {
+          validator: (pass) {
             return BlocProvider.of<ValidationSignUpCubit>(context)
-                .validatePassword(v);
+                .validatePassword(password: pass);
           },
         );
       },
     );
   }
 }
+/*
+ confirmPassword: BlocProvider.of<SignUpCubit>(context).confirmPassword
+ */
