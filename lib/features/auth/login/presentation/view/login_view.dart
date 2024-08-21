@@ -10,7 +10,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
+    return  MultiBlocProvider(
       providers: [
         BlocProvider<LoginCubit>(
           create: (context) => LoginCubit(),
@@ -19,27 +19,29 @@ class LoginScreen extends StatelessWidget {
           create: (context) => LoginValidationCubit(),
         ),
       ],
-      child: Stack(children: [
-        const Scaffold(
-          backgroundColor: Color(0xff0F8ACF),
-          body: LoginBody(),
-        ),
-        BlocBuilder<LoginCubit, LoginState>(
-          builder: (context, state) {
-            if (state is LoginLoadingState) {
-              return Container(
+      child: Stack(
+        children:  [
+          const Scaffold(
+            backgroundColor: Color(0xff0F8ACF),
+            body: LoginBody(),
+          ),
+
+          BlocBuilder<LoginCubit,LoginState>(builder: (context, state) {
+            if (state is LoginLoadingState )
+            {
+              return  Container(
                 alignment: Alignment.center,
                 color: Colors.black12,
                 child: const CircularProgressIndicator(
-                  color: Color(0xff0F8ACF),
+                  color:  Color(0xff0F8ACF),
                 ),
               );
             } else {
               return const SizedBox();
             }
-          },
-        )
-      ]),
+          },)
+        ]
+      ),
     );
   }
 }

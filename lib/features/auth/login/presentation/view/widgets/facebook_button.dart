@@ -7,7 +7,7 @@ class FacebookButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FacebookOrGoogle(
+    return  FacebookOrGoogle(
       name: "Facebook",
       image: "assets/images/face icon.png",
       onTap: () {},

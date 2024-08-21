@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:newsappcode/core/utils/style_app.dart';
+import 'package:newsappcode/features/auth/login/presentation/view/widgets/facebook_button.dart';
+import 'package:newsappcode/features/auth/login/presentation/view/widgets/google_button.dart';
 import 'package:newsappcode/features/auth/login/presentation/view/widgets/login_button.dart';
 import 'package:newsappcode/features/auth/shared_widget_auth/custom_text_for_style_1.dart';
 import 'package:newsappcode/features/auth/login/presentation/view/widgets/password_field.dart';
 import 'package:newsappcode/features/auth/login/presentation/view/widgets/username_field.dart';
 import 'package:newsappcode/features/auth/sign_up/presentation/view/sign_up_view.dart';
 import '../../../../shared_widget_auth/image_top_container_form.dart';
-import '../../../../sign_up/presentation/view/widgets/facebook_Button.dart';
-import '../../../../sign_up/presentation/view/widgets/google_button.dart';
 import 'check_box_button.dart';
 import 'custom_rich_text.dart';
+import 'facebook_or_google.dart';
 
 class BodyForm extends StatelessWidget {
   const BodyForm({super.key});
@@ -21,7 +22,7 @@ class BodyForm extends StatelessWidget {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       key: formKey,
       child: Container(
-        padding: EdgeInsets.only(
+          padding: EdgeInsets.only(
           top: MediaQuery.of(context).size.height * 0.032397,
           bottom: MediaQuery.of(context).size.height * 0.032397,
         ),
@@ -72,9 +73,7 @@ class BodyForm extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.0129,
             ),
-            LoginButton(
-              formKey: formKey,
-            ),
+            LoginButton(formKey: formKey,),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.0129,
             ),
@@ -87,7 +86,7 @@ class BodyForm extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.0129,
             ),
-            const Row(
+             Row(
               children: [
                 FacebookButton(),
                 SizedBox(
@@ -106,6 +105,7 @@ class BodyForm extends StatelessWidget {
                   "don’t have an account ?",
                   style: StyleApp.textStyle1,
                 ),
+
                 TextButton(
                     onPressed: () {
                       Navigator.push(context, MaterialPageRoute(
@@ -118,6 +118,7 @@ class BodyForm extends StatelessWidget {
                       "Sign Up",
                       style: StyleApp.textStyle5,
                     )),
+                // FaIcon(FontAwesomeIcons.circleExclamation,)
               ],
             ),
           ],

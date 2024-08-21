@@ -26,22 +26,22 @@ class SignUpScreen extends StatelessWidget {
             backgroundColor: Color(0xff0F8ACF),
             body: SignUpBody(),
           ),
-          BlocBuilder<SignUpCubit, SignUpState>(
-            builder: (context, state) {
-              if (state is SignUpLoadingState ||
-                  state is SignUpLoadingWithGoogleState) {
-                return Container(
+
+           BlocBuilder<SignUpCubit,SignUpState>(builder: (context, state) {
+             if (state is SignUpLoadingState || state is SignUpLoadingWithGoogleState)
+              {
+                return  Container(
                   alignment: Alignment.center,
                   color: Colors.black12,
                   child: const CircularProgressIndicator(
-                    color: Color(0xff0F8ACF),
+                    color:  Color(0xff0F8ACF),
+
                   ),
                 );
               } else {
-                return const SizedBox();
-              }
-            },
-          )
+               return const SizedBox();
+             }
+           },)
         ],
       ),
     );

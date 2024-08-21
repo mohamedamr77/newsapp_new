@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsappcode/features/auth/login/presentation/controller/validation_cubit/login_validation_state.dart';
 
-class LoginValidationCubit extends Cubit<LoginValidationState> {
+class LoginValidationCubit extends Cubit<LoginValidationState>{
   LoginValidationCubit() : super(LoginValidationState());
 
   bool isValidateUserName = false;
@@ -39,4 +39,5 @@ class LoginValidationCubit extends Cubit<LoginValidationState> {
     this.visibility = visibility;
     emit(LoginTogglePasswordVisibilityState());
   }
+
 }

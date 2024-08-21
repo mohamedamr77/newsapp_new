@@ -9,7 +9,7 @@ import '../../controller/login_state.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({super.key, required this.formKey});
-  final GlobalKey<FormState> formKey;
+  final  GlobalKey<FormState> formKey;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginState>(
@@ -57,7 +57,8 @@ class LoginButton extends StatelessWidget {
           onTap: () {
             if (formKey.currentState!.validate()) {
               formKey.currentState!.save();
-              BlocProvider.of<LoginCubit>(context).fireBaseSignIn();
+              BlocProvider.of<LoginCubit>(context)
+                  .fireBaseSignIn();
             }
           },
         );
