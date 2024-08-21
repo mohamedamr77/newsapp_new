@@ -1,5 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsappcode/core/utils/style_app.dart';
+import 'package:newsappcode/features/auth/login/presentation/controller/login_cubit.dart';
 import 'package:newsappcode/features/auth/login/presentation/view/widgets/facebook_button.dart';
 import 'package:newsappcode/features/auth/login/presentation/view/widgets/google_button.dart';
 import 'package:newsappcode/features/auth/login/presentation/view/widgets/login_button.dart';
@@ -61,7 +65,10 @@ class BodyForm extends StatelessWidget {
                   const Spacer(),
                   //Forgot the password?
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () async{
+                        debugPrint("${BlocProvider.of<LoginCubit>(context).emailAddress}");
+                        await FirebaseAuth.instance.sendPasswordResetEmail(email: BlocProvider.of<LoginCubit>(context).emailAddress!);
+                      },
                       child: Text(
                         "Forgot the password?",
                         style: StyleApp.textStyle2,
