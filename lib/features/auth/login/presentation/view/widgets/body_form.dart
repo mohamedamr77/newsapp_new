@@ -10,7 +10,6 @@ import 'package:newsappcode/features/auth/sign_up/presentation/view/sign_up_view
 import '../../../../shared_widget_auth/image_top_container_form.dart';
 import 'check_box_button.dart';
 import 'custom_rich_text.dart';
-import 'facebook_or_google.dart';
 
 class BodyForm extends StatelessWidget {
   const BodyForm({super.key});

@@ -10,7 +10,9 @@ class FacebookButton extends StatelessWidget {
     return FacebookOrGoogle(
       name: "Facebook",
       image: "assets/images/face icon.png",
-      onTap: () {},
+      onTap: () {
+
+      },
       marginLeft: 24,
     );
   }
