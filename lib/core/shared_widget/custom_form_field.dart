@@ -29,6 +29,7 @@ class CustomFormField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25),
       child: TextFormField(
+
         obscureText: obscureText,
         obscuringCharacter: "*",
         initialValue: initialValue,

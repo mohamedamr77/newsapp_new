@@ -9,6 +9,7 @@ class SignUpCubit extends Cubit<SignUpState> {
   String? password;
   String? confirmPassword;
     bool isLoading=false;
+
   fireBaseSignUp() async {
     emit(SignUpLoadingState());
      isLoading=true;

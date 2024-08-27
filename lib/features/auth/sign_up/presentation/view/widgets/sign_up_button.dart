@@ -13,9 +13,6 @@ class SignUpButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<SignUpCubit, SignUpState>(
       listener: (context, state) {
-        // if(state is SignUpLoadingState){
-        //   debugPrint("Loading state");
-        // }
         if (state is SignUpSuccessState) {
           Fluttertoast.showToast(
             msg: "Sign up successfully",
