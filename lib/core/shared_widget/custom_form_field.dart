@@ -9,10 +9,13 @@ class CustomFormField extends StatelessWidget {
     this.onChanged,
     this.validator,
     this.initialValue,
-
+     this.border,
+    this.enabledBorder,
+    this.focusBorder,
     this.suffixIcon,
     this.hintText,
     this.fillColor,
+    this.prefixIcon,
     this.obscureText = false,
   });
   final Color? fillColor;
@@ -24,6 +27,10 @@ class CustomFormField extends StatelessWidget {
   final String? initialValue;
   final Widget? suffixIcon;
   final bool obscureText;
+  final InputBorder? border;
+  final InputBorder? enabledBorder;
+  final InputBorder? focusBorder;
+  final Widget? prefixIcon;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -46,27 +53,10 @@ class CustomFormField extends StatelessWidget {
           hintText: hintText,
           hintStyle: StyleApp.textStyle6,
           suffixIcon: suffixIcon,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(6),
-            borderSide: const BorderSide(
-              color: Color(0xff4E4B66),
-              width: 1,
-            ),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(6),
-            borderSide: const BorderSide(
-              color: Color(0xff4E4B66),
-              width: 1,
-            ),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(6),
-            borderSide: const BorderSide(
-              color: Colors.blue,
-              width: 1,
-            ),
-          ),
+          prefixIcon: prefixIcon,
+          border: border,
+          enabledBorder: enabledBorder,
+          focusedBorder: focusBorder,
         ),
         validator: validator,
       ),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../core/shared_widget/custom_form_field.dart';
+import '../../../../../../core/utils/border_text_field.dart';
 import '../../controller/sign_up_cubit.dart';
 import '../../controller/validation_cubit/validation_sign_up_cubit.dart';
 import '../../controller/validation_cubit/validation_sign_up_state.dart';
@@ -16,6 +17,9 @@ class PasswordFieldSignUp extends StatelessWidget {
     return BlocBuilder<ValidationSignUpCubit, ValidationSignUpState>(
       builder: (context, state) {
         return CustomFormField(
+          border: BorderTextField.borderTextFormFieldAuth,
+          enabledBorder: BorderTextField.enabledBorderTextFormFieldAuth,
+          focusBorder: BorderTextField.focusedBorderTextFormFieldAuth,
           fillColor:
               BlocProvider.of<ValidationSignUpCubit>(context).isValidatePassword
                   ? const Color(0xffFFF3F8)
