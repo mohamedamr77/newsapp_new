@@ -11,7 +11,7 @@ class CustomSliverAppbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  SliverAppBar(
+    return SliverAppBar(
       expandedHeight: 195.h,
       backgroundColor: ColorApp.whiteColor,
       floating: false,
@@ -22,8 +22,11 @@ class CustomSliverAppbar extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(height: 12.h),
-              Image(image: const AssetImage("assets/images/icon top home page.png",),
-                width: 93.w ,
+              Image(
+                image: const AssetImage(
+                  "assets/images/icon top home page.png",
+                ),
+                width: 93.w,
                 height: 32.h,
               ),
               SizedBox(height: 12.h),
@@ -31,17 +34,21 @@ class CustomSliverAppbar extends StatelessWidget {
                 "N E W S  W A V E",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.ptSansNarrow(
-                    fontSize: 22.sp, fontWeight: FontWeight.w700, color:ColorApp.primaryColor),
+                    fontSize: 22.sp,
+                    fontWeight: FontWeight.w700,
+                    color: ColorApp.primaryColor),
               ),
               SizedBox(height: 22.h),
               CustomFormField(
                 fillColor: ColorApp.whiteColor,
                 hintText: "Search",
-                enabledBorder: BorderTextField.enabledBorderTextFormFieldHomePage,
+                enabledBorder:
+                    BorderTextField.enabledBorderTextFormFieldHomePage,
                 focusBorder: BorderTextField.focusedBorderTextFormFieldHomePage,
-                prefixIcon:  Padding(
+                prefixIcon: Padding(
                   padding: const EdgeInsets.all(12.0),
-                  child: SvgPicture.asset("assets/images/svg/Vector.svg",
+                  child: SvgPicture.asset(
+                    "assets/images/svg/Vector.svg",
                   ),
                 ),
               ),

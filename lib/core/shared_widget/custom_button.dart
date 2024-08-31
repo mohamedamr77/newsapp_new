@@ -46,7 +46,6 @@ class CustomButton extends StatelessWidget {
                     const SizedBox(width: 10),
                     SvgPicture.asset(
                       image!,
-                      color: Colors.white,
                     ),
                   ],
                   if (widget != null) ...[
