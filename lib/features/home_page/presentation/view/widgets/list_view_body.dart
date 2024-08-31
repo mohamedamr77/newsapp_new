@@ -8,7 +8,7 @@ class ListViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Padding(
-      padding:  const EdgeInsets.only(bottom: 10,left: 24,right: 24),
+      padding:  const EdgeInsets.only(bottom: 20,left: 24,right: 24),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,12 +41,53 @@ class ListViewBody extends StatelessWidget {
             ),
             ),
           ),
-          Row(
-            children: [
-
-            ],
-          )
-
+          Padding(
+            padding: const EdgeInsets.only(left: 12,top: 6),
+            child: Row(
+              children: [
+                const CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 10,
+                  child: Image(
+                    image: AssetImage("assets/images/bbc news.png"),
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: double.infinity,
+                  ),
+                ),
+                const SizedBox(width: 6),
+                Text(
+                  'BBC News',
+                  style: GoogleFonts.poppins(
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w600,
+                    color: const Color(0xff4E4B66)
+                  ),
+                ),
+                const SizedBox(width: 12),
+                const CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 7,
+                  child: Image(
+                    image: AssetImage("assets/images/time.png"),
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: double.infinity,
+                  ),
+                ),
+                const SizedBox(width: 6),
+                Text('7h ago', style: GoogleFonts.poppins(
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w600,
+                      color: const Color(0xff4E4B66)
+                  ),),
+                Spacer(),
+                GestureDetector(
+                    onTap: (){},
+                    child: Icon(Icons.bookmark_border))
+              ],
+            ),
+          ),
         ],
       ),
     );
