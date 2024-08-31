@@ -24,7 +24,7 @@ class ListViewBody extends StatelessWidget {
             style: GoogleFonts.poppins(
               fontSize: 13,
               fontWeight: FontWeight.w400,
-              color: Color(0xff4E4B66),
+              color: const Color(0xff4E4B66),
             ),
             ),
           ),
@@ -81,10 +81,10 @@ class ListViewBody extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                       color: const Color(0xff4E4B66)
                   ),),
-                Spacer(),
+                const Spacer(),
                 GestureDetector(
                     onTap: (){},
-                    child: Icon(Icons.bookmark_border))
+                    child: const Icon(Icons.bookmark_border))
               ],
             ),
           ),

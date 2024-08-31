@@ -25,7 +25,7 @@ class HomePageBody extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(height: 12.h),
-                    Image(image: AssetImage("assets/images/icon top home page.png",),
+                    Image(image: const AssetImage("assets/images/icon top home page.png",),
                       width: 93.w ,
                       height: 32.h,
                     ),
