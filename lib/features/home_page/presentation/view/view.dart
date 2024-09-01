@@ -12,7 +12,9 @@ class _HomePageScreenState extends State<HomePageScreen> {
   int currentIndex = 0;
   List<Widget> displayScreen = [
     const HomePageBody(),
-    const Center(child: Text("Mohamed amr")),
+    const Center(child: Text("Topics")),
+    const Center(child: Text("Author")),
+    const Center(child: Text("Book Mark")),
   ];
 
   @override
@@ -25,17 +27,25 @@ class _HomePageScreenState extends State<HomePageScreen> {
             currentIndex = index;
           });
         },
+        showUnselectedLabels: true,
         currentIndex: currentIndex,
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.grey,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.abc),
+            icon: Icon(Icons.home_filled),
             label: "Home",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.ac_unit),
-            label: "abo Amr",
+            icon: Icon(Icons.topic_outlined),
+            label: "topics",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_tree_rounded),
+            label: "Author",),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.bookmark_border),
+            label: "Book Mark",
           ),
         ],
       ),
