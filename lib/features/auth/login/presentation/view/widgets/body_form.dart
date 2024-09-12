@@ -22,7 +22,7 @@ class BodyForm extends StatelessWidget {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       key: formKey,
       child: Container(
-          padding: EdgeInsets.only(
+        padding: EdgeInsets.only(
           top: MediaQuery.of(context).size.height * 0.032397,
           bottom: MediaQuery.of(context).size.height * 0.032397,
         ),
@@ -68,7 +68,9 @@ class BodyForm extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.0129,
             ),
-            LoginButton(formKey: formKey,),
+            LoginButton(
+              formKey: formKey,
+            ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.0129,
             ),
@@ -81,7 +83,7 @@ class BodyForm extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.0129,
             ),
-             const Row(
+            const Row(
               children: [
                 FacebookButton(),
                 SizedBox(

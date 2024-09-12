@@ -3,21 +3,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../../login/presentation/view/widgets/facebook_or_google.dart';
-import '../../controller/sign_up_cubit.dart';
-import '../../controller/sign_up_state.dart';
+import '../../../../view_mdoel/auth_cubit/auth_cubit.dart';
+import '../../../../view_mdoel/auth_cubit/auth_state.dart';
 
 class GoogleButton extends StatelessWidget {
   const GoogleButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SignUpCubit, SignUpState>(
+    return BlocConsumer<AuthCubit, AuthState>(
       builder: (BuildContext context, state) {
         return FacebookOrGoogle(
           name: "Google",
           image: "assets/images/google.png",
           onTap: () {
-            BlocProvider.of<SignUpCubit>(context).signInWithGoogle();
+            BlocProvider.of<AuthCubit>(context).signInWithGoogle();
           },
           marginRight: 24,
         );

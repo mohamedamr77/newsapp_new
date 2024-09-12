@@ -42,7 +42,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_tree_rounded),
-            label: "Author",),
+            label: "Author",
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.bookmark_border),
             label: "Book Mark",

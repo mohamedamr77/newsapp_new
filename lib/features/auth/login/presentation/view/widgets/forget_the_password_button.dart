@@ -3,25 +3,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../../../../core/utils/style_app.dart';
-import '../../controller/login_cubit.dart';
-import '../../controller/login_state.dart';
+import '../../../../view_mdoel/auth_cubit/auth_cubit.dart';
+import '../../../../view_mdoel/auth_cubit/auth_state.dart';
 
 class ForgetThePasswordButton extends StatelessWidget {
   const ForgetThePasswordButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  BlocConsumer<LoginCubit,LoginState>(
+    return BlocConsumer<AuthCubit, AuthState>(
       builder: (context, state) {
         return TextButton(
-            onPressed: (){
-              BlocProvider.of<LoginCubit>(context).forgetThePassword(context: context);
+            onPressed: () {
+              BlocProvider.of<AuthCubit>(context)
+                  .forgetThePassword(context: context);
             },
             child: Text(
               "Forgot the password?",
               style: StyleApp.textStyle2,
-            )
-        );
+            ));
       },
       listener: (context, state) {
         if (state is ForgetThePasswordMessageSentSuccessfullyState) {
@@ -35,9 +35,7 @@ class ForgetThePasswordButton extends StatelessWidget {
             gravity: ToastGravity.CENTER,
             webShowClose: true,
           );
-
-        }
-        else if (state is ForgetThePasswordMessageNotSentState) {
+        } else if (state is ForgetThePasswordMessageNotSentState) {
           debugPrint("error forget password :: ${state.message}");
           Fluttertoast.showToast(
             msg: state.message,

@@ -1,42 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsappcode/core/utils/border_text_field.dart';
-import 'package:newsappcode/features/auth/login/presentation/controller/validation_cubit/login_validation_state.dart';
 
 import '../../../../../../core/shared_widget/custom_form_field.dart';
-import '../../controller/login_cubit.dart';
-import '../../controller/validation_cubit/login_validation_cubit.dart';
+import '../../../../view_mdoel/validation_cubit/auth_validation_cubit.dart';
+import '../../../../view_mdoel/validation_cubit/auth_validation_state.dart';
+import '../../../../view_mdoel/auth_cubit/auth_cubit.dart';
 
 class PasswordField extends StatelessWidget {
   const PasswordField({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LoginValidationCubit, LoginValidationState>(
+    return BlocBuilder<AuthValidationCubit, AuthValidationState>(
       builder: (context, state) {
         return CustomFormField(
           border: BorderTextField.borderTextFormFieldAuth,
           enabledBorder: BorderTextField.enabledBorderTextFormFieldAuth,
           focusBorder: BorderTextField.focusedBorderTextFormFieldAuth,
-          fillColor: BlocProvider.of<LoginValidationCubit>(context).isValidatePassword
-              ? const Color(0xffFFF3F8)
-              : Colors.white,
-          hintText: BlocProvider.of<LoginValidationCubit>(context).isValidatePassword
-              ? "Input Password"
-              : null,
+          fillColor:
+              BlocProvider.of<AuthValidationCubit>(context).isValidatePassword
+                  ? const Color(0xffFFF3F8)
+                  : Colors.white,
+          hintText:
+              BlocProvider.of<AuthValidationCubit>(context).isValidatePassword
+                  ? "Input Password"
+                  : null,
           onChanged: (s) {
-            BlocProvider.of<LoginCubit>(context).password = s;
+            BlocProvider.of<AuthCubit>(context).password = s;
           },
           validator: (v) {
-            return BlocProvider.of<LoginValidationCubit>(context).validatePassword(v);
+            return BlocProvider.of<AuthValidationCubit>(context)
+                .validatePassword(v);
           },
-          suffixIcon: BlocProvider.of<LoginValidationCubit>(context).isValidatePassword
+          suffixIcon: BlocProvider.of<AuthValidationCubit>(context)
+                  .isValidatePassword
               ? const Icon(
                   Icons.close,
                   color: Colors.red,
                 )
               : IconButton(
-                  icon: BlocProvider.of<LoginValidationCubit>(context).visibility
+                  icon: BlocProvider.of<AuthValidationCubit>(context).visibility
                       ? const Icon(
                           Icons.visibility_off,
                           color: Color(0xff0F8ACF),
@@ -46,18 +50,21 @@ class PasswordField extends StatelessWidget {
                           color: Color(0xff0F8ACF),
                         ),
                   onPressed: () {
-                    BlocProvider.of<LoginValidationCubit>(context).visibility =
-                        !BlocProvider.of<LoginValidationCubit>(context).visibility;
+                    BlocProvider.of<AuthValidationCubit>(context).visibility =
+                        !BlocProvider.of<AuthValidationCubit>(context)
+                            .visibility;
                     debugPrint(
-                        "${BlocProvider.of<LoginValidationCubit>(context).visibility}");
-                    BlocProvider.of<LoginValidationCubit>(context)
+                        "${BlocProvider.of<AuthValidationCubit>(context).visibility}");
+                    BlocProvider.of<AuthValidationCubit>(context)
                         .togglePasswordVisibility(
-                            visibility: BlocProvider.of<LoginValidationCubit>(context)
-                                .visibility);
+                            visibility:
+                                BlocProvider.of<AuthValidationCubit>(context)
+                                    .visibility);
                   },
                 ),
-          obscureText:
-              BlocProvider.of<LoginValidationCubit>(context).visibility ? true : false,
+          obscureText: BlocProvider.of<AuthValidationCubit>(context).visibility
+              ? true
+              : false,
         );
       },
     );
