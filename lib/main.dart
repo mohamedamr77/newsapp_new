@@ -31,28 +31,3 @@ class MyApp extends StatelessWidget {
 }
 
 
-
-/*
-void main() async{
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: SignUpCubit(),
-      child: const MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: LoginScreen(),
-      ),
-    );
-  }
-}
- */
