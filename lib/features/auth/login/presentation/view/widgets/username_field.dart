@@ -19,15 +19,15 @@ class UsernameField extends StatelessWidget {
           enabledBorder: BorderTextField.enabledBorderTextFormFieldAuth,
           focusBorder: BorderTextField.focusedBorderTextFormFieldAuth,
           fillColor:
-              BlocProvider.of<AuthValidationCubit>(context).isValidateUserName
+              BlocProvider.of<AuthValidationCubit>(context).isValidateUserNameLogin
                   ? const Color(0xffFFF3F8)
                   : Colors.white,
           hintText:
-              BlocProvider.of<AuthValidationCubit>(context).isValidateUserName
+              BlocProvider.of<AuthValidationCubit>(context).isValidateUserNameLogin
                   ? "Input text"
                   : null,
           suffixIcon:
-              BlocProvider.of<AuthValidationCubit>(context).isValidateUserName
+              BlocProvider.of<AuthValidationCubit>(context).isValidateUserNameLogin
                   ? const Icon(
                       Icons.close,
                       color: Colors.red,
@@ -38,7 +38,7 @@ class UsernameField extends StatelessWidget {
           },
           validator: (value) {
             return BlocProvider.of<AuthValidationCubit>(context)
-                .validateUserName(value);
+                .validateUserNameLogin(value);
           },
         );
       },

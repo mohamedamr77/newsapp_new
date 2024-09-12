@@ -4,33 +4,61 @@ import 'package:newsappcode/features/auth/view_mdoel/validation_cubit/auth_valid
 
 class AuthValidationCubit extends Cubit<AuthValidationState> {
   AuthValidationCubit() : super(AuthValidationInitialState());
-  bool isValidateUserName = false;
-  bool isValidatePassword = false;
+  bool isValidateUserNameLogin = false;
+  bool isValidatePasswordLogin = false;
+  bool isValidateUserNameSignUp = false;
+  bool isValidatePasswordSignUP = false;
   bool visibility = false;
   bool isValidateConfirmPassword = false;
   bool visibilityPassword = false;
   bool visibilityConfirmPassword = false;
-  String? validateUserName(String? value) {
+  String? validateUserNameLogin(String? value) {
     if (value == null || value.isEmpty) {
-      isValidateUserName = true;
+      isValidateUserNameLogin = true;
       emit(LoginValidationNameTrueState());
-      debugPrint("$isValidateUserName");
+      debugPrint("$isValidateUserNameLogin");
       return "❗ Invalid Username";
     } else {
-      isValidateUserName = false;
+      isValidateUserNameLogin = false;
       emit(LoginValidationNameFalseState());
-      debugPrint("$isValidateUserName");
+      debugPrint("$isValidateUserNameLogin");
       return null;
     }
   }
 
-  String? validatePassword(String? value) {
+  String? validatePasswordLogin(String? value) {
     if (value == null || value.isEmpty) {
-      isValidatePassword = true;
+      isValidatePasswordLogin = true;
       emit(LoginValidationPasswordTrueState());
       return "❗ Password Error";
     } else {
-      isValidatePassword = false;
+      isValidatePasswordLogin = false;
+      emit(LoginValidationPasswordFalseState());
+      return null;
+    }
+  }
+
+  String? validateUserNameSignUp(String? value) {
+    if (value == null || value.isEmpty) {
+      isValidateUserNameSignUp = true;
+      emit(LoginValidationNameTrueState());
+      debugPrint("$isValidateUserNameSignUp");
+      return "❗ Invalid Username";
+    } else {
+      isValidateUserNameSignUp = false;
+      emit(LoginValidationNameFalseState());
+      debugPrint("$isValidateUserNameSignUp");
+      return null;
+    }
+  }
+
+  String? validatePasswordSignUp(String? value) {
+    if (value == null || value.isEmpty) {
+      isValidateUserNameSignUp = true;
+      emit(LoginValidationPasswordTrueState());
+      return "❗ Password Error";
+    } else {
+      isValidateUserNameSignUp = false;
       emit(LoginValidationPasswordFalseState());
       return null;
     }
@@ -41,8 +69,7 @@ class AuthValidationCubit extends Cubit<AuthValidationState> {
     emit(LoginTogglePasswordVisibilityState());
   }
 
-  String? validateConfirmPassword(
-      {required String? password, required String? confirmPassword}) {
+  String? validateConfirmPassword({required String? password, required String? confirmPassword}) {
     if (confirmPassword == null || confirmPassword.isEmpty) {
       isValidateConfirmPassword = true;
       emit(ValidateConfirmPasswordTrueSigUpState());

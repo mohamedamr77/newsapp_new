@@ -19,11 +19,11 @@ class PasswordField extends StatelessWidget {
           enabledBorder: BorderTextField.enabledBorderTextFormFieldAuth,
           focusBorder: BorderTextField.focusedBorderTextFormFieldAuth,
           fillColor:
-              BlocProvider.of<AuthValidationCubit>(context).isValidatePassword
+              BlocProvider.of<AuthValidationCubit>(context).isValidatePasswordLogin
                   ? const Color(0xffFFF3F8)
                   : Colors.white,
           hintText:
-              BlocProvider.of<AuthValidationCubit>(context).isValidatePassword
+              BlocProvider.of<AuthValidationCubit>(context).isValidatePasswordLogin
                   ? "Input Password"
                   : null,
           onChanged: (s) {
@@ -31,10 +31,10 @@ class PasswordField extends StatelessWidget {
           },
           validator: (v) {
             return BlocProvider.of<AuthValidationCubit>(context)
-                .validatePassword(v);
+                .validatePasswordLogin(v);
           },
           suffixIcon: BlocProvider.of<AuthValidationCubit>(context)
-                  .isValidatePassword
+                  .isValidatePasswordLogin
               ? const Icon(
                   Icons.close,
                   color: Colors.red,

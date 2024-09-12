@@ -21,15 +21,15 @@ class PasswordFieldSignUp extends StatelessWidget {
           enabledBorder: BorderTextField.enabledBorderTextFormFieldAuth,
           focusBorder: BorderTextField.focusedBorderTextFormFieldAuth,
           fillColor:
-              BlocProvider.of<AuthValidationCubit>(context).isValidatePassword
+              BlocProvider.of<AuthValidationCubit>(context).isValidatePasswordSignUP
                   ? const Color(0xffFFF3F8)
                   : Colors.white,
           hintText:
-              BlocProvider.of<AuthValidationCubit>(context).isValidatePassword
+              BlocProvider.of<AuthValidationCubit>(context).isValidatePasswordSignUP
                   ? "Input Password"
                   : null,
           suffixIcon: BlocProvider.of<AuthValidationCubit>(context)
-                  .isValidatePassword
+                  .isValidatePasswordSignUP
               ? const Icon(
                   Icons.close,
                   color: Colors.red,
@@ -37,7 +37,7 @@ class PasswordFieldSignUp extends StatelessWidget {
               : IconButton(
                   onPressed: () {
                     log(BlocProvider.of<AuthValidationCubit>(context)
-                        .isValidatePassword
+                        .isValidatePasswordSignUP
                         .toString());
                     BlocProvider.of<AuthValidationCubit>(context)
                         .togglePasswordVisibility(
@@ -59,7 +59,7 @@ class PasswordFieldSignUp extends StatelessWidget {
           },
           validator: (pass) {
             return BlocProvider.of<AuthValidationCubit>(context)
-                .validatePassword(pass);
+                .validatePasswordSignUp(pass);
           },
         );
       },
