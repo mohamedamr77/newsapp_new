@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:newsappcode/features/auth/sign_up/data/sign_up_repo.dart';
 
@@ -8,9 +7,27 @@ import '../../../../core/failure.dart';
 
 class SignUpImplementation implements SignUpRepo {
   @override
-  fireBaseSignUp() {
-    // TODO: implement fireBaseSignUp
-    throw UnimplementedError();
+  Future<Either<Failure,void>>  fireBaseSignUp({required String? emailAddress, required String? password}) async {
+    try {final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailAddress!.trim(),
+        password: password!.trim(),
+      );
+    return right(null);
+    }
+    on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        return  left(FirebaseFailure(message: "Weak password, please use a stronger password."));
+      }
+      else if (e.code == 'email-already-in-use') {
+      return  left(FirebaseFailure(message:  "Email already in use, please try another one."));
+      }
+      else {
+       return left(FirebaseFailure(message: "Authentication failed: ${e.message} "));
+      }
+    } catch (e) {
+      return left(FirebaseFailure(message: "An unexpected error occurred: $e"));
+    }
+
   }
 
   @override
@@ -43,5 +60,7 @@ class SignUpImplementation implements SignUpRepo {
     }
 
   }
+
+
 
 }

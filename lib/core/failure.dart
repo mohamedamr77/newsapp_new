@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 
 abstract class Failure{
 
@@ -9,6 +8,7 @@ abstract class Failure{
 
 class FirebaseFailure extends Failure{
   FirebaseFailure({required super.message});
+
 }
 
 class ApiFailure extends Failure{
