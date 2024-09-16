@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:newsappcode/features/auth/login/data/repo/login_repo_implement.dart';
 import 'package:newsappcode/features/auth/login/presentation/controller/login_state.dart';
 import 'package:newsappcode/features/auth/login/presentation/view/widgets/login_body.dart';
 import '../controller/login_cubit.dart';
@@ -13,7 +14,7 @@ class LoginScreen extends StatelessWidget {
     return  MultiBlocProvider(
       providers: [
         BlocProvider<LoginCubit>(
-          create: (context) => LoginCubit(),
+          create: (context) => LoginCubit(LoginRepoImplement()),
         ),
         BlocProvider<LoginValidationCubit>(
           create: (context) => LoginValidationCubit(),

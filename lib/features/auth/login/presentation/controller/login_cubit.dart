@@ -1,48 +1,33 @@
+import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:newsappcode/features/auth/login/data/repo/login_repo.dart';
+import '../../../../../core/failure.dart';
 import 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  LoginCubit() : super(LoginInitialState());
+  LoginCubit(this.loginRepo) : super(LoginInitialState());
 
   bool remember = false;
 
   String? emailAddress;
   String? password;
-
+   final LoginRepo loginRepo;
   toggleRememberMeValue({required bool remember}) {
     this.remember = remember;
     emit(ToggleRememberMeState());
   }
 
-  fireBaseSignIn() async {
+ fireBaseSignIn() async {
     emit(LoginLoadingState());
-    try {
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailAddress!.trim(),
-        password: password!.trim(),
-      );
-      emit(LoginSuccessState());
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        emit(LoginFaliureState(errorMessage: e.code));
-        if (kDebugMode) {
-          print('No user found for that email.');
-        }
-      } else if (e.code == 'wrong-password') {
-        emit(LoginFaliureState(errorMessage: e.code));
-        if (kDebugMode) {
-          print('Wrong password provided for that user.');
-        }
-      } else if ((e.code == 'invalid-credential')) {
-        emit(
-            LoginFaliureState(errorMessage: "Please Check email and password"));
-      } else {
-        emit(LoginFaliureState(errorMessage: e.code));
-      }
-    }
+    Either<Failure, void> result =await loginRepo.fireBaseSignIn(emailAddress: emailAddress!.trim(), password: password!.trim());
+   result.fold((error){
+     emit(LoginFaliureState(errorMessage: error.message));
+   }, (success){
+     emit(LoginSuccessState());
+   });
   }
 
   forgetThePassword({required BuildContext context})async{

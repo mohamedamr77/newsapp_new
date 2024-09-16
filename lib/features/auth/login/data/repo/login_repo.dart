@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../../../../../core/failure.dart';
 
 abstract class LoginRepo {
-  Future<Either<Failure,UserCredential>>  fireBaseSignIn({
+  Future<Either<Failure,void>>  fireBaseSignIn({
     required emailAddress,
     required password,
 });
