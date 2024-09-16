@@ -29,11 +29,7 @@ class LoginButton extends StatelessWidget {
             gravity: ToastGravity.SNACKBAR,
             webShowClose: true,
           );
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const SignUpScreen(),
-              ));
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomePageScreen(),));
         }
         if (state is LoginFaliureState) {
           debugPrint(
@@ -58,7 +54,6 @@ class LoginButton extends StatelessWidget {
             if (formKey.currentState!.validate()) {
               formKey.currentState!.save();
               BlocProvider.of<LoginCubit>(context).fireBaseSignIn();
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomePageScreen(),));
             }
           },
         );
