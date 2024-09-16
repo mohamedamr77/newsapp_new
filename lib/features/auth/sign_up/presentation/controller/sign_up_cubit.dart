@@ -1,14 +1,20 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:newsappcode/features/auth/sign_up/data/sign_up_implement.dart';
+import 'package:newsappcode/features/auth/sign_up/data/sign_up_repo.dart';
 import 'package:newsappcode/features/auth/sign_up/presentation/controller/sign_up_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../../../../../core/failure.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
-  SignUpCubit() : super(SignUpInitialState());
+  SignUpCubit(this.signUpRepo) : super(SignUpInitialState());
   String? emailAddress;
   String? password;
   String? confirmPassword;
     bool isLoading=false;
+
+    final SignUpRepo signUpRepo;
 
   fireBaseSignUp() async {
     emit(SignUpLoadingState());
@@ -41,38 +47,31 @@ class SignUpCubit extends Cubit<SignUpState> {
     }
   }
 
-  Future<UserCredential?> signInWithGoogle() async {
-    emit(SignUpLoadingWithGoogleState());
+    signInWithGoogle() async {
       isLoading=true;
+      emit(SignUpLoadingWithGoogleState());
+   var result= await signUpRepo.signInWithGoogle();
+   result.fold(
+           (error){
+             emit(SignUpFaliureWithGoogleState(error: error.message));
+           },
+           (success){
+             emit(SignUpSuccessWithGoogleState());
+           });
 
+  }
+}
+
+/*
+   emit(SignUpLoadingWithGoogleState());
+      isLoading=true;
     try {
-      // Trigger the authentication flow
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-      // If the user cancels the sign-in process
-      if (googleUser == null) {
-        emit(SignUpFaliureWithGoogleState(error: 'Please complete the SignUp'));
-        // print("Sign-in process was canceled by the user.");
-        return null;
-      }
-
-      // Obtain the auth details from the request
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
-
-      // Create a new credential
-      final OAuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
       isLoading=false;
+
       emit(SignUpSuccessWithGoogleState());
-      // Once signed in, return the UserCredential
-      return await FirebaseAuth.instance.signInWithCredential(credential);
     } on FirebaseAuthException catch (e) {
       isLoading=false;
       emit(SignUpFaliureWithGoogleState(error: 'Error : ${e.code}'));
-
       // Handle specific FirebaseAuth exceptions if needed
     } catch (e) {
       isLoading=false;
@@ -81,5 +80,4 @@ class SignUpCubit extends Cubit<SignUpState> {
 
     // Return null in case of any error or exception
     return null;
-  }
-}
+ */

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:newsappcode/features/auth/sign_up/data/sign_up_implement.dart';
 import 'package:newsappcode/features/auth/sign_up/presentation/controller/sign_up_state.dart';
 import 'package:newsappcode/features/auth/sign_up/presentation/view/widgets/sign_up_body.dart';
 
@@ -14,7 +15,7 @@ class SignUpScreen extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<SignUpCubit>(
-          create: (context) => SignUpCubit(),
+          create: (context) => SignUpCubit(SignUpImplementation()),
         ),
         BlocProvider<ValidationSignUpCubit>(
           create: (context) => ValidationSignUpCubit(),

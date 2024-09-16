@@ -14,3 +14,7 @@ class FirebaseFailure extends Failure{
 class ApiFailure extends Failure{
   ApiFailure({required super.message});
 }
+
+class ServerFaliure extends Failure{
+  ServerFaliure({required super.message});
+}
