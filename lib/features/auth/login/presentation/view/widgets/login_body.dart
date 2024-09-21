@@ -9,22 +9,30 @@ class LoginBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        SliverToBoxAdapter(
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.12095,
-          ),
-        ),
-        const SliverToBoxAdapter(
-          child: CustomTopView(),
-        ),
-        SliverToBoxAdapter(
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.04643628,
-          ),
-        ),
-        const SliverToBoxAdapter(
-          child: BodyForm(),
+        SliverFillRemaining(
+          fillOverscroll: true,
+          hasScrollBody: false,
+          child: ColumnWidget(),
         )
+      ],
+    );
+  }
+}
+class ColumnWidget extends StatelessWidget {
+  const ColumnWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.12095,
+        ),
+        CustomTopView(),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.04643628,
+        ),
+        Expanded(child: BodyForm())
       ],
     );
   }
