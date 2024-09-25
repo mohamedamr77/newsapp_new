@@ -16,22 +16,19 @@ class SearchBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var cubit =BlocProvider.of<GetSearchNewsCubit>(context);
-    return   SafeArea(
+    var cubit = BlocProvider.of<GetSearchNewsCubit>(context);
+    return SafeArea(
       child: Stack(
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Align(
-                  alignment: Alignment.center,
-                  child: LogoApp()
-              ),
+              const Align(alignment: Alignment.center, child: LogoApp()),
               CustomFormField(
                 fillColor: ColorApp.whiteColor,
                 hintText: "Search",
                 enabledBorder:
-                BorderTextField.enabledBorderTextFormFieldHomePage,
+                    BorderTextField.enabledBorderTextFormFieldHomePage,
                 focusBorder: BorderTextField.focusedBorderTextFormFieldHomePage,
                 prefixIcon: Padding(
                   padding: const EdgeInsets.all(12.0),
@@ -39,11 +36,13 @@ class SearchBody extends StatelessWidget {
                     "assets/images/svg/Vector.svg",
                   ),
                 ),
-                onChanged: (value){
+                onChanged: (value) {
                   cubit.fetchSearchResult(category: value);
                 },
               ),
-              SizedBox(height: 12.h,),
+              SizedBox(
+                height: 12.h,
+              ),
               BlocBuilder<GetSearchNewsCubit, SearchNewsState>(
                 builder: (context, state) {
                   if (cubit.resultSearchList.isEmpty) {
@@ -54,16 +53,19 @@ class SearchBody extends StatelessWidget {
                       ),
                     );
                   }
-                  return  const ListViewNewsSearch();
+                  return const ListViewNewsSearch();
                 },
               ),
             ],
           ),
           IconButton(
-              onPressed: (){
-                Navigator.pop(context);
-              },
-              icon: Icon(Icons.arrow_back,size: 32.w,),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.arrow_back,
+              size: 32.w,
+            ),
           ),
         ],
       ),

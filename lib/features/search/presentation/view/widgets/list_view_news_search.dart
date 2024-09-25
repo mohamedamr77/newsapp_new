@@ -20,7 +20,9 @@ class ListViewNewsSearch extends StatelessWidget {
               return ListViewBody(articlesModel: cubit.resultSearchList[index]);
             },
             separatorBuilder: (context, index) {
-              return SizedBox(height: 12.h,);
+              return SizedBox(
+                height: 12.h,
+              );
             },
             itemCount: cubit.resultSearchList.length,
           ),

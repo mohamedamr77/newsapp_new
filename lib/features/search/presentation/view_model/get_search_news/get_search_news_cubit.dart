@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsappcode/features/home_page/data/model/home_model.dart';
@@ -32,5 +31,4 @@ class GetSearchNewsCubit extends Cubit<SearchNewsState> {
       emit(SearchNewsSuccessState());
     });
   }
-
 }

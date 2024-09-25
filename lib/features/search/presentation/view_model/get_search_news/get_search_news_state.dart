@@ -1,4 +1,4 @@
-abstract class SearchNewsState{}
+abstract class SearchNewsState {}
 
 class SearchNewsInitialState extends SearchNewsState {}
 

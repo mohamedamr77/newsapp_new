@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../../../../../core/shared_widget/custom_form_field.dart';
 import '../../../../../core/shared_widget/logo_app.dart';
-import '../../../../../core/utils/border_text_field.dart';
 import '../../../../../core/utils/color_app.dart';
 import '../../../../../core/utils/style_app.dart';
 import '../../../../search/presentation/view/search_view.dart';
@@ -26,15 +23,18 @@ class CustomSliverAppbar extends StatelessWidget {
             children: [
               const LogoApp(),
               GestureDetector(
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const SearchView();
-                  },));
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return const SearchView();
+                    },
+                  ));
                 },
                 child: Container(
                   width: double.infinity,
-                  margin: EdgeInsets.symmetric(vertical: 4.h,horizontal: 20.w),
-                  padding: EdgeInsets.symmetric(vertical: 16.h,horizontal: 16.w),
+                  margin: EdgeInsets.symmetric(vertical: 4.h, horizontal: 20.w),
+                  padding:
+                      EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12.w),
                     color: ColorApp.whiteColor,
@@ -42,19 +42,21 @@ class CustomSliverAppbar extends StatelessWidget {
                       width: 1.w,
                       color: ColorApp.primaryColor,
                     ),
-
                   ),
-                   child: Row(
-                     children: [
-                       SvgPicture.asset(
-                         "assets/images/svg/Vector.svg",
-                       ),
-                       SizedBox(width: 16.w,),
-                       Text("Search",
-                   style:  StyleApp.textStyle6,
-                   ),
-                     ],
-                   ),
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        "assets/images/svg/Vector.svg",
+                      ),
+                      SizedBox(
+                        width: 16.w,
+                      ),
+                      Text(
+                        "Search",
+                        style: StyleApp.textStyle6,
+                      ),
+                    ],
+                  ),
                 ),
               )
             ],
@@ -63,7 +65,6 @@ class CustomSliverAppbar extends StatelessWidget {
       ),
     );
   }
-
 }
 
 /*

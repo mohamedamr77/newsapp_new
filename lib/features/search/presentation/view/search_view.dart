@@ -13,7 +13,8 @@ class SearchView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => GetSearchNewsCubit(SearchImplement(ApiService(Dio()))),
+      create: (context) =>
+          GetSearchNewsCubit(SearchImplement(ApiService(Dio()))),
       child: const Scaffold(
         backgroundColor: ColorApp.whiteColor,
         body: SearchBody(),
