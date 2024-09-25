@@ -14,6 +14,7 @@ class ListViewNews extends StatefulWidget {
 }
 
 class _ListViewNewsState extends State<ListViewNews> {
+
   @override
   void initState(){
     super.initState();
@@ -26,14 +27,7 @@ class _ListViewNewsState extends State<ListViewNews> {
    return BlocConsumer<GetGeneralNewsCubit,GetGeneralNewsState>(
       builder: (BuildContext context, GetGeneralNewsState state) {
         if (state is GetGeneralNewsSuccessState){
-          return  SliverList(
-              delegate:
-              SliverChildBuilderDelegate((context, index) {
-                return  ListViewBody(articlesModel: cubit.generalNews[index],);
-              },
-                  childCount: cubit.generalNews.length
-              )
-          );
+          return  bodyGeneralNewsSuccessState(cubit: cubit);
         }
         return  SliverList(delegate: SliverChildBuilderDelegate((context, index) {
           return  Padding(
@@ -128,4 +122,17 @@ class _ListViewNewsState extends State<ListViewNews> {
       },
     );
   }
+
+  Widget bodyGeneralNewsSuccessState({required cubit}){
+    return SliverList(
+        delegate:
+        SliverChildBuilderDelegate((context, index) {
+          return  ListViewBody(articlesModel: cubit.generalNews[index],);
+        },
+            childCount: cubit.generalNews.length
+        )
+    );
+  }
+
+
 }
