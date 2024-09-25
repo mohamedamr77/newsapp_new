@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:newsappcode/core/shared_widget/build_shimmer_shape.dart';
 import 'package:newsappcode/core/shared_widget/logo_app.dart';
 import 'package:newsappcode/core/utils/color_app.dart';
 
@@ -13,15 +11,19 @@ class TopicsBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child:  SingleChildScrollView(
+      child: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 20.h,),
+            SizedBox(
+              height: 20.h,
+            ),
             const LogoApp(),
             const Divider(
               color: ColorApp.primaryColor,
             ),
-            SizedBox(height: 20.h,),
+            SizedBox(
+              height: 20.h,
+            ),
             const GridViewTopics()
           ],
         ),

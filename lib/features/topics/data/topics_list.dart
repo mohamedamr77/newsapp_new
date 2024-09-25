@@ -1,6 +1,6 @@
 import 'package:newsappcode/features/topics/data/model/model.dart';
 
-List<TopicsModel> topicsList=[
+List<TopicsModel> topicsList = [
   TopicsModel(image: "assets/images/technology.png", title: "technology"),
   TopicsModel(image: "assets/images/sport.png", title: "sport"),
   TopicsModel(image: "assets/images/business.png", title: "business"),
