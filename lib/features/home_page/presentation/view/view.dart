@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:newsappcode/features/home_page/presentation/view/widgets/home_page_body.dart';
 
+import '../../../topics/presentation/view/topics_view.dart';
+
 class HomePageScreen extends StatefulWidget {
   const HomePageScreen({super.key});
 
@@ -12,7 +14,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
   int currentIndex = 0;
   List<Widget> displayScreen = [
     const HomePageBody(),
-    const Center(child: Text("Topics")),
+    const TopicsView(),
     const Center(child: Text("Author")),
     const Center(child: Text("Book Mark")),
   ];
