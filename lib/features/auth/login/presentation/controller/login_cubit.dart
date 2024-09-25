@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsappcode/features/auth/login/data/repo/login_repo.dart';
 import '../../../../../core/failure.dart';
@@ -24,7 +23,7 @@ class LoginCubit extends Cubit<LoginState> {
     emit(LoginLoadingState());
     Either<Failure, void> result =await loginRepo.fireBaseSignIn(emailAddress: emailAddress!.trim(), password: password!.trim());
    result.fold((error){
-     emit(LoginFaliureState(errorMessage: error.message));
+     emit(LoginFaliureState(errorMessage: error.errorMessage));
    }, (success){
      emit(LoginSuccessState());
    });

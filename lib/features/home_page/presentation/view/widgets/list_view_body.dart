@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:newsappcode/features/home_page/data/model/home_model.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:shimmer/shimmer.dart';
 class ListViewBody extends StatelessWidget {
-  const ListViewBody({super.key});
+  const ListViewBody({super.key, required this.articlesModel});
+
+  final ArticlesModel articlesModel;
 
   @override
   Widget build(BuildContext context) {
@@ -13,10 +17,32 @@ class ListViewBody extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image(
-            image: const AssetImage("assets/images/gaza news.png"),
-            height: 195.h,
-            width: double.infinity,
+          ClipRRect(
+            borderRadius: BorderRadius.circular(16.w),
+            child: CachedNetworkImage(
+              fit: BoxFit.fill,
+              height: 195.h,
+              width: double.infinity,
+              imageUrl: articlesModel.urlToImage ?? "",
+              progressIndicatorBuilder: (context, url, downloadProgress) => SizedBox(
+                height: 195.h,
+                width: double.infinity,
+                child: Shimmer.fromColors(
+                  baseColor: Colors.grey[600]!,
+                  highlightColor: Colors.grey[400]!,
+                  direction: ShimmerDirection.ltr, // Left to right shimmer
+                  child: Container(
+                    height: 195.h,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[600],
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                ),
+              ),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 12),
@@ -33,7 +59,7 @@ class ListViewBody extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 12),
             child: Text(
-              'Gaza War: "Where can we hide from the death coming from the sky?" ',
+              articlesModel.title??"",
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: GoogleFonts.poppins(
@@ -61,9 +87,10 @@ class ListViewBody extends StatelessWidget {
                 Text(
                   'BBC News',
                   style: GoogleFonts.poppins(
-                      fontSize: 13.sp,
-                      fontWeight: FontWeight.w600,
-                      color: const Color(0xff4E4B66)),
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w600,
+                    color: const Color(0xff4E4B66),
+                  ),
                 ),
                 const SizedBox(width: 12),
                 const CircleAvatar(
@@ -80,13 +107,16 @@ class ListViewBody extends StatelessWidget {
                 Text(
                   '7h ago',
                   style: GoogleFonts.poppins(
-                      fontSize: 13.sp,
-                      fontWeight: FontWeight.w600,
-                      color: const Color(0xff4E4B66)),
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w600,
+                    color: const Color(0xff4E4B66),
+                  ),
                 ),
                 const Spacer(),
                 GestureDetector(
-                    onTap: () {}, child: const Icon(Icons.bookmark_border))
+                  onTap: () {},
+                  child: const Icon(Icons.bookmark_border),
+                ),
               ],
             ),
           ),
@@ -95,3 +125,4 @@ class ListViewBody extends StatelessWidget {
     );
   }
 }
+

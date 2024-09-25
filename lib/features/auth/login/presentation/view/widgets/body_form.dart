@@ -116,6 +116,9 @@ class BodyForm extends StatelessWidget {
                 // FaIcon(FontAwesomeIcons.circleExclamation,)
               ],
             ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.0129,
+            ),
 
           ],
         ),

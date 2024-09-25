@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:newsappcode/features/home_page/presentation/view/view.dart';
 import '../../../../../../core/shared_widget/custom_button.dart';
-import '../../../../sign_up/presentation/view/sign_up_view.dart';
 import '../../controller/login_cubit.dart';
 import '../../controller/login_state.dart';
 

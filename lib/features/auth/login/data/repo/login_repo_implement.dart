@@ -19,13 +19,13 @@ class LoginRepoImplement implements LoginRepo{
        return right(null);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        return left(FirebaseFailure(message: 'user-not-found'));
+        return left(FirebaseFailure(errorMessage: 'user-not-found'));
       } else if (e.code == 'wrong-password') {
-        return left(FirebaseFailure(message: 'Wrong password provided for that user.'));
+        return left(FirebaseFailure(errorMessage: 'Wrong password provided for that user.'));
       } else if ((e.code == 'invalid-credential')) {
-        return left(FirebaseFailure(message: "Please Check email and password"));
+        return left(FirebaseFailure(errorMessage: "Please Check email and password"));
       } else {
-       return left(FirebaseFailure(message: e.code));
+       return left(FirebaseFailure(errorMessage: e.code));
       }
     }
   }

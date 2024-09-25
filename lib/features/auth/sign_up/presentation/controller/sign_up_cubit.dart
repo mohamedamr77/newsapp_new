@@ -31,7 +31,7 @@ class SignUpCubit extends Cubit<SignUpState> {
     var result = await signUpRepo.signInWithGoogle();
     result.fold((error) {
       isLoading = false;
-      emit(SignUpFaliureWithGoogleState(error: error.message));
+      emit(SignUpFaliureWithGoogleState(error: error.errorMessage));
     }, (success) {
       isLoading = false;
       emit(SignUpSuccessWithGoogleState());

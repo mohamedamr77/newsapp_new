@@ -16,16 +16,16 @@ class SignUpImplementation implements SignUpRepo {
     }
     on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        return  left(FirebaseFailure(message: "Weak password, please use a stronger password."));
+        return  left(FirebaseFailure(errorMessage: "Weak password, please use a stronger password."));
       }
       else if (e.code == 'email-already-in-use') {
-      return  left(FirebaseFailure(message:  "Email already in use, please try another one."));
+      return  left(FirebaseFailure(errorMessage:  "Email already in use, please try another one."));
       }
       else {
-       return left(FirebaseFailure(message: "Authentication failed: ${e.message} "));
+       return left(FirebaseFailure(errorMessage: "Authentication failed: ${e.message} "));
       }
     } catch (e) {
-      return left(FirebaseFailure(message: "An unexpected error occurred: $e"));
+      return left(FirebaseFailure(errorMessage: "An unexpected error occurred: $e"));
     }
 
   }
@@ -40,7 +40,7 @@ class SignUpImplementation implements SignUpRepo {
       // If the user cancels the sign-in process
       if (googleUser == null) {
         // print("Sign-in process was canceled by the user.");
-        return Left(ServerFaliure( message: 'Sign-in process was canceled by the user.'));
+        return Left(FirebaseFailure( errorMessage: 'Sign-in process was canceled by the user.'));
       }
 
       // Obtain the auth details from the request
@@ -56,7 +56,7 @@ class SignUpImplementation implements SignUpRepo {
       UserCredential user= await FirebaseAuth.instance.signInWithCredential(credential);
        return Right(user);
     } catch (e) {
-       return Left(ServerFaliure(message: "Error $e"));
+       return Left(FirebaseFailure(errorMessage: "Error $e"));
     }
 
   }
