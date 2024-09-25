@@ -6,14 +6,16 @@ import 'package:newsappcode/core/failure.dart';
 import 'package:newsappcode/features/home_page/data/model/home_model.dart';
 import 'package:newsappcode/features/home_page/data/repo/home_repo.dart';
 
-class HomeImplement implements HomeRepo{
+class HomeImplement implements HomeRepo {
   final ApiService apiService;
-  
+
   HomeImplement(this.apiService);
   @override
-  Future<Either<Failure, List<ArticlesModel>>> getGeneralNews() async{
+  Future<Either<Failure, List<ArticlesModel>>> getGeneralNews() async {
     try {
-      var response = await apiService.get(endPoint: "/everything?q=gaza&apiKey=08433c8dda43458fa30826408cb8219e");
+      var response = await apiService.get(
+          endPoint:
+              "/everything?q=gaza&apiKey=08433c8dda43458fa30826408cb8219e");
       List<dynamic> articlesFromApi = response["articles"];
       List<ArticlesModel> articlesList = [];
       for (int i = 0; i < articlesFromApi.length; i++) {
@@ -21,17 +23,14 @@ class HomeImplement implements HomeRepo{
       }
       debugPrint(articlesList.toString());
       return right(articlesList);
-    }catch (e){
+    } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
       } else {
         return left(ServerFailure(errorMessage: e.toString()));
       }
-
     }
   }
-
-
 }
 /*
   try {

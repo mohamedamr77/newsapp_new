@@ -18,46 +18,54 @@ class PasswordField extends StatelessWidget {
           border: BorderTextField.borderTextFormFieldAuth,
           enabledBorder: BorderTextField.enabledBorderTextFormFieldAuth,
           focusBorder: BorderTextField.focusedBorderTextFormFieldAuth,
-          fillColor: BlocProvider.of<LoginValidationCubit>(context).isValidatePassword
-              ? const Color(0xffFFF3F8)
-              : Colors.white,
-          hintText: BlocProvider.of<LoginValidationCubit>(context).isValidatePassword
-              ? "Input Password"
-              : null,
+          fillColor:
+              BlocProvider.of<LoginValidationCubit>(context).isValidatePassword
+                  ? const Color(0xffFFF3F8)
+                  : Colors.white,
+          hintText:
+              BlocProvider.of<LoginValidationCubit>(context).isValidatePassword
+                  ? "Input Password"
+                  : null,
           onChanged: (s) {
             BlocProvider.of<LoginCubit>(context).password = s;
           },
           validator: (v) {
-            return BlocProvider.of<LoginValidationCubit>(context).validatePassword(v);
+            return BlocProvider.of<LoginValidationCubit>(context)
+                .validatePassword(v);
           },
-          suffixIcon: BlocProvider.of<LoginValidationCubit>(context).isValidatePassword
+          suffixIcon: BlocProvider.of<LoginValidationCubit>(context)
+                  .isValidatePassword
               ? const Icon(
                   Icons.close,
                   color: Colors.red,
                 )
               : IconButton(
-                  icon: BlocProvider.of<LoginValidationCubit>(context).visibility
-                      ? const Icon(
-                          Icons.visibility_off,
-                          color: Color(0xff0F8ACF),
-                        )
-                      : const Icon(
-                          Icons.remove_red_eye,
-                          color: Color(0xff0F8ACF),
-                        ),
+                  icon:
+                      BlocProvider.of<LoginValidationCubit>(context).visibility
+                          ? const Icon(
+                              Icons.visibility_off,
+                              color: Color(0xff0F8ACF),
+                            )
+                          : const Icon(
+                              Icons.remove_red_eye,
+                              color: Color(0xff0F8ACF),
+                            ),
                   onPressed: () {
                     BlocProvider.of<LoginValidationCubit>(context).visibility =
-                        !BlocProvider.of<LoginValidationCubit>(context).visibility;
+                        !BlocProvider.of<LoginValidationCubit>(context)
+                            .visibility;
                     debugPrint(
                         "${BlocProvider.of<LoginValidationCubit>(context).visibility}");
                     BlocProvider.of<LoginValidationCubit>(context)
                         .togglePasswordVisibility(
-                            visibility: BlocProvider.of<LoginValidationCubit>(context)
-                                .visibility);
+                            visibility:
+                                BlocProvider.of<LoginValidationCubit>(context)
+                                    .visibility);
                   },
                 ),
-          obscureText:
-              BlocProvider.of<LoginValidationCubit>(context).visibility ? true : false,
+          obscureText: BlocProvider.of<LoginValidationCubit>(context).visibility
+              ? true
+              : false,
         );
       },
     );

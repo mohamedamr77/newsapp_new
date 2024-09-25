@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:newsappcode/features/auth/login/presentation/view/login_view.dart';
 import 'package:newsappcode/features/home_page/presentation/view/view.dart';
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-void main() async{
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -18,12 +17,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return    ScreenUtilInit(
+    return ScreenUtilInit(
       designSize: const Size(428, 926),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (_ , child) {
+      builder: (_, child) {
         return const MaterialApp(
           debugShowCheckedModeBanner: false,
           home: HomePageScreen(),
@@ -32,5 +30,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-

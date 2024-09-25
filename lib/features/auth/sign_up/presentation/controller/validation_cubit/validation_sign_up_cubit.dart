@@ -28,15 +28,15 @@ class ValidationSignUpCubit extends Cubit<ValidationSignUpState> {
     }
   }
 
-  String? validatePassword({required String? password }) {
-    if (password == null || password.isEmpty ) {
+  String? validatePassword({required String? password}) {
+    if (password == null || password.isEmpty) {
       isValidatePassword = true;
       emit(ValidatePasswordTrueSigUpState());
       return "❗ Password Error";
     } else {
-    isValidatePassword = false;
-    emit(ValidatePasswordFalseSigUpState());
-    return null;
+      isValidatePassword = false;
+      emit(ValidatePasswordFalseSigUpState());
+      return null;
     }
   }
   /*
@@ -46,19 +46,20 @@ class ValidationSignUpCubit extends Cubit<ValidationSignUpState> {
       return "❗ Password Enter The Same Password";
    */
 
-  String? validateConfirmPassword({required String? password , required String? confirmPassword}) {
+  String? validateConfirmPassword(
+      {required String? password, required String? confirmPassword}) {
     if (confirmPassword == null || confirmPassword.isEmpty) {
       isValidateConfirmPassword = true;
       emit(ValidateConfirmPasswordTrueSigUpState());
       return "❗ Password Error";
-    } else if (confirmPassword!=password) {
+    } else if (confirmPassword != password) {
       isValidateConfirmPassword = false;
       emit(ValidateConfirmPasswordFalseSigUpState());
       return "PLease enter The Same Password ";
     } else {
-    isValidateConfirmPassword = false;
-    emit(ValidateConfirmPasswordFalseSigUpState());
-    return null;
+      isValidateConfirmPassword = false;
+      emit(ValidateConfirmPasswordFalseSigUpState());
+      return null;
     }
   }
 

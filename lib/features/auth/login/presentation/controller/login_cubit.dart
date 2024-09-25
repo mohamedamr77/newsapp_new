@@ -13,23 +13,24 @@ class LoginCubit extends Cubit<LoginState> {
 
   String? emailAddress;
   String? password;
-   final LoginRepo loginRepo;
+  final LoginRepo loginRepo;
   toggleRememberMeValue({required bool remember}) {
     this.remember = remember;
     emit(ToggleRememberMeState());
   }
 
- fireBaseSignIn() async {
+  fireBaseSignIn() async {
     emit(LoginLoadingState());
-    Either<Failure, void> result =await loginRepo.fireBaseSignIn(emailAddress: emailAddress!.trim(), password: password!.trim());
-   result.fold((error){
-     emit(LoginFaliureState(errorMessage: error.errorMessage));
-   }, (success){
-     emit(LoginSuccessState());
-   });
+    Either<Failure, void> result = await loginRepo.fireBaseSignIn(
+        emailAddress: emailAddress!.trim(), password: password!.trim());
+    result.fold((error) {
+      emit(LoginFaliureState(errorMessage: error.errorMessage));
+    }, (success) {
+      emit(LoginSuccessState());
+    });
   }
 
-  forgetThePassword({required BuildContext context})async{
+  forgetThePassword({required BuildContext context}) async {
     emit(ForgetThePasswordMessageLoadingState());
     try {
       final email = emailAddress;
@@ -63,5 +64,4 @@ class LoginCubit extends Cubit<LoginState> {
           message: 'An unexpected error occurred. Please try again.'));
     }
   }
-
 }

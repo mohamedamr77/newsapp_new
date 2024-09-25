@@ -9,7 +9,7 @@ class CustomFormField extends StatelessWidget {
     this.onChanged,
     this.validator,
     this.initialValue,
-     this.border,
+    this.border,
     this.enabledBorder,
     this.focusBorder,
     this.suffixIcon,
@@ -36,7 +36,6 @@ class CustomFormField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25),
       child: TextFormField(
-
         obscureText: obscureText,
         obscuringCharacter: "*",
         initialValue: initialValue,

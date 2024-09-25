@@ -13,10 +13,11 @@ class LoginLoadingState extends LoginState {}
 
 class ToggleRememberMeState extends LoginState {}
 
+class ForgetThePasswordMessageLoadingState extends LoginState {}
 
-class ForgetThePasswordMessageLoadingState extends LoginState{}
-class ForgetThePasswordMessageSentSuccessfullyState extends LoginState{}
-class ForgetThePasswordMessageNotSentState extends LoginState{
+class ForgetThePasswordMessageSentSuccessfullyState extends LoginState {}
+
+class ForgetThePasswordMessageNotSentState extends LoginState {
   final String message;
   ForgetThePasswordMessageNotSentState({required this.message});
 }

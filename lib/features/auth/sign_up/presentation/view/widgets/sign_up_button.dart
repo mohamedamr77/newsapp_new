@@ -25,8 +25,7 @@ class SignUpButton extends StatelessWidget {
             webShowClose: true,
           );
           Navigator.pop(context);
-        }
-        else if (state is SignUpFaliureState) {
+        } else if (state is SignUpFaliureState) {
           debugPrint("SignUpFaliureState triggered with error: ${state.error}");
           Fluttertoast.showToast(
             msg: state.error,
@@ -42,15 +41,15 @@ class SignUpButton extends StatelessWidget {
       },
       builder: (context, state) {
         return CustomButton(
-                backGroundColor: const Color(0xff0F8ACF),
-                nameButton: "Sign Up",
-                onTap: () async {
-                  if (formKey.currentState!.validate()) {
-                    formKey.currentState!.save();
-                    BlocProvider.of<SignUpCubit>(context).fireBaseSignUp();
-                  }
-                },
-              );
+          backGroundColor: const Color(0xff0F8ACF),
+          nameButton: "Sign Up",
+          onTap: () async {
+            if (formKey.currentState!.validate()) {
+              formKey.currentState!.save();
+              BlocProvider.of<SignUpCubit>(context).fireBaseSignUp();
+            }
+          },
+        );
       },
     );
   }

@@ -13,8 +13,10 @@ class ListViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DateTime articleTime = DateTime.parse(articlesModel.publishedAt!); // Parse the string to DateTime
-    String timeAgo = timeago.format(articleTime, locale: 'en_ short'); // Convert to time ago format
+    DateTime articleTime = DateTime.parse(
+        articlesModel.publishedAt!); // Parse the string to DateTime
+    String timeAgo = timeago.format(articleTime,
+        locale: 'en_ short'); // Convert to time ago format
     return Padding(
       padding: const EdgeInsets.only(bottom: 20, left: 24, right: 24),
       child: Column(
@@ -28,7 +30,8 @@ class ListViewBody extends StatelessWidget {
               height: 195.h,
               width: double.infinity,
               imageUrl: articlesModel.urlToImage ?? "",
-              progressIndicatorBuilder: (context, url, downloadProgress) => SizedBox(
+              progressIndicatorBuilder: (context, url, downloadProgress) =>
+                  SizedBox(
                 height: 195.h,
                 width: double.infinity,
                 child: Shimmer.fromColors(
@@ -48,11 +51,13 @@ class ListViewBody extends StatelessWidget {
               errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
           ),
-          SizedBox(height: 12.h,),
+          SizedBox(
+            height: 12.h,
+          ),
           Padding(
             padding: const EdgeInsets.only(left: 12),
             child: Text(
-              articlesModel.title??"",
+              articlesModel.title ?? "",
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: GoogleFonts.poppins(
@@ -66,7 +71,7 @@ class ListViewBody extends StatelessWidget {
             padding: const EdgeInsets.only(left: 12, top: 6),
             child: Row(
               children: [
-                 CircleAvatar(
+                CircleAvatar(
                   backgroundColor: Colors.blue,
                   radius: 8.w,
                   // child: Image(
@@ -119,4 +124,3 @@ class ListViewBody extends StatelessWidget {
     );
   }
 }
-

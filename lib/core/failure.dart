@@ -15,19 +15,19 @@ class ServerFailure extends Failure {
       case DioExceptionType.connectionTimeout:
         return ServerFailure(
             errorMessage:
-            "Connection timed out With ApiService. Please try again.");
+                "Connection timed out With ApiService. Please try again.");
       case DioExceptionType.sendTimeout:
         return ServerFailure(
             errorMessage:
-            "Request took too long to send. Please check your connection.");
+                "Request took too long to send. Please check your connection.");
       case DioExceptionType.receiveTimeout:
         return ServerFailure(
             errorMessage:
-            "Response timed out. The server might be taking too long.");
+                "Response timed out. The server might be taking too long.");
       case DioExceptionType.badCertificate:
         return ServerFailure(
             errorMessage:
-            "Invalid certificate. Cannot establish a secure connection.");
+                "Invalid certificate. Cannot establish a secure connection.");
       case DioExceptionType.badResponse:
         return ServerFailure.fromResponse(
             dioException.response!.data, dioException.response!.statusCode!);
@@ -37,7 +37,7 @@ class ServerFailure extends Failure {
       case DioExceptionType.connectionError:
         return ServerFailure(
             errorMessage:
-            "Connection error. Please check your internet connection.");
+                "Connection error. Please check your internet connection.");
       case DioExceptionType.unknown:
       default:
         return ServerFailure(
@@ -48,24 +48,24 @@ class ServerFailure extends Failure {
     if (statusCode == 401) {
       return ServerFailure(
           errorMessage:
-          //              "${response['error']['message']}\n Unauthorized. Please check your credentials.");
-          "${response['error']['message']} Unauthorized. Please check your credentials.");
+              //              "${response['error']['message']}\n Unauthorized. Please check your credentials.");
+              "${response['error']['message']} Unauthorized. Please check your credentials.");
     } else if (statusCode == 403) {
       return ServerFailure(
           errorMessage:
-          //${response['error']['message']}
-          " Access denied. You do not have permission to access this resource.");
+              //${response['error']['message']}
+              " Access denied. You do not have permission to access this resource.");
     } else if (statusCode == 404) {
       return ServerFailure(
           errorMessage:
-          "Resource not found. The requested  could not be found.");
+              "Resource not found. The requested  could not be found.");
     } else if (statusCode == 500) {
       return ServerFailure(
           errorMessage: " Internal server error. Please try again later.");
     } else {
       return ServerFailure(
           errorMessage:
-          " Unexpected error occurred with status code: $statusCode.");
+              " Unexpected error occurred with status code: $statusCode.");
     }
   }
 // // Helper function to handle bad response errors and give specific feedback
@@ -91,11 +91,10 @@ class ServerFailure extends Failure {
 // }
 }
 
-class FirebaseFailure extends Failure{
+class FirebaseFailure extends Failure {
   FirebaseFailure({required super.errorMessage});
-
 }
 
-class ApiFailure extends Failure{
+class ApiFailure extends Failure {
   ApiFailure({required super.errorMessage});
 }

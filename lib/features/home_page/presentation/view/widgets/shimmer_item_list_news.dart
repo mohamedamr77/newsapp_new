@@ -9,47 +9,49 @@ class ShimmerItemListNews extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  SliverList(
+    return SliverList(
         delegate: SliverChildBuilderDelegate((context, index) {
-          return  Padding(
-              padding: const EdgeInsets.only(bottom: 20, left: 24, right: 24),
-              child: Column(
+      return Padding(
+          padding: const EdgeInsets.only(bottom: 20, left: 24, right: 24),
+          child: Column(
+            children: [
+              BuildShimmerShape(
+                height: 195.h,
+              ),
+              SizedBox(
+                height: 12.h,
+              ),
+              const BuildShimmerShape(),
+              SizedBox(
+                height: 12.h,
+              ),
+              Row(
                 children: [
                   BuildShimmerShape(
-                    height: 195.h,
+                    width: 100.w,
                   ),
-                  SizedBox(height: 12.h,),
-                  const BuildShimmerShape(),
-                  SizedBox(height: 12.h,),
-                  Row(
-                    children: [
-                      BuildShimmerShape(
-                        width: 100.w,
-                      ),
-                      SizedBox(width: 12.w,),
-                      BuildShimmerShape(
-                        width: 80.w,
-                      ),
-                      const Spacer(),
-                      SizedBox(width: 12.w,),
-                      Shimmer.fromColors(
-                          baseColor: Colors.grey[600]!,
-                          highlightColor: Colors.grey[400]!,
-                          direction: ShimmerDirection.ltr, // Left to right shimmer
-                          child: CircleAvatar(
-                            backgroundColor: Colors.grey[600],
-                            radius: 16.w,
-                          )
-                      ),
-
-                    ],
+                  SizedBox(
+                    width: 12.w,
                   ),
+                  BuildShimmerShape(
+                    width: 80.w,
+                  ),
+                  const Spacer(),
+                  SizedBox(
+                    width: 12.w,
+                  ),
+                  Shimmer.fromColors(
+                      baseColor: Colors.grey[600]!,
+                      highlightColor: Colors.grey[400]!,
+                      direction: ShimmerDirection.ltr, // Left to right shimmer
+                      child: CircleAvatar(
+                        backgroundColor: Colors.grey[600],
+                        radius: 16.w,
+                      )),
                 ],
-              )
-          );
-        },
-            childCount: 10
-        )
-    );
+              ),
+            ],
+          ));
+    }, childCount: 10));
   }
 }

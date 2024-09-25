@@ -8,7 +8,7 @@ import '../../controller/login_state.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({super.key, required this.formKey});
-  final  GlobalKey<FormState> formKey;
+  final GlobalKey<FormState> formKey;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginState>(
@@ -28,7 +28,11 @@ class LoginButton extends StatelessWidget {
             gravity: ToastGravity.SNACKBAR,
             webShowClose: true,
           );
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomePageScreen(),));
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const HomePageScreen(),
+              ));
         }
         if (state is LoginFaliureState) {
           debugPrint(

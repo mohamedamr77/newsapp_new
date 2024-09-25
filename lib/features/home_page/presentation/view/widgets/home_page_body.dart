@@ -12,14 +12,12 @@ class HomePageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  SafeArea(
+    return SafeArea(
       child: BlocProvider(
-        create: (context) => GetGeneralNewsCubit(HomeImplement(ApiService(
-          Dio()
-        )
-        )
-        )..fetchGeneralNews(),
-        child: CustomScrollView(
+        create: (context) =>
+            GetGeneralNewsCubit(HomeImplement(ApiService(Dio())))
+              ..fetchGeneralNews(),
+        child: const CustomScrollView(
           slivers: [
             CustomSliverAppbar(),
             ListViewNews(),

@@ -7,32 +7,34 @@ import '../../../../core/failure.dart';
 
 class SignUpImplementation implements SignUpRepo {
   @override
-  Future<Either<Failure,void>>  fireBaseSignUp({required String? emailAddress, required String? password}) async {
-    try {final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+  Future<Either<Failure, void>> fireBaseSignUp(
+      {required String? emailAddress, required String? password}) async {
+    try {
+      final credential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailAddress!.trim(),
         password: password!.trim(),
       );
-    return right(null);
-    }
-    on FirebaseAuthException catch (e) {
+      return right(null);
+    } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        return  left(FirebaseFailure(errorMessage: "Weak password, please use a stronger password."));
-      }
-      else if (e.code == 'email-already-in-use') {
-      return  left(FirebaseFailure(errorMessage:  "Email already in use, please try another one."));
-      }
-      else {
-       return left(FirebaseFailure(errorMessage: "Authentication failed: ${e.message} "));
+        return left(FirebaseFailure(
+            errorMessage: "Weak password, please use a stronger password."));
+      } else if (e.code == 'email-already-in-use') {
+        return left(FirebaseFailure(
+            errorMessage: "Email already in use, please try another one."));
+      } else {
+        return left(FirebaseFailure(
+            errorMessage: "Authentication failed: ${e.message} "));
       }
     } catch (e) {
-      return left(FirebaseFailure(errorMessage: "An unexpected error occurred: $e"));
+      return left(
+          FirebaseFailure(errorMessage: "An unexpected error occurred: $e"));
     }
-
   }
 
   @override
   Future<Either<Failure, UserCredential>> signInWithGoogle() async {
-
     try {
       // Trigger the authentication flow
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
@@ -40,12 +42,13 @@ class SignUpImplementation implements SignUpRepo {
       // If the user cancels the sign-in process
       if (googleUser == null) {
         // print("Sign-in process was canceled by the user.");
-        return Left(FirebaseFailure( errorMessage: 'Sign-in process was canceled by the user.'));
+        return Left(FirebaseFailure(
+            errorMessage: 'Sign-in process was canceled by the user.'));
       }
 
       // Obtain the auth details from the request
       final GoogleSignInAuthentication googleAuth =
-      await googleUser.authentication;
+          await googleUser.authentication;
 
       // Create a new credential
       final OAuthCredential credential = GoogleAuthProvider.credential(
@@ -53,14 +56,11 @@ class SignUpImplementation implements SignUpRepo {
         idToken: googleAuth.idToken,
       );
       // Once signed in, return the UserCredential
-      UserCredential user= await FirebaseAuth.instance.signInWithCredential(credential);
-       return Right(user);
+      UserCredential user =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+      return Right(user);
     } catch (e) {
-       return Left(FirebaseFailure(errorMessage: "Error $e"));
+      return Left(FirebaseFailure(errorMessage: "Error $e"));
     }
-
   }
-
-
-
 }
