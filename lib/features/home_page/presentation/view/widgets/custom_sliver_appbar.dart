@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../../../core/shared_widget/custom_form_field.dart';
 import '../../../../../core/utils/border_text_field.dart';
 import '../../../../../core/utils/color_app.dart';
+import '../../../../../core/utils/style_app.dart';
 
 class CustomSliverAppbar extends StatelessWidget {
   const CustomSliverAppbar({super.key});
@@ -39,7 +40,41 @@ class CustomSliverAppbar extends StatelessWidget {
                     color: ColorApp.primaryColor),
               ),
               SizedBox(height: 22.h),
-              CustomFormField(
+              Container(
+                width: double.infinity,
+                margin: EdgeInsets.symmetric(vertical: 4.h,horizontal: 20.w),
+                padding: EdgeInsets.symmetric(vertical: 16.h,horizontal: 16.w),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12.w),
+                  color: ColorApp.whiteColor,
+                  border: Border.all(
+                    width: 1.w,
+                    color: ColorApp.primaryColor,
+                  ),
+                  
+                ),
+                 child: Row(
+                   children: [
+                     SvgPicture.asset(
+                       "assets/images/svg/Vector.svg",
+                     ),
+                     SizedBox(width: 16.w,),
+                     Text("Search",
+                 style:  StyleApp.textStyle6,
+                 ),
+                   ],
+                 ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/*
+CustomFormField(
                 fillColor: ColorApp.whiteColor,
                 hintText: "Search",
                 enabledBorder:
@@ -52,10 +87,4 @@ class CustomSliverAppbar extends StatelessWidget {
                   ),
                 ),
               ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
+ */
