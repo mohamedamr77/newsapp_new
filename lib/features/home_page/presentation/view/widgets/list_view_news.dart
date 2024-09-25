@@ -4,22 +4,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:newsappcode/features/home_page/presentation/controller/get_general_news/get_general_news_cubit.dart';
 import 'package:newsappcode/features/home_page/presentation/controller/get_general_news/get_general_news_state.dart';
 import 'package:newsappcode/features/home_page/presentation/view/widgets/list_view_body.dart';
+import 'package:newsappcode/features/home_page/presentation/view/widgets/shimmer_item_list_news.dart';
 import 'package:shimmer/shimmer.dart';
 
-class ListViewNews extends StatefulWidget {
+import '../../../../../core/shared_widget/build_shimmer_shape.dart';
+import 'body_list_get_success_general_news.dart';
+
+class ListViewNews extends StatelessWidget {
   const ListViewNews({super.key});
 
-  @override
-  State<ListViewNews> createState() => _ListViewNewsState();
-}
-
-class _ListViewNewsState extends State<ListViewNews> {
-
-  @override
-  void initState(){
-    super.initState();
-    BlocProvider.of<GetGeneralNewsCubit>(context).fetchGeneralNews();
-  }
   @override
   Widget build(BuildContext context) {
     var cubit= BlocProvider.of<GetGeneralNewsCubit>(context);
@@ -29,110 +22,10 @@ class _ListViewNewsState extends State<ListViewNews> {
         if (state is GetGeneralNewsSuccessState){
           return  bodyGeneralNewsSuccessState(cubit: cubit);
         }
-        return  SliverList(delegate: SliverChildBuilderDelegate((context, index) {
-          return  Padding(
-            padding: const EdgeInsets.only(bottom: 20, left: 24, right: 24),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 195.h,
-                  width: double.infinity,
-                  child: Shimmer.fromColors(
-                    baseColor: Colors.grey[600]!,
-                    highlightColor: Colors.grey[400]!,
-                    direction: ShimmerDirection.ltr, // Left to right shimmer
-                    child: Container(
-                      height: 195.h,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.grey[600],
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 12.h,),
-                Shimmer.fromColors(
-                  baseColor: Colors.grey[600]!,
-                  highlightColor: Colors.grey[400]!,
-                  direction: ShimmerDirection.ltr, // Left to right shimmer
-                  child: Container(
-                    height: 26.h,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Colors.grey[600],
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 12.h,),
-                Row(
-                  children: [
-                    Shimmer.fromColors(
-                      baseColor: Colors.grey[600]!,
-                      highlightColor: Colors.grey[400]!,
-                      direction: ShimmerDirection.ltr, // Left to right shimmer
-                      child: Container(
-                        height: 26.h,
-                        width: 100.w,
-                        decoration: BoxDecoration(
-                          color: Colors.grey[600],
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 12.w,),
-                    Shimmer.fromColors(
-                      baseColor: Colors.grey[600]!,
-                      highlightColor: Colors.grey[400]!,
-                      direction: ShimmerDirection.ltr, // Left to right shimmer
-                      child: Container(
-                        height: 26.h,
-                        width: 80.w,
-                        decoration: BoxDecoration(
-                          color: Colors.grey[600],
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                    ),
-                    const Spacer(),
-                    SizedBox(width: 12.w,),
-                    Shimmer.fromColors(
-                      baseColor: Colors.grey[600]!,
-                      highlightColor: Colors.grey[400]!,
-                      direction: ShimmerDirection.ltr, // Left to right shimmer
-                      child: CircleAvatar(
-                        backgroundColor: Colors.grey[600],
-                        radius: 16.w,
-                      )
-                    ),
-
-                  ],
-                ),
-              ],
-            )
-          );
-        },
-            childCount: 10
-        )
-        );
+        return  const ShimmerItemListNews();
       },
       listener: (BuildContext context, GetGeneralNewsState state) {
-   
       },
     );
   }
-
-  Widget bodyGeneralNewsSuccessState({required cubit}){
-    return SliverList(
-        delegate:
-        SliverChildBuilderDelegate((context, index) {
-          return  ListViewBody(articlesModel: cubit.generalNews[index],);
-        },
-            childCount: cubit.generalNews.length
-        )
-    );
-  }
-
-
 }

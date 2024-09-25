@@ -18,7 +18,7 @@ class HomePageBody extends StatelessWidget {
           Dio()
         )
         )
-        ),
+        )..fetchGeneralNews(),
         child: CustomScrollView(
           slivers: [
             CustomSliverAppbar(),
