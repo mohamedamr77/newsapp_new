@@ -1,5 +1,11 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:newsappcode/core/api_service.dart';
 import 'package:newsappcode/features/home_page/presentation/view/view.dart';
+import 'package:newsappcode/features/topic_news/data/repo/topic_news_implement.dart';
+import 'package:newsappcode/features/topic_news/presentation/view_model/fetch_topic_news/fetch_topic_news_cubit.dart';
+import 'features/topic_news/presentation/view_model/fetch_topic_news/fetch_top_news_state.dart';
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,7 +15,10 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(BlocProvider(
+    create: (context) => FetchTopicNewsCubit(TopicNewsImplement(ApiService(Dio()))),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
