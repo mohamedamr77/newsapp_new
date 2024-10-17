@@ -7,15 +7,23 @@ import 'get_general_news_state.dart';
 class GetGeneralNewsCubit extends Cubit<GetGeneralNewsState> {
   GetGeneralNewsCubit(this.homeRepo) : super(GetGeneralNewsInitialState());
   final HomeRepo homeRepo;
-  List<ArticlesModel> generalNews = [];
+  List<ArticlesModel> generalNewsList = [];
+
+  Map<String, List<ArticlesModel>> generalNewsMap ={};
 
   fetchGeneralNews() async {
+
     emit(GetGeneralNewsLoadingState());
     var result = await homeRepo.getGeneralNews();
     result.fold((error) {
       emit(GetGeneralNewsFaliureState(errorMessage: error.errorMessage));
     }, (right) {
-      generalNews = right;
+      generalNewsList = right;
+      generalNewsMap.addAll(
+       {
+         "generalNews" : generalNewsList,
+       }
+      );
       emit(GetGeneralNewsSuccessState());
     });
   }

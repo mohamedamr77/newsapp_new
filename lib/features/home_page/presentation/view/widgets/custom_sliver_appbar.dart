@@ -66,19 +66,3 @@ class CustomSliverAppbar extends StatelessWidget {
     );
   }
 }
-
-/*
-CustomFormField(
-                fillColor: ColorApp.whiteColor,
-                hintText: "Search",
-                enabledBorder:
-                    BorderTextField.enabledBorderTextFormFieldHomePage,
-                focusBorder: BorderTextField.focusedBorderTextFormFieldHomePage,
-                prefixIcon: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: SvgPicture.asset(
-                    "assets/images/svg/Vector.svg",
-                  ),
-                ),
-              ),
- */

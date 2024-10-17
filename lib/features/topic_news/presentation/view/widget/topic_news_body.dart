@@ -9,7 +9,6 @@ import 'package:shimmer/shimmer.dart';
 
 import '../../../../../core/shared_widget/build_shimmer_shape.dart';
 import '../../../../home_page/presentation/view/widgets/list_view_body.dart';
-import '../../../../home_page/presentation/view/widgets/shimmer_item_list_news.dart';
 
 class TopicNewsBody extends StatefulWidget {
   const TopicNewsBody({super.key, required this.topicName});
@@ -135,7 +134,7 @@ class _TopicNewsBodyState extends State<TopicNewsBody> {
              else if (state is FetchTopicNewsFaliureState){
                return Text("An error occurred while fetching data ${state.errorMessage}");
              }
-             return SizedBox();
+             return const SizedBox();
             },
           )
         ],
