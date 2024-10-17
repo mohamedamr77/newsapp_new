@@ -9,9 +9,10 @@ class FetchTopicNewsCubit extends Cubit<FetchTopicNewsState> {
 
   final TopicNewsRepo topicNewsRepo;
   List<ArticlesModel>   topicNewsList= [];
+  Map<int,List<ArticlesModel>> topicNewsMap={};
   bool loading = false;
 
-  fetchTopicNewsCubit({required String topic}) async {
+  fetchTopicNewsCubit({required String topic , required int index}) async {
     loading = true;
     var result = await topicNewsRepo.fetchTopicNews(topic: topic);
     emit(FetchTopicNewsLoadingState());
@@ -25,6 +26,9 @@ class FetchTopicNewsCubit extends Cubit<FetchTopicNewsState> {
     }, (right) {
       loading = false;
       topicNewsList = right;
+      topicNewsMap.addAll({
+        index: topicNewsList,
+      });
       if (kDebugMode) {
         print("list $topicNewsList}");
       }

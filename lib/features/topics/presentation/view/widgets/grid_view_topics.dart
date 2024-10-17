@@ -25,6 +25,7 @@ class GridViewTopics extends StatelessWidget {
           ),
           itemBuilder: (context, index) {
             return GridViewItem(
+              index: index,
               topicsModel: topicsList[index],
             );
           },

@@ -5,14 +5,15 @@ import 'package:newsappcode/features/topic_news/presentation/view/topic_news_vie
 import 'package:newsappcode/features/topics/data/model/model.dart';
 
 class GridViewItem extends StatelessWidget {
-  const GridViewItem({super.key, required this.topicsModel});
+  const GridViewItem({super.key, required this.topicsModel, required this.index});
   final TopicsModel topicsModel;
+  final int index;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return TopicNewsView(topicName: topicsModel.title);
+          return TopicNewsView(topicName: topicsModel.title, index: index ,);
         },));
       },
       child: Container(
