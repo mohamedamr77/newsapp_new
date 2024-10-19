@@ -8,11 +8,11 @@ class FetchTopicNewsCubit extends Cubit<FetchTopicNewsState> {
   FetchTopicNewsCubit(this.topicNewsRepo) : super(FetchTopicNewsInitialState());
 
   final TopicNewsRepo topicNewsRepo;
-  List<ArticlesModel>   topicNewsList= [];
-  Map<int,List<ArticlesModel>> topicNewsMap={};
+  List<ArticlesModel> topicNewsList = [];
+  Map<int, List<ArticlesModel>> topicNewsMap = {};
   bool loading = false;
 
-  fetchTopicNewsCubit({required String topic , required int index}) async {
+  fetchTopicNewsCubit({required String topic, required int index}) async {
     loading = true;
     var result = await topicNewsRepo.fetchTopicNews(topic: topic);
     emit(FetchTopicNewsLoadingState());
@@ -35,8 +35,4 @@ class FetchTopicNewsCubit extends Cubit<FetchTopicNewsState> {
       emit(FetchTopicNewsSuccessState());
     });
   }
-
-
-
-
 }

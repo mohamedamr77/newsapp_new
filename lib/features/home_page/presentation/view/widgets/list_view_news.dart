@@ -14,24 +14,24 @@ class ListViewNews extends StatelessWidget {
     var cubit = BlocProvider.of<GetGeneralNewsCubit>(context);
     return BlocBuilder<GetGeneralNewsCubit, GetGeneralNewsState>(
       builder: (BuildContext context, GetGeneralNewsState state) {
-        List<ArticlesModel>? news =cubit.generalNewsMap["generalNews"];
-        if (state is GetGeneralNewsLoadingState && (news ==null || news.isEmpty)) {
-
+        List<ArticlesModel>? news = cubit.generalNewsMap["generalNews"];
+        if (state is GetGeneralNewsLoadingState &&
+            (news == null || news.isEmpty)) {
           return const ShimmerItemListNews();
         }
 
         if (state is GetGeneralNewsFaliureState) {
-          return  Text(state.errorMessage,style: const TextStyle(color: Colors.black),);
+          return Text(
+            state.errorMessage,
+            style: const TextStyle(color: Colors.black),
+          );
         }
-       return SliverList(
+        return SliverList(
             delegate: SliverChildBuilderDelegate((context, index) {
-              return ListViewBody(
-                articlesModel: news[index],
-              );
-            }, childCount: news!.length
-            )
-        );
-
+          return ListViewBody(
+            articlesModel: news[index],
+          );
+        }, childCount: news!.length));
       },
     );
   }

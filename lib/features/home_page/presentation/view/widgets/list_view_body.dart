@@ -22,8 +22,8 @@ class ListViewBody extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 20, left: 24, right: 24),
       child: GestureDetector(
-        onTap: (){
-          launchCustomUrl(url: articlesModel.url??"", context: context);
+        onTap: () {
+          launchCustomUrl(url: articlesModel.url ?? "", context: context);
         },
         child: Column(
           mainAxisSize: MainAxisSize.min,

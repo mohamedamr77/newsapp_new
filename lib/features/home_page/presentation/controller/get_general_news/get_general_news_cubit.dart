@@ -9,21 +9,18 @@ class GetGeneralNewsCubit extends Cubit<GetGeneralNewsState> {
   final HomeRepo homeRepo;
   List<ArticlesModel> generalNewsList = [];
 
-  Map<String, List<ArticlesModel>> generalNewsMap ={};
+  Map<String, List<ArticlesModel>> generalNewsMap = {};
 
   fetchGeneralNews() async {
-
     emit(GetGeneralNewsLoadingState());
     var result = await homeRepo.getGeneralNews();
     result.fold((error) {
       emit(GetGeneralNewsFaliureState(errorMessage: error.errorMessage));
     }, (right) {
       generalNewsList = right;
-      generalNewsMap.addAll(
-       {
-         "generalNews" : generalNewsList,
-       }
-      );
+      generalNewsMap.addAll({
+        "generalNews": generalNewsList,
+      });
       emit(GetGeneralNewsSuccessState());
     });
   }

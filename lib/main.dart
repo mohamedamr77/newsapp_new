@@ -16,18 +16,16 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp( MultiBlocProvider(
-      providers: [
-        BlocProvider<FetchTopicNewsCubit>(
-          create: (context) => FetchTopicNewsCubit(TopicNewsImplement(ApiService(Dio()))),
-        ),
-        BlocProvider<GetGeneralNewsCubit>(
-          create: (context) => GetGeneralNewsCubit(HomeImplement(ApiService(Dio())))
-            ..fetchGeneralNews(),
-        ),
-
-      ],
-      child: const MyApp()));
+  runApp(MultiBlocProvider(providers: [
+    BlocProvider<FetchTopicNewsCubit>(
+      create: (context) =>
+          FetchTopicNewsCubit(TopicNewsImplement(ApiService(Dio()))),
+    ),
+    BlocProvider<GetGeneralNewsCubit>(
+      create: (context) => GetGeneralNewsCubit(HomeImplement(ApiService(Dio())))
+        ..fetchGeneralNews(),
+    ),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
