@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newsappcode/features/home_page/presentation/view/widgets/home_page_body.dart';
 
+import '../../../book_mark/presentation/view/book_mark_screen.dart';
 import '../../../topics/presentation/view/topics_view.dart';
 
 class HomePageScreen extends StatefulWidget {
@@ -15,8 +16,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
   List<Widget> displayScreen = [
     const HomePageBody(),
     const TopicsView(),
-    const Center(child: Text("Author")),
-    const Center(child: Text("Book Mark")),
+    const BookMarkScreen(),
   ];
 
   @override
@@ -42,10 +42,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
             icon: Icon(Icons.topic_outlined),
             label: "topics",
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_tree_rounded),
-            label: "Author",
-          ),
+
           BottomNavigationBarItem(
             icon: Icon(Icons.bookmark_border),
             label: "Book Mark",
