@@ -118,8 +118,10 @@ class ListViewBody extends StatelessWidget {
                       ),
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () {},
+                  InkWell(
+                    onTap: () {
+
+                    },
                     child: const Icon(Icons.bookmark_border),
                   ),
                 ],
