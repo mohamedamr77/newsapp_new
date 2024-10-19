@@ -8,9 +8,10 @@ import '../../view_model/fetch_topic_news/fetch_topic_news_cubit.dart';
 
 class CustomAppBarTopicNews extends StatelessWidget {
   const CustomAppBarTopicNews(
-      {super.key, required this.topicName, required this.index});
+      {super.key, required this.topicName,  this.index,  this.navigatePop =true});
   final String topicName;
-  final int index;
+  final int? index;
+  final bool navigatePop;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +33,7 @@ class CustomAppBarTopicNews extends StatelessWidget {
                     fontSize: 24.sp,
                   )),
             ),
+            if (navigatePop ==true)
             IconButton(
               onPressed: () {
                 Navigator.pop(context);

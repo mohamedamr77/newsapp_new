@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:newsappcode/features/book_mark/presentation/view_model/book_mark_controller/book_mark_state.dart';
 import 'package:newsappcode/features/home_page/data/model/home_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 import '../../../../../core/utils/launch_url.dart';
+import '../../../../book_mark/presentation/view_model/book_mark_controller/book_mark_cubit.dart';
 
 class ListViewBody extends StatelessWidget {
   const ListViewBody({super.key, required this.articlesModel});
@@ -38,22 +41,23 @@ class ListViewBody extends StatelessWidget {
                 imageUrl: articlesModel.urlToImage ?? "",
                 progressIndicatorBuilder: (context, url, downloadProgress) =>
                     SizedBox(
-                  height: 195.h,
-                  width: double.infinity,
-                  child: Shimmer.fromColors(
-                    baseColor: Colors.grey[600]!,
-                    highlightColor: Colors.grey[400]!,
-                    direction: ShimmerDirection.ltr, // Left to right shimmer
-                    child: Container(
                       height: 195.h,
                       width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.grey[600],
-                        borderRadius: BorderRadius.circular(12),
+                      child: Shimmer.fromColors(
+                        baseColor: Colors.grey[600]!,
+                        highlightColor: Colors.grey[400]!,
+                        direction: ShimmerDirection.ltr,
+                        // Left to right shimmer
+                        child: Container(
+                          height: 195.h,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: Colors.grey[600],
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
                 errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             ),
@@ -80,12 +84,7 @@ class ListViewBody extends StatelessWidget {
                   CircleAvatar(
                     backgroundColor: Colors.blue,
                     radius: 8.w,
-                    // child: Image(
-                    //   image: AssetImage("assets/images/bbc news.png"),
-                    //   fit: BoxFit.cover,
-                    //   width: double.infinity,
-                    //   height: double.infinity,
-                    // ),
+
                   ),
                   const SizedBox(width: 6),
                   Text(
@@ -118,11 +117,20 @@ class ListViewBody extends StatelessWidget {
                       ),
                     ),
                   ),
-                  InkWell(
-                    onTap: () {
+                  BlocBuilder<BookMarkCubit, BookMarkState>(
+                    builder: (context, state) {
+                      return InkWell(
+                        onTap: () {
+                 BlocProvider.of<BookMarkCubit>(context).changeBookMarkForNewsItem(articlesModel);
+                        },
+                        // child: const Icon(Icons.bookmark_border),
+                        child:
+                        articlesModel.bookMark?
+                        const Icon(Icons.bookmark, color: Colors.blue,) :
+                        const Icon(Icons.bookmark_border),
 
+                      );
                     },
-                    child: const Icon(Icons.bookmark_border),
                   ),
                 ],
               ),

@@ -36,7 +36,9 @@ class ArticlesModel extends Equatable {
   final String? urlToImage;
   final String? publishedAt;
   final String? content;
+  bool bookMark;
 
+  // Constructor with default value for bookMark
   ArticlesModel({
     this.source,
     this.author,
@@ -46,8 +48,10 @@ class ArticlesModel extends Equatable {
     this.urlToImage,
     this.publishedAt,
     this.content,
+    this.bookMark = false, // Default value set to false
   });
 
+  // fromJson constructor that doesn't involve bookMark (since it's not from the API)
   ArticlesModel.fromJson(Map<String, dynamic> json)
       : source = json['source'] != null ? Source.fromJson(json['source']) : null,
         author = json['author'],
@@ -56,8 +60,10 @@ class ArticlesModel extends Equatable {
         url = json['url'],
         urlToImage = json['urlToImage'],
         publishedAt = json['publishedAt'],
-        content = json['content'];
+        content = json['content'],
+        bookMark = false; // Set the default value for bookMark to false
 
+  // Convert to JSON (bookMark is local and not sent to the API)
   Map<String, dynamic> toJson() {
     return {
       'source': source?.toJson(),
@@ -68,9 +74,11 @@ class ArticlesModel extends Equatable {
       'urlToImage': urlToImage,
       'publishedAt': publishedAt,
       'content': content,
+      // 'bookMark' is intentionally excluded from this JSON as it's local only
     };
   }
 
+  // Equatable props for comparison
   @override
   List<Object?> get props => [
     source,
@@ -81,8 +89,10 @@ class ArticlesModel extends Equatable {
     urlToImage,
     publishedAt,
     content,
+    bookMark,
   ];
 }
+
 
 class Source extends Equatable {
   final String? id;
