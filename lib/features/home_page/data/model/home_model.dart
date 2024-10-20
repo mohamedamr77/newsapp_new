@@ -5,7 +5,7 @@ class NewsModel extends Equatable {
   final int? totalResults;
   final List<ArticlesModel>? articles;
 
-  NewsModel({this.status, this.totalResults, this.articles});
+  const NewsModel({this.status, this.totalResults, this.articles});
 
   NewsModel.fromJson(Map<String, dynamic> json)
       : status = json['status'],
@@ -89,7 +89,6 @@ class ArticlesModel extends Equatable {
     urlToImage,
     publishedAt,
     content,
-    bookMark,
   ];
 }
 
@@ -98,7 +97,7 @@ class Source extends Equatable {
   final String? id;
   final String? name;
 
-  Source({this.id, this.name});
+  const Source({this.id, this.name});
 
   Source.fromJson(Map<String, dynamic> json)
       : id = json['id'],

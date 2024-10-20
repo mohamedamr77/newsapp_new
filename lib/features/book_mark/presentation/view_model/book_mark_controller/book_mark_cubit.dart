@@ -5,7 +5,7 @@ import 'package:newsappcode/features/home_page/data/model/home_model.dart';
 
 class BookMarkCubit extends Cubit<BookMarkState> {
   BookMarkCubit() : super(BookMarkInitialState());
-  Set<ArticlesModel> bookMarkNewsSet={};
+  List<ArticlesModel> bookMarkNewsSet=[];
   
   void changeBookMarkForNewsItem(ArticlesModel news) {
      if (!bookMarkNewsSet.contains(news)) {

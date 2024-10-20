@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:newsappcode/core/shared_widget/build_shimmer_shape.dart';
 import 'package:newsappcode/features/book_mark/presentation/view_model/book_mark_controller/book_mark_cubit.dart';
 import 'package:newsappcode/features/book_mark/presentation/view_model/book_mark_controller/book_mark_state.dart';
 import 'package:newsappcode/features/home_page/data/model/home_model.dart';
@@ -19,13 +18,13 @@ class BookMarkBody extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: 20.h,),
-          CustomAppBarTopicNews(
+          const CustomAppBarTopicNews(
             topicName: "Book Mark",
             navigatePop: false,
           ),
           SizedBox(height: 30.h,),
           BlocBuilder<BookMarkCubit,BookMarkState>(builder: (context, state) {
-            List<ArticlesModel> bookMarkNews = cubit.bookMarkNewsSet.toList();
+            List<ArticlesModel> bookMarkNews = cubit.bookMarkNewsSet.toSet().toList();
             if (bookMarkNews.isEmpty){
               return const Center(
                 child: Text("No Bookmarked News"),
