@@ -58,7 +58,11 @@ class ListViewBody extends StatelessWidget {
                     ),
                   ),
                 ),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
+                errorWidget: (context, url, error) =>  Image.asset("assets/images/image_failed.jpg",
+                  height: 195.h,
+                  width: double.infinity,
+                  fit: BoxFit.fill,
+                )
               ),
             ),
             SizedBox(

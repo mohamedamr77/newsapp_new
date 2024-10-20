@@ -17,7 +17,7 @@ class TopicNewsImplement implements TopicNewsRepo {
     try {
       var response = await apiService.get(
           endPoint:
-              "/everything?q=$topic&apiKey=08433c8dda43458fa30826408cb8219e");
+              "/everything?q=$topic&apiKey=08433c8dda43458fa30826408cb8219e&page=2");
       List<dynamic> articlesFromApi = response["articles"];
       List<ArticlesModel> articlesList = [];
       for (int i = 0; i < articlesFromApi.length; i++) {
