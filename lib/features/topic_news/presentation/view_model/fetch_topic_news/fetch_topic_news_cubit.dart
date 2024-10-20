@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsappcode/features/topic_news/data/repo/topic_news_repo.dart';
 import 'package:newsappcode/features/topic_news/presentation/view_model/fetch_topic_news/fetch_top_news_state.dart';
-import '../../../../home_page/data/model/home_model.dart';
+import '../../../../home_page/data/model/article_model.dart';
 
 class FetchTopicNewsCubit extends Cubit<FetchTopicNewsState> {
   FetchTopicNewsCubit(this.topicNewsRepo) : super(FetchTopicNewsInitialState());

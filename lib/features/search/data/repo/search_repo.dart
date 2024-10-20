@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:newsappcode/features/home_page/data/model/home_model.dart';
+import 'package:newsappcode/features/home_page/data/model/article_model.dart';
 
 import '../../../../core/failure.dart';
 

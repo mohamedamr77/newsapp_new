@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:newsappcode/features/home_page/data/model/home_model.dart';
+import 'package:newsappcode/features/home_page/data/model/article_model.dart';
 import '../../../data/repo/search_repo.dart';
 import 'get_search_news_state.dart';
 

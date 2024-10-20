@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:newsappcode/core/api_service.dart';
 import 'package:newsappcode/core/failure.dart';
-import 'package:newsappcode/features/home_page/data/model/home_model.dart';
+import 'package:newsappcode/features/home_page/data/model/article_model.dart';
 import 'package:newsappcode/features/home_page/data/repo/home_repo.dart';
 
 class HomeImplement implements HomeRepo {

@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:newsappcode/features/book_mark/presentation/view_model/book_mark_controller/book_mark_cubit.dart';
 
 import '../../../../../core/shared_widget/loading_item.dart';
-import '../../../../home_page/data/model/home_model.dart';
+import '../../../../home_page/data/model/article_model.dart';
 import '../../../../home_page/presentation/view/widgets/list_view_body.dart';
 import '../../view_model/fetch_topic_news/fetch_top_news_state.dart';
 import '../../view_model/fetch_topic_news/fetch_topic_news_cubit.dart';

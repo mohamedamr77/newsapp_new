@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:newsappcode/core/failure.dart';
-import 'package:newsappcode/features/home_page/data/model/home_model.dart';
+import 'package:newsappcode/features/home_page/data/model/article_model.dart';
 import 'package:newsappcode/features/topic_news/data/repo/topic_news_repo.dart';
 
 import '../../../../core/api_service.dart';

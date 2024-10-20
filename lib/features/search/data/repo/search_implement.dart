@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:newsappcode/features/search/data/repo/search_repo.dart';
 import '../../../../core/api_service.dart';
 import '../../../../core/failure.dart';
-import '../../../home_page/data/model/home_model.dart';
+import '../../../home_page/data/model/article_model.dart';
 
 class SearchImplement implements SearchRepo {
   final ApiService apiService;
