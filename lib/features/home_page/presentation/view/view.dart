@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:newsappcode/features/book_mark/presentation/view_model/book_mark_controller/book_mark_cubit.dart';
 import 'package:newsappcode/features/home_page/presentation/view/widgets/home_page_body.dart';
 
 import '../../../book_mark/presentation/view/book_mark_screen.dart';
@@ -18,6 +20,13 @@ class _HomePageScreenState extends State<HomePageScreen> {
     const TopicsView(),
     const BookMarkScreen(),
   ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    BlocProvider.of<BookMarkCubit>(context).fetchBookMarksFromHive();
+  }
 
   @override
   Widget build(BuildContext context) {

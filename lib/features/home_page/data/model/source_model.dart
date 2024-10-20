@@ -1,7 +1,12 @@
 import 'package:equatable/equatable.dart';
+import 'package:hive/hive.dart';
+part 'source_model.g.dart';
 
+@HiveType(typeId: 1)
 class SourceModel extends Equatable {
+  @HiveField(1)
   final String? id;
+  @HiveField(2)
   final String? name;
 
   const SourceModel({this.id, this.name});
