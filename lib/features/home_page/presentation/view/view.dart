@@ -1,10 +1,14 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsappcode/features/book_mark/presentation/view_model/book_mark_controller/book_mark_cubit.dart';
 import 'package:newsappcode/features/home_page/presentation/view/widgets/home_page_body.dart';
 
+import '../../../../core/api_service.dart';
 import '../../../book_mark/presentation/view/book_mark_screen.dart';
 import '../../../topics/presentation/view/topics_view.dart';
+import '../../data/repo/home_implement.dart';
+import '../controller/get_general_news/get_general_news_cubit.dart';
 
 class HomePageScreen extends StatefulWidget {
   const HomePageScreen({super.key});
@@ -30,34 +34,37 @@ class _HomePageScreenState extends State<HomePageScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: (index) {
-          setState(() {
-            currentIndex = index;
-          });
-        },
-        showUnselectedLabels: true,
-        currentIndex: currentIndex,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_filled),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.topic_outlined),
-            label: "topics",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.bookmark_border),
-            label: "Book Mark",
-          ),
-        ],
+    return BlocProvider(
+      create: (context) => GetGeneralNewsCubit(HomeImplement(ApiService(Dio()))),
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        bottomNavigationBar: BottomNavigationBar(
+          onTap: (index) {
+            setState(() {
+              currentIndex = index;
+            });
+          },
+          showUnselectedLabels: true,
+          currentIndex: currentIndex,
+          selectedItemColor: Colors.blue,
+          unselectedItemColor: Colors.grey,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home_filled),
+              label: "Home",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.topic_outlined),
+              label: "topics",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.bookmark_border),
+              label: "Book Mark",
+            ),
+          ],
+        ),
+        body: displayScreen[currentIndex],
       ),
-      body: displayScreen[currentIndex],
     );
   }
 }

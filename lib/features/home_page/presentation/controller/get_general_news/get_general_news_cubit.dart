@@ -11,13 +11,22 @@ class GetGeneralNewsCubit extends Cubit<GetGeneralNewsState> {
 
   Map<String, List<ArticlesModel>> generalNewsMap = {};
 
-  fetchGeneralNews() async {
+  fetchGeneralNews({required List<ArticlesModel> bookMarkList}) async {
     emit(GetGeneralNewsLoadingState());
     var result = await homeRepo.getGeneralNews();
     result.fold((error) {
       emit(GetGeneralNewsFaliureState(errorMessage: error.errorMessage));
     }, (right) {
       generalNewsList = right;
+
+      generalNewsList = generalNewsList.map((newsItem) {
+        // first new   --> newsItem
+        if (bookMarkList.any((bookmark) => bookmark == newsItem)) {
+          newsItem.bookMark = true; // Assuming you have a `isBookmarked` field
+        }
+        return newsItem;
+      }).toList();
+
       generalNewsMap.addAll({
         "generalNews": generalNewsList,
       });

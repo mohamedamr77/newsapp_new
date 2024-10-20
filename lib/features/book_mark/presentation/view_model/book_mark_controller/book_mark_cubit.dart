@@ -23,7 +23,7 @@ class BookMarkCubit extends Cubit<BookMarkState> {
   addNewsItem(ArticlesModel news) async{
     news.bookMark = !news.bookMark;
     bookMarkNewsList.add(news);
-    await box.add(news);
+    await box.put("${news.title}${news.publishedAt}", news);
     debugPrint(bookMarkNewsList.length.toString());
     emit(BookMarkAddNews());
   }
@@ -31,7 +31,7 @@ class BookMarkCubit extends Cubit<BookMarkState> {
   removeNewsItem(ArticlesModel news) async{
     news.bookMark = !news.bookMark;
     bookMarkNewsList.remove(news);
-    await box.delete(news);
+    await box.delete("${news.title}${news.publishedAt}" );
     debugPrint(bookMarkNewsList.length.toString());
     emit(BookMarkDeleteNews());
   }

@@ -35,10 +35,7 @@ void main() async {
       create: (context) =>
       BookMarkCubit(),
     ),
-    BlocProvider<GetGeneralNewsCubit>(
-      create: (context) => GetGeneralNewsCubit(HomeImplement(ApiService(Dio())))
-        ..fetchGeneralNews(),
-    ),
+
   ], child: const MyApp()));
 }
 
