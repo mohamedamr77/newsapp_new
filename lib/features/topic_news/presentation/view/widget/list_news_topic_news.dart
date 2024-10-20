@@ -22,11 +22,10 @@ class _ListNewsTopicNewsState extends State<ListNewsTopicNews> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<FetchTopicNewsCubit>(context)
-        .fetchTopicNewsCubit(
-        topic: widget.topicName, 
-        index: widget.index,
-        bookmarksList: BlocProvider.of<BookMarkCubit>(context).bookMarkNewsList,
+    BlocProvider.of<FetchTopicNewsCubit>(context).fetchTopicNewsCubit(
+      topic: widget.topicName,
+      index: widget.index,
+      bookmarksList: BlocProvider.of<BookMarkCubit>(context).bookMarkNewsList,
     );
   }
 

@@ -17,36 +17,41 @@ class BookMarkBody extends StatelessWidget {
     return SafeArea(
       child: Column(
         children: [
-          SizedBox(height: 20.h,),
+          SizedBox(
+            height: 20.h,
+          ),
           const CustomAppBarTopicNews(
             topicName: "Book Mark",
             navigatePop: false,
           ),
-          SizedBox(height: 30.h,),
-          BlocBuilder<BookMarkCubit,BookMarkState>(builder: (context, state) {
-            List<ArticlesModel> bookMarkNews = cubit.bookMarkNewsList.toSet().toList();
-            if (bookMarkNews.isEmpty){
-              return const Center(
-                child: Text("No Bookmarked News"),
-              );
-            } else {
-              return Expanded(
-                child: ListView.separated(
-                  itemBuilder: (context, index) {
-                    return ListViewBody(articlesModel: bookMarkNews[index]);
-                  },
-                  separatorBuilder: (context, index) {
-                    return SizedBox(
-                      height: 12.h,
-                    );
-                  },
-                  itemCount: bookMarkNews.length,
-                ),
-              );
-            }
-          },)
-
-      
+          SizedBox(
+            height: 30.h,
+          ),
+          BlocBuilder<BookMarkCubit, BookMarkState>(
+            builder: (context, state) {
+              List<ArticlesModel> bookMarkNews =
+                  cubit.bookMarkNewsList.toSet().toList();
+              if (bookMarkNews.isEmpty) {
+                return const Center(
+                  child: Text("No Bookmarked News"),
+                );
+              } else {
+                return Expanded(
+                  child: ListView.separated(
+                    itemBuilder: (context, index) {
+                      return ListViewBody(articlesModel: bookMarkNews[index]);
+                    },
+                    separatorBuilder: (context, index) {
+                      return SizedBox(
+                        height: 12.h,
+                      );
+                    },
+                    itemCount: bookMarkNews.length,
+                  ),
+                );
+              }
+            },
+          )
         ],
       ),
     );

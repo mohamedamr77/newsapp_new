@@ -27,7 +27,9 @@ class ArticlesModel extends Equatable {
 
   // fromJson constructor that doesn't involve bookMark (since it's not from the API)
   ArticlesModel.fromJson(Map<String, dynamic> json)
-      : source = json['source'] != null ? SourceModel.fromJson(json['source']) : null,
+      : source = json['source'] != null
+            ? SourceModel.fromJson(json['source'])
+            : null,
         author = json['author'],
         title = json['title'],
         description = json['description'],
@@ -55,16 +57,13 @@ class ArticlesModel extends Equatable {
   // Equatable props for comparison
   @override
   List<Object?> get props => [
-    source,
-    author,
-    title,
-    description,
-    url,
-    urlToImage,
-    publishedAt,
-    content,
-  ];
+        source,
+        author,
+        title,
+        description,
+        url,
+        urlToImage,
+        publishedAt,
+        content,
+      ];
 }
-
-
-

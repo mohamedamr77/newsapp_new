@@ -1,1 +1,1 @@
-abstract class BookMarkRepo{}
+abstract class BookMarkRepo {}

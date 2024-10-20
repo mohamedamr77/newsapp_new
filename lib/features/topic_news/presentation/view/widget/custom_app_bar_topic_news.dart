@@ -8,7 +8,10 @@ import '../../view_model/fetch_topic_news/fetch_topic_news_cubit.dart';
 
 class CustomAppBarTopicNews extends StatelessWidget {
   const CustomAppBarTopicNews(
-      {super.key, required this.topicName,  this.index,  this.navigatePop =true});
+      {super.key,
+      required this.topicName,
+      this.index,
+      this.navigatePop = true});
   final String topicName;
   final int? index;
   final bool navigatePop;
@@ -33,17 +36,17 @@ class CustomAppBarTopicNews extends StatelessWidget {
                     fontSize: 24.sp,
                   )),
             ),
-            if (navigatePop ==true)
-            IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-                cubit.topicNewsList = [];
-              },
-              icon: const Icon(
-                Icons.arrow_forward_ios,
-                color: Colors.black,
+            if (navigatePop == true)
+              IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  cubit.topicNewsList = [];
+                },
+                icon: const Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.black,
+                ),
               ),
-            ),
           ],
         ),
         SizedBox(

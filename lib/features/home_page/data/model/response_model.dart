@@ -14,7 +14,7 @@ class ResponseModel extends Equatable {
         totalResults = json['totalResults'],
         articles = json['articles'] != null
             ? List<ArticlesModel>.from(
-            json['articles'].map((v) => ArticlesModel.fromJson(v)))
+                json['articles'].map((v) => ArticlesModel.fromJson(v)))
             : null;
 
   Map<String, dynamic> toJson() {

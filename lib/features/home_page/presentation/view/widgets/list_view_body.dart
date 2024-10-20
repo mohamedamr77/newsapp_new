@@ -41,23 +41,23 @@ class ListViewBody extends StatelessWidget {
                 imageUrl: articlesModel.urlToImage ?? "",
                 progressIndicatorBuilder: (context, url, downloadProgress) =>
                     SizedBox(
+                  height: 195.h,
+                  width: double.infinity,
+                  child: Shimmer.fromColors(
+                    baseColor: Colors.grey[600]!,
+                    highlightColor: Colors.grey[400]!,
+                    direction: ShimmerDirection.ltr,
+                    // Left to right shimmer
+                    child: Container(
                       height: 195.h,
                       width: double.infinity,
-                      child: Shimmer.fromColors(
-                        baseColor: Colors.grey[600]!,
-                        highlightColor: Colors.grey[400]!,
-                        direction: ShimmerDirection.ltr,
-                        // Left to right shimmer
-                        child: Container(
-                          height: 195.h,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color: Colors.grey[600],
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[600],
+                        borderRadius: BorderRadius.circular(12),
                       ),
                     ),
+                  ),
+                ),
                 errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             ),
@@ -84,7 +84,6 @@ class ListViewBody extends StatelessWidget {
                   CircleAvatar(
                     backgroundColor: Colors.blue,
                     radius: 8.w,
-
                   ),
                   const SizedBox(width: 6),
                   Text(
@@ -121,14 +120,16 @@ class ListViewBody extends StatelessWidget {
                     builder: (context, state) {
                       return InkWell(
                         onTap: () {
-                 BlocProvider.of<BookMarkCubit>(context).changeBookMarkForNewsItem(articlesModel);
+                          BlocProvider.of<BookMarkCubit>(context)
+                              .changeBookMarkForNewsItem(articlesModel);
                         },
                         // child: const Icon(Icons.bookmark_border),
-                        child:
-                        articlesModel.bookMark?
-                        const Icon(Icons.bookmark, color: Colors.blue,) :
-                        const Icon(Icons.bookmark_border),
-
+                        child: articlesModel.bookMark
+                            ? const Icon(
+                                Icons.bookmark,
+                                color: Colors.blue,
+                              )
+                            : const Icon(Icons.bookmark_border),
                       );
                     },
                   ),
