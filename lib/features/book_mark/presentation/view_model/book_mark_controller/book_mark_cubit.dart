@@ -5,18 +5,18 @@ import 'package:newsappcode/features/home_page/data/model/home_model.dart';
 
 class BookMarkCubit extends Cubit<BookMarkState> {
   BookMarkCubit() : super(BookMarkInitialState());
-  List<ArticlesModel> bookMarkNewsSet=[];
+  List<ArticlesModel> bookMarkNewsList=[];
   
   void changeBookMarkForNewsItem(ArticlesModel news) {
-     if (!bookMarkNewsSet.contains(news)) {
-       bookMarkNewsSet.add(news);
+     if (!bookMarkNewsList.contains(news)) {
+       bookMarkNewsList.add(news);
        news.bookMark=!news.bookMark;
-       debugPrint(bookMarkNewsSet.length.toString());
+       debugPrint(bookMarkNewsList.length.toString());
        emit(BookMarkAddNews());
      } else {
-       bookMarkNewsSet.remove(news);
+       bookMarkNewsList.remove(news);
        news.bookMark=!news.bookMark;
-       debugPrint(bookMarkNewsSet.length.toString());
+       debugPrint(bookMarkNewsList.length.toString());
        emit(BookMarkDeleteNews());
      }
   }

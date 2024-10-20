@@ -24,7 +24,7 @@ class BookMarkBody extends StatelessWidget {
           ),
           SizedBox(height: 30.h,),
           BlocBuilder<BookMarkCubit,BookMarkState>(builder: (context, state) {
-            List<ArticlesModel> bookMarkNews = cubit.bookMarkNewsSet.toSet().toList();
+            List<ArticlesModel> bookMarkNews = cubit.bookMarkNewsList.toSet().toList();
             if (bookMarkNews.isEmpty){
               return const Center(
                 child: Text("No Bookmarked News"),

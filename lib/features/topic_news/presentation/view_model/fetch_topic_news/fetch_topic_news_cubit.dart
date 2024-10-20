@@ -12,7 +12,7 @@ class FetchTopicNewsCubit extends Cubit<FetchTopicNewsState> {
   Map<int, List<ArticlesModel>> topicNewsMap = {};
   bool loading = false;
 
-  fetchTopicNewsCubit({required String topic, required int index}) async {
+  fetchTopicNewsCubit({required String topic, required int index , required List<ArticlesModel> bookmarksList }) async {
     loading = true;
     var result = await topicNewsRepo.fetchTopicNews(topic: topic);
     emit(FetchTopicNewsLoadingState());
@@ -26,6 +26,16 @@ class FetchTopicNewsCubit extends Cubit<FetchTopicNewsState> {
     }, (right) {
       loading = false;
       topicNewsList = right;
+
+      topicNewsList = topicNewsList.map((newsItem) {
+        // first new   --> newsItem
+        if (bookmarksList.any((bookmark) => bookmark == newsItem)) {
+          newsItem.bookMark = true; // Assuming you have a `isBookmarked` field
+        }
+        return newsItem;
+      }).toList();
+
+
       topicNewsMap.addAll({
         index: topicNewsList,
       });

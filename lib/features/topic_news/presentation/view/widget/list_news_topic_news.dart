@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:newsappcode/features/book_mark/presentation/view_model/book_mark_controller/book_mark_cubit.dart';
 
 import '../../../../../core/shared_widget/loading_item.dart';
 import '../../../../home_page/data/model/home_model.dart';
@@ -22,7 +23,11 @@ class _ListNewsTopicNewsState extends State<ListNewsTopicNews> {
   void initState() {
     super.initState();
     BlocProvider.of<FetchTopicNewsCubit>(context)
-        .fetchTopicNewsCubit(topic: widget.topicName, index: widget.index);
+        .fetchTopicNewsCubit(
+        topic: widget.topicName, 
+        index: widget.index,
+        bookmarksList: BlocProvider.of<BookMarkCubit>(context).bookMarkNewsList,
+    );
   }
 
   @override
