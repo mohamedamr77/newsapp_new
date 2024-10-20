@@ -1,11 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:newsappcode/core/api_service.dart';
+import 'package:newsappcode/core/utils/box_app.dart';
 import 'package:newsappcode/features/home_page/presentation/view/view.dart';
 import 'package:newsappcode/features/topic_news/data/repo/topic_news_implement.dart';
 import 'package:newsappcode/features/topic_news/presentation/view_model/fetch_topic_news/fetch_topic_news_cubit.dart';
 import 'features/book_mark/presentation/view_model/book_mark_controller/book_mark_cubit.dart';
+import 'features/home_page/data/model/article_model.dart';
 import 'features/home_page/data/repo/home_implement.dart';
 import 'features/home_page/presentation/controller/get_general_news/get_general_news_cubit.dart';
 import 'firebase_options.dart';
@@ -17,6 +20,8 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  Hive.registerAdapter(ArticlesModelAdapter());
+  Hive.openBox<ArticlesModel>(BoxApp.newsBox);
   runApp(MultiBlocProvider(providers: [
     BlocProvider<FetchTopicNewsCubit>(
       create: (context) =>

@@ -1,15 +1,28 @@
 import 'package:equatable/equatable.dart';
 import 'package:newsappcode/features/home_page/data/model/source_model.dart';
+import 'package:hive/hive.dart';
+part 'article_model.g.dart';
 
+@HiveType(typeId: 0)
+// ignore: must_be_immutable
 class ArticlesModel extends Equatable {
+  @HiveField(1)
   final SourceModel? source;
+  @HiveField(2)
   final String? author;
+  @HiveField(3)
   final String? title;
+  @HiveField(4)
   final String? description;
+  @HiveField(5)
   final String? url;
+  @HiveField(6)
   final String? urlToImage;
+  @HiveField(7)
   final String? publishedAt;
+  @HiveField(8)
   final String? content;
+  @HiveField(9)
   bool bookMark;
 
   // Constructor with default value for bookMark
