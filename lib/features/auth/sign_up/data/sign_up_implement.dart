@@ -10,8 +10,7 @@ class SignUpImplementation implements SignUpRepo {
   Future<Either<Failure, void>> fireBaseSignUp(
       {required String? emailAddress, required String? password}) async {
     try {
-      final credential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailAddress!.trim(),
         password: password!.trim(),
       );

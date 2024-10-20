@@ -25,7 +25,7 @@ class ArticlesModelAdapter extends TypeAdapter<ArticlesModel> {
       urlToImage: fields[6] as String?,
       publishedAt: fields[7] as String?,
       content: fields[8] as String?,
-      bookMark: fields[9] as bool,
+      newsMark: fields[9] as bool,
     );
   }
 
@@ -50,7 +50,7 @@ class ArticlesModelAdapter extends TypeAdapter<ArticlesModel> {
       ..writeByte(8)
       ..write(obj.content)
       ..writeByte(9)
-      ..write(obj.bookMark);
+      ..write(obj.newsMark);
   }
 
   @override

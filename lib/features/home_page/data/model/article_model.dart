@@ -23,9 +23,9 @@ class ArticlesModel extends Equatable {
   @HiveField(8)
   final String? content;
   @HiveField(9)
-  bool bookMark;
+  bool newsMark;
 
-  // Constructor with default value for bookMark
+  // Constructor with default value for NewsMark
   ArticlesModel({
     this.source,
     this.author,
@@ -35,10 +35,10 @@ class ArticlesModel extends Equatable {
     this.urlToImage,
     this.publishedAt,
     this.content,
-    this.bookMark = false, // Default value set to false
+    this.newsMark = false, // Default value set to false
   });
 
-  // fromJson constructor that doesn't involve bookMark (since it's not from the API)
+  // fromJson constructor that doesn't involve NewsMark (since it's not from the API)
   ArticlesModel.fromJson(Map<String, dynamic> json)
       : source = json['source'] != null
             ? SourceModel.fromJson(json['source'])
@@ -50,9 +50,9 @@ class ArticlesModel extends Equatable {
         urlToImage = json['urlToImage'],
         publishedAt = json['publishedAt'],
         content = json['content'],
-        bookMark = false; // Set the default value for bookMark to false
+        newsMark = false; // Set the default value for NewsMark to false
 
-  // Convert to JSON (bookMark is local and not sent to the API)
+  // Convert to JSON (NewsMark is local and not sent to the API)
   Map<String, dynamic> toJson() {
     return {
       'source': source?.toJson(),
@@ -63,7 +63,7 @@ class ArticlesModel extends Equatable {
       'urlToImage': urlToImage,
       'publishedAt': publishedAt,
       'content': content,
-      // 'bookMark' is intentionally excluded from this JSON as it's local only
+      // 'NewsMark' is intentionally excluded from this JSON as it's local only
     };
   }
 

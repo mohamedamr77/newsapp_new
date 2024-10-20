@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:newsappcode/features/book_mark/presentation/view_model/book_mark_controller/book_mark_state.dart';
 import 'package:newsappcode/features/home_page/data/model/article_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 import '../../../../../core/utils/launch_url.dart';
-import '../../../../book_mark/presentation/view_model/book_mark_controller/book_mark_cubit.dart';
+import '../../../../news_mark/presentation/view_model/news_mark_controller/book_mark_state.dart';
+import '../../../../news_mark/presentation/view_model/news_mark_controller/news_mark_cubit.dart';
 
 class ListViewBody extends StatelessWidget {
   const ListViewBody({super.key, required this.articlesModel});
@@ -116,15 +116,15 @@ class ListViewBody extends StatelessWidget {
                       ),
                     ),
                   ),
-                  BlocBuilder<BookMarkCubit, BookMarkState>(
+                  BlocBuilder<NewsMarkCubit, NewsMarkState>(
                     builder: (context, state) {
                       return InkWell(
                         onTap: () {
-                          BlocProvider.of<BookMarkCubit>(context)
-                              .changeBookMarkForNewsItem(articlesModel);
+                          BlocProvider.of<NewsMarkCubit>(context)
+                              .changeNewsMarkForNewsItem(articlesModel);
                         },
-                        // child: const Icon(Icons.bookmark_border),
-                        child: articlesModel.bookMark
+                        // child: const Icon(Icons.NewsMark_border),
+                        child: articlesModel.newsMark
                             ? const Icon(
                                 Icons.bookmark,
                                 color: Colors.blue,

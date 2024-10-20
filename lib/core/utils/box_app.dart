@@ -1,3 +1,3 @@
-class BoxApp{
- static const String newsBox="NewsBox";
+class BoxApp {
+  static const String newsBox = "NewsBox";
 }

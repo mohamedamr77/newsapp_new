@@ -7,7 +7,7 @@ import 'package:newsappcode/features/auth/sign_up/presentation/view/widgets/user
 import '../../../../../../core/utils/style_app.dart';
 import '../../../../login/presentation/view/widgets/custom_rich_text.dart';
 import 'confirm_password_field.dart';
-import 'facebook_Button.dart';
+import 'facebook_button.dart';
 import 'google_button.dart';
 
 class BodyFormSignUp extends StatelessWidget {

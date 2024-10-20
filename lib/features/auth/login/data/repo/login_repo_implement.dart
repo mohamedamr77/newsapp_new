@@ -8,7 +8,7 @@ class LoginRepoImplement implements LoginRepo {
   Future<Either<Failure, void>> fireBaseSignIn(
       {required emailAddress, required password}) async {
     try {
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailAddress!.trim(),
         password: password!.trim(),
       );

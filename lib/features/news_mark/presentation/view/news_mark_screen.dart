@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:newsappcode/features/book_mark/presentation/view/widget/book_mark_body.dart';
+import 'package:newsappcode/features/news_mark/presentation/view/widget/news_mark_body.dart';
 
 import '../../../../core/utils/color_app.dart';
 
-class BookMarkScreen extends StatelessWidget {
-  const BookMarkScreen({super.key});
+class NewsMarkScreen extends StatelessWidget {
+  const NewsMarkScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: ColorApp.whiteColor,
-      body: BookMarkBody(),
+      body: NewsMarkBody(),
     );
   }
 }

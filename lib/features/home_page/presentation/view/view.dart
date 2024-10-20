@@ -1,11 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:newsappcode/features/book_mark/presentation/view_model/book_mark_controller/book_mark_cubit.dart';
+
 import 'package:newsappcode/features/home_page/presentation/view/widgets/home_page_body.dart';
 
 import '../../../../core/api_service.dart';
-import '../../../book_mark/presentation/view/book_mark_screen.dart';
+import '../../../news_mark/presentation/view/news_mark_screen.dart';
+import '../../../news_mark/presentation/view_model/news_mark_controller/news_mark_cubit.dart';
 import '../../../topics/presentation/view/topics_view.dart';
 import '../../data/repo/home_implement.dart';
 import '../controller/get_general_news/get_general_news_cubit.dart';
@@ -22,20 +23,21 @@ class _HomePageScreenState extends State<HomePageScreen> {
   List<Widget> displayScreen = [
     const HomePageBody(),
     const TopicsView(),
-    const BookMarkScreen(),
+    const NewsMarkScreen(),
   ];
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    BlocProvider.of<BookMarkCubit>(context).fetchBookMarksFromHive();
+    BlocProvider.of<NewsMarkCubit>(context).fetchNewsMarksFromHive();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => GetGeneralNewsCubit(HomeImplement(ApiService(Dio()))),
+      create: (context) =>
+          GetGeneralNewsCubit(HomeImplement(ApiService(Dio()))),
       child: Scaffold(
         backgroundColor: Colors.white,
         bottomNavigationBar: BottomNavigationBar(
@@ -59,7 +61,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.bookmark_border),
-              label: "Book Mark",
+              label: "News Mark",
             ),
           ],
         ),
