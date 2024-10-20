@@ -6,6 +6,7 @@ import 'package:newsappcode/features/home_page/data/model/article_model.dart';
 import 'package:newsappcode/features/topic_news/data/repo/topic_news_repo.dart';
 
 import '../../../../core/api_service.dart';
+import '../../../../core/utils/const_variable.dart';
 
 class TopicNewsImplement implements TopicNewsRepo {
   final ApiService apiService;
@@ -13,11 +14,11 @@ class TopicNewsImplement implements TopicNewsRepo {
   TopicNewsImplement(this.apiService);
   @override
   Future<Either<Failure, List<ArticlesModel>>> fetchTopicNews(
-      {required String topic}) async {
+      {required String topic , required int pageNumber}) async {
     try {
       var response = await apiService.get(
           endPoint:
-              "/everything?q=$topic&apiKey=08433c8dda43458fa30826408cb8219e&page=2");
+              "/everything?q=$topic&apiKey=${ConstVariable.apiKey}&page=$pageNumber&pageSize=20");
       List<dynamic> articlesFromApi = response["articles"];
       List<ArticlesModel> articlesList = [];
       for (int i = 0; i < articlesFromApi.length; i++) {

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,35 +30,57 @@ class _ListNewsTopicNewsState extends State<ListNewsTopicNews> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    BlocProvider.of<FetchTopicNewsCubit>(context).pageNumbers[widget.index] = 1;
+  }
+
+  @override
   Widget build(BuildContext context) {
     var cubit = BlocProvider.of<FetchTopicNewsCubit>(context);
     return BlocBuilder<FetchTopicNewsCubit, FetchTopicNewsState>(
       builder: (context, state) {
         List<ArticlesModel>? topicsList = cubit.topicNewsMap[widget.index];
 
-        if (state is FetchTopicNewsLoadingState &&
-            (topicsList == null || topicsList.isEmpty)) {
+        if (state is FetchTopicNewsLoadingState && (topicsList == null || topicsList.isEmpty)) {
           return const LoadingItem();
-        } else if (state is FetchTopicNewsFaliureState) {
+        }
+        else if (state is FetchTopicNewsFaliureState) {
           return Text(
               "An error occurred while fetching data ${state.errorMessage}");
-        } else if (state is FetchTopicNewsSuccessState &&
-            topicsList != null &&
-            topicsList.isNotEmpty) {
+        }
+        else if (state is FetchTopicNewsSuccessState && topicsList != null && topicsList.isNotEmpty) {
           return Expanded(
-            child: ListView.separated(
-              itemBuilder: (context, index) {
-                return ListViewBody(articlesModel: topicsList[index]);
+            child: NotificationListener<ScrollNotification>(
+              onNotification: (notification) {
+                if (notification.metrics.pixels == notification.metrics.maxScrollExtent&& notification is ScrollUpdateNotification ) {
+                  debugPrint("Loading");
+                  cubit.fetchTopicNewsCubit(
+                    topic: widget.topicName,
+                    index: widget.index,
+                    newsMarksList: BlocProvider.of<NewsMarkCubit>(context).newsMarkNewsList,
+                    isLoadingMore: true,
+                  );
+                }
+                return true;
               },
-              separatorBuilder: (context, index) {
-                return SizedBox(
-                  height: 12.h,
-                );
-              },
-              itemCount: topicsList.length,
+              child: ListView.separated(
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return ListViewBody(articlesModel: topicsList[index]);
+                },
+                separatorBuilder: (context, index) {
+                  return SizedBox(
+                    height: 12.h,
+                  );
+                },
+                itemCount: topicsList.length,
+              ),
             ),
           );
-        } else {
+        }
+        else {
           return const LoadingItem();
         }
       },

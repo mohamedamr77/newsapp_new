@@ -5,5 +5,5 @@ import '../../../home_page/data/model/article_model.dart';
 
 abstract class TopicNewsRepo {
   Future<Either<Failure, List<ArticlesModel>>> fetchTopicNews(
-      {required String topic});
+      {required String topic, required int pageNumber});
 }

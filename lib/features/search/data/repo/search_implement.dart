@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:newsappcode/features/search/data/repo/search_repo.dart';
 import '../../../../core/api_service.dart';
 import '../../../../core/failure.dart';
+import '../../../../core/utils/const_variable.dart';
 import '../../../home_page/data/model/article_model.dart';
 
 class SearchImplement implements SearchRepo {
@@ -16,7 +17,7 @@ class SearchImplement implements SearchRepo {
     try {
       var response = await apiService.get(
           endPoint:
-              "/everything?q=$category&apiKey=08433c8dda43458fa30826408cb8219e");
+              "/everything?q=$category&apiKey=${ConstVariable.apiKey}");
       List<dynamic> articlesFromApi = response["articles"];
       List<ArticlesModel> articlesList = [];
       for (int i = 0; i < articlesFromApi.length; i++) {
