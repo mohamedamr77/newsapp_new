@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:newsappcode/core/utils/color_app.dart';
 import 'package:newsappcode/features/topic_news/presentation/view/widget/topic_news_body.dart';
 import '../view_model/fetch_topic_news/fetch_top_news_state.dart';
@@ -22,10 +23,10 @@ class TopicNewsView extends StatelessWidget {
       ),
       bottomSheet: SizedBox(
         height: 70,
-        child: BlocBuilder<FetchTopicNewsCubit, FetchTopicNewsState>(
+        child: BlocConsumer<FetchTopicNewsCubit, FetchTopicNewsState>(
           buildWhen: (previous, current) =>
               current is FetchTopicNewsPaginationLoadingState ||
-              current is FetchTopicNewsPaginationLoadingState ||
+              current is FetchTopicNewsPaginationFailedState ||
               current is FetchTopicNewsSuccessState,
           builder: (context, state) {
             if (state is FetchTopicNewsPaginationLoadingState) {
@@ -33,11 +34,26 @@ class TopicNewsView extends StatelessWidget {
                 height: 70,
                 color: ColorApp.whiteColor,
                 child: const Center(
-                  child: CircularProgressIndicator(),
+                  child: CircularProgressIndicator(
+                    color: ColorApp.primaryColor,
+                  ),
                 ),
               );
-            } else {
+            }
+            else {
               return const SizedBox.shrink();
+            }
+          },
+          listener: (context, state) {
+            if (state is FetchTopicNewsPaginationFailedState) {
+              Fluttertoast.showToast(
+                  msg: "All Items Fetch Failed",
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.BOTTOM,
+                  timeInSecForIosWeb: 1,
+                  backgroundColor: Colors.red,
+                  textColor: Colors.white,
+                  fontSize: 16.0);
             }
           },
         ),

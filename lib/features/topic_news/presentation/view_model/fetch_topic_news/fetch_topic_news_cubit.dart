@@ -34,7 +34,12 @@ class FetchTopicNewsCubit extends Cubit<FetchTopicNewsState> {
     result.fold((error) {
       debugPrint(error.errorMessage);
       loading = false;
-      emit(FetchTopicNewsFaliureState(errorMessage: error.errorMessage));
+      if (isLoadingMore) {
+        emit(FetchTopicNewsPaginationFailedState(
+            errorMessage: error.errorMessage));
+      } else {
+        emit(FetchTopicNewsFaliureState(errorMessage: error.errorMessage));
+      }
       if (kDebugMode) {
         print(error.errorMessage);
       }

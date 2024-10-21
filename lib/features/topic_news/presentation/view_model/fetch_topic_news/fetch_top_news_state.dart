@@ -13,4 +13,7 @@ class FetchTopicNewsSuccessState extends FetchTopicNewsState {}
 
 class FetchTopicNewsPaginationLoadingState extends FetchTopicNewsState {}
 
-class FetchTopicNewsPaginationFailedState extends FetchTopicNewsState {}
+class FetchTopicNewsPaginationFailedState extends FetchTopicNewsState {
+  final String errorMessage;
+  FetchTopicNewsPaginationFailedState({required this.errorMessage});
+}

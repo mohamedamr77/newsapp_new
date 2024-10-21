@@ -50,7 +50,8 @@ class _ListNewsTopicNewsState extends State<ListNewsTopicNews> {
     var cubit = BlocProvider.of<FetchTopicNewsCubit>(context);
     return BlocBuilder<FetchTopicNewsCubit, FetchTopicNewsState>(
       buildWhen: (previous, current) =>
-          current is! FetchTopicNewsPaginationLoadingState,
+          current is! FetchTopicNewsPaginationLoadingState &&
+          current is! FetchTopicNewsPaginationFailedState,
       builder: (context, state) {
         if (kDebugMode) {
           print(state.runtimeType);
@@ -84,7 +85,7 @@ class _ListNewsTopicNewsState extends State<ListNewsTopicNews> {
                 return true;
               },
               child: ListView.separated(
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) {
                   return ListViewBody(articlesModel: topicsList[index]);
                 },
