@@ -23,7 +23,11 @@ class FetchTopicNewsCubit extends Cubit<FetchTopicNewsState> {
     int pageNumber = pageNumbers[index] ?? 1;
     var result = await topicNewsRepo.fetchTopicNews(topic: topic, pageNumber: pageNumber);
 
-    emit(FetchTopicNewsLoadingState());
+     if (isLoadingMore){
+       emit(FetchTopicNewsPaginationLoadingState());
+     }else{
+       emit(FetchTopicNewsLoadingState());
+     }
 
     result.fold((error) {
       debugPrint(error.errorMessage);
@@ -50,7 +54,6 @@ class FetchTopicNewsCubit extends Cubit<FetchTopicNewsState> {
 
       if (isLoadingMore ){
         pageNumbers[index] = pageNumber + 1;
-        emit(FetchTopicNewsPaginationLoadingState());
       }
 
       emit(FetchTopicNewsSuccessState());

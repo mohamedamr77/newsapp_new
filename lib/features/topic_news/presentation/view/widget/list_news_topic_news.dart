@@ -42,6 +42,7 @@ class _ListNewsTopicNewsState extends State<ListNewsTopicNews> {
     return BlocBuilder<FetchTopicNewsCubit, FetchTopicNewsState>(
       buildWhen:  (previous, current) =>  current is!  FetchTopicNewsPaginationLoadingState,
       builder: (context, state) {
+
         if (kDebugMode) {
           print(state.runtimeType);
         }
