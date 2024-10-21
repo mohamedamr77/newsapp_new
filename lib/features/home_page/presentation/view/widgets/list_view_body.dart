@@ -35,35 +35,35 @@ class ListViewBody extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(16.w),
               child: CachedNetworkImage(
-                fit: BoxFit.fill,
-                height: 195.h,
-                width: double.infinity,
-                imageUrl: articlesModel.urlToImage ?? "",
-                progressIndicatorBuilder: (context, url, downloadProgress) =>
-                    SizedBox(
-                  height: 195.h,
-                  width: double.infinity,
-                  child: Shimmer.fromColors(
-                    baseColor: Colors.grey[600]!,
-                    highlightColor: Colors.grey[400]!,
-                    direction: ShimmerDirection.ltr,
-                    // Left to right shimmer
-                    child: Container(
-                      height: 195.h,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.grey[600],
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                  ),
-                ),
-                errorWidget: (context, url, error) =>  Image.asset("assets/images/image_failed.jpg",
-                  height: 195.h,
-                  width: double.infinity,
                   fit: BoxFit.fill,
-                )
-              ),
+                  height: 195.h,
+                  width: double.infinity,
+                  imageUrl: articlesModel.urlToImage ?? "",
+                  progressIndicatorBuilder: (context, url, downloadProgress) =>
+                      SizedBox(
+                        height: 195.h,
+                        width: double.infinity,
+                        child: Shimmer.fromColors(
+                          baseColor: Colors.grey[600]!,
+                          highlightColor: Colors.grey[400]!,
+                          direction: ShimmerDirection.ltr,
+                          // Left to right shimmer
+                          child: Container(
+                            height: 195.h,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: Colors.grey[600],
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                        ),
+                      ),
+                  errorWidget: (context, url, error) => Image.asset(
+                        "assets/images/image_failed.jpg",
+                        height: 195.h,
+                        width: double.infinity,
+                        fit: BoxFit.fill,
+                      )),
             ),
             SizedBox(
               height: 12.h,

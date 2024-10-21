@@ -16,8 +16,7 @@ class SearchImplement implements SearchRepo {
       {required String category}) async {
     try {
       var response = await apiService.get(
-          endPoint:
-              "/everything?q=$category&apiKey=${ConstVariable.apiKey}");
+          endPoint: "/everything?q=$category&apiKey=${ConstVariable.apiKey}");
       List<dynamic> articlesFromApi = response["articles"];
       List<ArticlesModel> articlesList = [];
       for (int i = 0; i < articlesFromApi.length; i++) {

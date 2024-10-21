@@ -39,8 +39,7 @@ class TopicNewsView extends StatelessWidget {
                   ),
                 ),
               );
-            }
-            else {
+            } else {
               return const SizedBox.shrink();
             }
           },
