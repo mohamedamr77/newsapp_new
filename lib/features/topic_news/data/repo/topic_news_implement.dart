@@ -14,7 +14,7 @@ class TopicNewsImplement implements TopicNewsRepo {
   TopicNewsImplement(this.apiService);
   @override
   Future<Either<Failure, List<ArticlesModel>>> fetchTopicNews(
-      {required String topic , required int pageNumber}) async {
+      {required String topic, required int pageNumber}) async {
     try {
       var response = await apiService.get(
           endPoint:

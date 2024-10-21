@@ -11,23 +11,25 @@ class FetchTopicNewsCubit extends Cubit<FetchTopicNewsState> {
   List<ArticlesModel> topicNewsList = [];
   Map<int, List<ArticlesModel>> topicNewsMap = {};
   bool loading = false;
-  Map<int, int> pageNumbers = {};  // Store page numbers for each topic
+  Map<int, int> pageNumbers = {}; // Store page numbers for each topic
 
-  fetchTopicNewsCubit(
-      {required String topic,
-      required int index,
-      required List<ArticlesModel> newsMarksList,
-       bool isLoadingMore =false,
-      }) async {
+  fetchTopicNewsCubit({
+    required String topic,
+    required int index,
+    required List<ArticlesModel> newsMarksList,
+    bool isLoadingMore = false,
+  }) async {
     loading = true;
     int pageNumber = pageNumbers[index] ?? 1;
-    var result = await topicNewsRepo.fetchTopicNews(topic: topic, pageNumber: pageNumber);
 
-     if (isLoadingMore){
-       emit(FetchTopicNewsPaginationLoadingState());
-     }else{
-       emit(FetchTopicNewsLoadingState());
-     }
+    if (isLoadingMore) {
+      emit(FetchTopicNewsPaginationLoadingState());
+    } else {
+      emit(FetchTopicNewsLoadingState());
+    }
+
+    var result = await topicNewsRepo.fetchTopicNews(
+        topic: topic, pageNumber: pageNumber);
 
     result.fold((error) {
       debugPrint(error.errorMessage);
@@ -52,7 +54,7 @@ class FetchTopicNewsCubit extends Cubit<FetchTopicNewsState> {
         index: topicNewsList,
       });
 
-      if (isLoadingMore ){
+      if (isLoadingMore) {
         pageNumbers[index] = pageNumber + 1;
       }
 

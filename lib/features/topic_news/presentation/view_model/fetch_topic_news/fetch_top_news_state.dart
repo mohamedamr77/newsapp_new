@@ -10,5 +10,7 @@ class FetchTopicNewsFaliureState extends FetchTopicNewsState {
 }
 
 class FetchTopicNewsSuccessState extends FetchTopicNewsState {}
+
 class FetchTopicNewsPaginationLoadingState extends FetchTopicNewsState {}
+
 class FetchTopicNewsPaginationFailedState extends FetchTopicNewsState {}
