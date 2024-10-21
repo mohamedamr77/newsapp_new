@@ -40,7 +40,11 @@ class _ListNewsTopicNewsState extends State<ListNewsTopicNews> {
   Widget build(BuildContext context) {
     var cubit = BlocProvider.of<FetchTopicNewsCubit>(context);
     return BlocBuilder<FetchTopicNewsCubit, FetchTopicNewsState>(
+      buildWhen:  (previous, current) =>  current is!  FetchTopicNewsPaginationLoadingState,
       builder: (context, state) {
+        if (kDebugMode) {
+          print(state.runtimeType);
+        }
         List<ArticlesModel>? topicsList = cubit.topicNewsMap[widget.index];
 
         if (state is FetchTopicNewsLoadingState && (topicsList == null || topicsList.isEmpty)) {
@@ -80,7 +84,7 @@ class _ListNewsTopicNewsState extends State<ListNewsTopicNews> {
             ),
           );
         }
-        else {
+         else {
           return const LoadingItem();
         }
       },

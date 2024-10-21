@@ -20,6 +20,22 @@ class TopicNewsView extends StatelessWidget {
         topicName: topicName,
         index: index,
       ),
+      // bottomNavigationBar: SizedBox(
+      //   height: 70,
+      //   child: BlocBuilder<FetchTopicNewsCubit, FetchTopicNewsState>(
+      //     builder: (context, state) {
+      //       if (state is FetchTopicNewsPaginationLoadingState) {
+      //         return const  SizedBox(
+      //           height: 70,
+      //           child: Center(child: CircularProgressIndicator(),),
+      //         );
+      //       } else {
+      //         return const SizedBox(height: 1,);
+      //       }
+      //
+      //     },
+      //   ),
+      // ),
     );
   }
 }
