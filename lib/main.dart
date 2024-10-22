@@ -53,7 +53,9 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           navigatorKey: NavigationManager.navigationKey,
           routes: AppRouter.routes,
-          initialRoute: LoginScreen.id,
+          initialRoute:
+          Hive.box(BoxApp.userLoginBox).get("userLogin") ==true?
+          HomePageScreen.id:LoginScreen.id,
         );
       },
     );

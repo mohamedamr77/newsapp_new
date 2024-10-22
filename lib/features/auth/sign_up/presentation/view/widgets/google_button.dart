@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hive/hive.dart';
 import 'package:newsappcode/core/navigation/navigation_manager.dart';
 import 'package:newsappcode/features/home_page/presentation/view/view.dart';
 
+import '../../../../../../core/utils/box_app.dart';
 import '../../../../login/presentation/view/widgets/facebook_or_google.dart';
 import '../../controller/sign_up_cubit.dart';
 import '../../controller/sign_up_state.dart';
@@ -24,7 +26,7 @@ class GoogleButton extends StatelessWidget {
           marginRight: 24,
         );
       },
-      listener: (BuildContext context, Object? state) {
+      listener: (BuildContext context, Object? state) async{
         if (state is SignUpLoadingState) {
           debugPrint("Loading state");
         }
@@ -39,6 +41,8 @@ class GoogleButton extends StatelessWidget {
             gravity: ToastGravity.SNACKBAR,
             webShowClose: true,
           );
+          var box = Hive.box(BoxApp.userLoginBox);
+          await box.put("userLogin", true );
           NavigationManager.replaceAll(HomePageScreen.id);
         }
         if (state is SignUpFaliureWithGoogleState) {

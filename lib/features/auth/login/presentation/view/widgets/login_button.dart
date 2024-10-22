@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hive/hive.dart';
 import 'package:newsappcode/features/home_page/presentation/view/view.dart';
 import '../../../../../../core/navigation/navigation_manager.dart';
 import '../../../../../../core/shared_widget/custom_button.dart';
+import '../../../../../../core/utils/box_app.dart';
 import '../../controller/login_cubit.dart';
 import '../../controller/login_state.dart';
 
@@ -13,7 +15,7 @@ class LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LoginCubit, LoginState>(
-      listener: (context, state) {
+      listener: (context, state) async{
         // TODO: implement listener
         if (state is LoginLoadingState) {
           debugPrint("Loading state");
@@ -29,6 +31,8 @@ class LoginButton extends StatelessWidget {
             gravity: ToastGravity.SNACKBAR,
             webShowClose: true,
           );
+          var box = Hive.box(BoxApp.userLoginBox);
+          await box.put("userLogin", true );
           NavigationManager.replaceAll(HomePageScreen.id);
         }
         if (state is LoginFaliureState) {
