@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:newsappcode/core/utils/style_app.dart';
 
 import 'package:newsappcode/features/home_page/data/model/article_model.dart';
 
@@ -33,8 +34,20 @@ class NewsMarkBody extends StatelessWidget {
               List<ArticlesModel> newsMarkNews =
                   cubit.newsMarkNewsList.toSet().toList();
               if (newsMarkNews.isEmpty) {
-                return const Center(
-                  child: Text("No NewsMarked News"),
+                return  Center(
+                  child: Column(
+                    children: [
+                       Image(image: const AssetImage(
+                          "assets/images/newsMarkNotFound.jpg",),
+                       width: double.infinity,
+                         height: 500.h,
+                       ),
+                      SizedBox(height: 20.h,),
+                      Text("Not News Mark",
+                      style: StyleApp.textStyle5,
+                      )
+                    ],
+                  ),
                 );
               } else {
                 return Expanded(
