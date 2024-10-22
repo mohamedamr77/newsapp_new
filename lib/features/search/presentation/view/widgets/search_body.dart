@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
+import '../../../../../core/navigation/navigation_manager.dart';
 import '../../../../../core/shared_widget/custom_form_field.dart';
 import '../../../../../core/shared_widget/logo_app.dart';
 import '../../../../../core/utils/border_text_field.dart';
@@ -60,7 +61,7 @@ class SearchBody extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {
-              Navigator.pop(context);
+              NavigationManager.goBack();
             },
             icon: Icon(
               Icons.arrow_back,

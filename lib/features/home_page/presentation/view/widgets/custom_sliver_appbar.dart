@@ -1,6 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:newsappcode/core/navigation/navigation_manager.dart';
+import 'package:newsappcode/features/auth/login/presentation/view/login_view.dart';
 import '../../../../../core/shared_widget/logo_app.dart';
 import '../../../../../core/utils/color_app.dart';
 import '../../../../../core/utils/style_app.dart';
@@ -16,6 +21,18 @@ class CustomSliverAppbar extends StatelessWidget {
       backgroundColor: ColorApp.whiteColor,
       floating: false,
       pinned: false,
+      leading: IconButton(
+          onPressed: () async {
+            GoogleSignIn googleSignIn = GoogleSignIn();
+            googleSignIn.disconnect();
+            await FirebaseAuth.instance.signOut();
+
+            NavigationManager.replaceAll(LoginScreen.id);
+          },
+          icon: Icon(
+            Icons.no_accounts,
+            size: 40.w,
+          )),
       flexibleSpace: FlexibleSpaceBar(
         background: Container(
           color: Colors.white,
@@ -24,11 +41,7 @@ class CustomSliverAppbar extends StatelessWidget {
               const LogoApp(),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) {
-                      return const SearchView();
-                    },
-                  ));
+                  NavigationManager.push(SearchView.id);
                 },
                 child: Container(
                   width: double.infinity,

@@ -7,6 +7,7 @@ import '../controller/login_cubit.dart';
 import '../controller/validation_cubit/login_validation_cubit.dart';
 
 class LoginScreen extends StatelessWidget {
+  static const String id = "/";
   const LoginScreen({super.key});
 
   @override

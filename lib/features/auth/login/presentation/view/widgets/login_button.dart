@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:newsappcode/features/home_page/presentation/view/view.dart';
+import '../../../../../../core/navigation/navigation_manager.dart';
 import '../../../../../../core/shared_widget/custom_button.dart';
 import '../../controller/login_cubit.dart';
 import '../../controller/login_state.dart';
@@ -28,11 +29,7 @@ class LoginButton extends StatelessWidget {
             gravity: ToastGravity.SNACKBAR,
             webShowClose: true,
           );
-          Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const HomePageScreen(),
-              ));
+          NavigationManager.replaceAll(HomePageScreen.id);
         }
         if (state is LoginFaliureState) {
           debugPrint(

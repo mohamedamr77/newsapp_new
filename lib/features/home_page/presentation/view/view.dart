@@ -12,6 +12,7 @@ import '../../data/repo/home_implement.dart';
 import '../controller/get_general_news/get_general_news_cubit.dart';
 
 class HomePageScreen extends StatefulWidget {
+  static const String id = "/HomePageScreen";
   const HomePageScreen({super.key});
 
   @override

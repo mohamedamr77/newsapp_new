@@ -4,6 +4,7 @@ import 'package:newsappcode/features/news_mark/presentation/view/widget/news_mar
 import '../../../../core/utils/color_app.dart';
 
 class NewsMarkScreen extends StatelessWidget {
+  static const String id = "/NewsMarkScreen";
   const NewsMarkScreen({super.key});
 
   @override

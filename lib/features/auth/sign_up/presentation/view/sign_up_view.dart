@@ -8,6 +8,7 @@ import '../controller/sign_up_cubit.dart';
 import '../controller/validation_cubit/validation_sign_up_cubit.dart';
 
 class SignUpScreen extends StatelessWidget {
+  static const String id = "/SignUpScreen";
   const SignUpScreen({super.key});
 
   @override

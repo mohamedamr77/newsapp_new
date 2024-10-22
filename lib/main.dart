@@ -7,6 +7,9 @@ import 'package:newsappcode/core/utils/box_app.dart';
 import 'package:newsappcode/features/home_page/presentation/view/view.dart';
 import 'package:newsappcode/features/topic_news/data/repo/topic_news_implement.dart';
 import 'package:newsappcode/features/topic_news/presentation/view_model/fetch_topic_news/fetch_topic_news_cubit.dart';
+import 'core/navigation/navigation_manager.dart';
+import 'core/navigation/routes.dart';
+import 'features/auth/login/presentation/view/login_view.dart';
 import 'features/home_page/data/model/article_model.dart';
 import 'features/home_page/data/model/source_model.dart';
 import 'features/news_mark/presentation/view_model/news_mark_controller/news_mark_cubit.dart';
@@ -24,6 +27,7 @@ void main() async {
   Hive.registerAdapter(SourceModelAdapter());
 
   await Hive.openBox<ArticlesModel>(BoxApp.newsBox);
+  await Hive.openBox(BoxApp.userLoginBox);
   runApp(MultiBlocProvider(providers: [
     BlocProvider<FetchTopicNewsCubit>(
       create: (context) =>
@@ -45,9 +49,11 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_, child) {
-        return const MaterialApp(
+        return MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: HomePageScreen(),
+          navigatorKey: NavigationManager.navigationKey,
+          routes: AppRouter.routes,
+          initialRoute: LoginScreen.id,
         );
       },
     );

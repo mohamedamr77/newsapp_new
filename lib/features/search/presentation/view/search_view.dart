@@ -8,6 +8,7 @@ import '../../data/repo/search_implement.dart';
 import '../view_model/get_search_news/get_search_news_cubit.dart';
 
 class SearchView extends StatelessWidget {
+  static const String id = "/SearchView";
   const SearchView({super.key});
 
   @override

@@ -7,14 +7,18 @@ import '../view_model/fetch_topic_news/fetch_top_news_state.dart';
 import '../view_model/fetch_topic_news/fetch_topic_news_cubit.dart';
 
 class TopicNewsView extends StatelessWidget {
-  const TopicNewsView(
-      {super.key, required this.topicName, required this.index});
-
-  final String topicName;
-  final int index;
+  static const String id = "/TopicNewsView";
+  const TopicNewsView({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
+    Map<String, dynamic> args =
+        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
+    final topicName = args['topicName'] as String;
+    final index = args['index'] as int;
+
     return Scaffold(
       backgroundColor: ColorApp.whiteColor,
       body: TopicNewsBody(

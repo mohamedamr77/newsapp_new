@@ -3,6 +3,7 @@ import 'package:newsappcode/core/utils/color_app.dart';
 import 'package:newsappcode/features/topics/presentation/view/widgets/topics_body.dart';
 
 class TopicsView extends StatelessWidget {
+  static const String id = "/TopicsView";
   const TopicsView({super.key});
 
   @override

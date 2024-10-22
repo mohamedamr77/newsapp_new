@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:newsappcode/core/navigation/navigation_manager.dart';
+import 'package:newsappcode/features/home_page/presentation/view/view.dart';
 
 import '../../../../login/presentation/view/widgets/facebook_or_google.dart';
 import '../../controller/sign_up_cubit.dart';
@@ -37,7 +39,7 @@ class GoogleButton extends StatelessWidget {
             gravity: ToastGravity.SNACKBAR,
             webShowClose: true,
           );
-          Navigator.pop(context);
+          NavigationManager.replaceAll(HomePageScreen.id);
         }
         if (state is SignUpFaliureWithGoogleState) {
           Fluttertoast.showToast(

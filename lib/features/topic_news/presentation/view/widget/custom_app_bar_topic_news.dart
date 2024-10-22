@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:newsappcode/core/navigation/navigation_manager.dart';
 
 import '../../../../../core/utils/color_app.dart';
 import '../../view_model/fetch_topic_news/fetch_topic_news_cubit.dart';
@@ -39,7 +40,7 @@ class CustomAppBarTopicNews extends StatelessWidget {
             if (navigatePop == true)
               IconButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  NavigationManager.goBack();
                   cubit.topicNewsList = [];
                 },
                 icon: const Icon(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:newsappcode/core/navigation/navigation_manager.dart';
 import 'package:newsappcode/features/auth/shared_widget_auth/custom_text_for_style_1.dart';
 import 'package:newsappcode/features/auth/shared_widget_auth/image_top_container_form.dart';
 import 'package:newsappcode/features/auth/sign_up/presentation/view/widgets/password_field_sign_up.dart';
@@ -96,7 +97,7 @@ class BodyFormSignUp extends StatelessWidget {
 
                   TextButton(
                       onPressed: () {
-                        Navigator.pop(context);
+                        NavigationManager.goBack();
                       },
                       child: Text(
                         "Login ",

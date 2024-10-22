@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:newsappcode/core/navigation/navigation_manager.dart';
 import 'package:newsappcode/core/utils/style_app.dart';
 import 'package:newsappcode/features/auth/login/presentation/view/widgets/facebook_button.dart';
 import 'package:newsappcode/features/auth/login/presentation/view/widgets/google_button.dart';
@@ -105,11 +106,7 @@ class BodyForm extends StatelessWidget {
 
                 TextButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(
-                        builder: (context) {
-                          return const SignUpScreen();
-                        },
-                      ));
+                      NavigationManager.push(SignUpScreen.id);
                     },
                     child: Text(
                       "Sign Up",

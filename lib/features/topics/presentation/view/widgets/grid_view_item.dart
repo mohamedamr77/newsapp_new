@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:newsappcode/core/navigation/navigation_manager.dart';
 import 'package:newsappcode/features/topic_news/presentation/view/topic_news_view.dart';
 import 'package:newsappcode/features/topics/data/model/model.dart';
 
@@ -13,14 +14,10 @@ class GridViewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(
-          builder: (context) {
-            return TopicNewsView(
-              topicName: topicsModel.title,
-              index: index,
-            );
-          },
-        ));
+        NavigationManager.push(TopicNewsView.id, arguments: {
+          "topicName": topicsModel.title,
+          "index": index,
+        });
       },
       child: Container(
         decoration: BoxDecoration(
